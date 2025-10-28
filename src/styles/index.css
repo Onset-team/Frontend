@@ -1,0 +1,54 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Pretendard Variable', system-ui, sans-serif;
+
+  /* Colors */
+  --color-stoov-white-100: #ffffff;
+  --color-stoov-white-200: #fbf4ee;
+
+  --color-stoov-orange-100: #ffcbbf;
+  --color-stoov-orange-500: #ec3910;
+  --color-stoov-orange-700: #a8280a;
+
+  --color-stoov-gray-100: #dedede;
+  --color-stoov-gray-200: #999999;
+  --color-stoov-gray-300: #808080;
+  --color-stoov-gray-400: #666666;
+  --color-stoov-gray-500: #4d4d4d;
+  --color-stoov-gray-800: #3a3a3a;
+  --color-stoov-gray-900: #222222;
+
+  /* Spacing */
+  --spacing-13: 52px;
+}
+
+@font-face {
+  font-family: 'Pretendard Variable';
+  font-weight: 45 920;
+  font-style: normal;
+  font-display: swap;
+  src: url('/PretendardVariable.woff2') format('woff2-variations');
+}
+
+@layer base {
+  :root {
+    color-scheme: light;
+  } /* 다크 모드 쓰면 토글로 교체 */
+
+  html,
+  body,
+  #root {
+    height: 100%;
+  }
+
+  body {
+    font-family: var(--font-sans);
+    /* color: var(--color-gray-800);
+    background: var(--color-gray-50); */
+  }
+
+  button {
+    cursor: pointer;
+  }
+}
