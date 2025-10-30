@@ -1,9 +1,15 @@
 import { useEffect, useRef, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
-import useKakaoLoader from './useKakaoLoader';
+import useKakaoLoader from '@/libs/kakaos/useKakaoLoader';
+import { useApiCall } from '../hooks/useApiCall';
+import { useTestStore } from '../stores/useTestStore';
 
 export default function MapTest() {
   useKakaoLoader();
+
+  const { data, setData } = useTestStore();
+
+  const { data: apiData, error, isLoading } = useApiCall(1);
 
   const [darkMode, setDarkMode] = useState(false);
   const [result, setResult] = useState('');
@@ -29,6 +35,21 @@ export default function MapTest() {
   useEffect(() => {
     console.log('현재 저장된 위치들:', dummyLocations);
   }, [dummyLocations]);
+
+  useEffect(() => {
+    if (error) {
+      console.error('API 에러:', error);
+      return;
+    }
+
+    if (apiData) {
+      setData(apiData);
+    }
+  }, [apiData, error]);
+
+  useEffect(() => {
+    console.log(data);
+  }, [data]);
 
   const getAddressFromCoords = (lat, lng) => {
     if (!window.kakao?.maps?.services) {
@@ -64,7 +85,7 @@ export default function MapTest() {
       <div className='relative h-[350px] w-full overflow-hidden rounded-xl'>
         <Map
           id='map'
-          center={{ lat:  37.5172, lng: 127.0473 }}
+          center={{ lat: 37.5172, lng: 127.0473 }}
           style={{ width: '100%', height: '100%' }}
           level={3}
           onClick={(_, mouseEvent) => {

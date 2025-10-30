@@ -2,7 +2,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import LoginPage from '@/features/auth/pages/LoginPage';
 import HomePage from '@/features/home/HomePage';
-import MapTest from './features/map/test/MapTest';
+import MapTest from './features/map/pages/MapTest';
 
 const router = createBrowserRouter([
   { path: '/', element: <HomePage /> },
