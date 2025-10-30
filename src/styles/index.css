@@ -44,8 +44,8 @@
 
   body {
     font-family: var(--font-sans);
-    /* color: var(--color-gray-800);
-    background: var(--color-gray-50); */
+    color: var(--color-stoov-white-100);
+    background: var(--color-stoov-white-200);
   }
 
   button {
