@@ -1,8 +1,12 @@
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Map, MapMarker } from 'react-kakao-maps-sdk';
 import useKakaoLoader from '@/libs/kakaos/useKakaoLoader';
+
 import { useApiCall } from '../hooks/useApiCall';
 import { useTestStore } from '../stores/useTestStore';
+import mapMarkers from '../components/mapMarkers';
+import { mapCircleMarkers } from '../components/mapCircleMarkers';
+import { debounce } from 'lodash';
 
 export default function MapTest() {
   useKakaoLoader();
@@ -11,9 +15,29 @@ export default function MapTest() {
 
   const { data: apiData, error, isLoading } = useApiCall(1);
 
+  // 다크모드 필터링
   const [darkMode, setDarkMode] = useState(false);
+
+  // 클릭 위치 좌표
   const [result, setResult] = useState('');
+
+  // 클릭 위치 주소
   const [address, setAddress] = useState('');
+
+  // 지도 중심 좌표
+  const [center, setCenter] = useState({
+    lat: 33.450701,
+    lng: 126.570667,
+  });
+
+  // 내 현재위치
+  const [position, setPosition] = useState({
+    lat: 33.450701,
+    lng: 126.570667,
+  });
+
+  // 마커 클릭 모달
+  const [isOpen, setIsOpen] = useState(false);
   const [dummyLocations, setDummyLocations] = useState([
     { lat: 37.5665, lng: 126.978, address: '서울특별시 중구 세종대로 110' },
     { lat: 37.5511, lng: 126.9882, address: '서울특별시 중구 남산공원길 105' },
@@ -32,10 +56,22 @@ export default function MapTest() {
     { lat: 37.4848, lng: 127.0317, address: '서울특별시 서초구 강남대로 201' },
   ]);
 
+  // 현재 내 위치, 중심 좌표
   useEffect(() => {
-    console.log('현재 저장된 위치들:', dummyLocations);
-  }, [dummyLocations]);
+    navigator.geolocation.getCurrentPosition((pos) => {
+      setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+    });
 
+    navigator.geolocation.watchPosition((pos) => {
+      setPosition({ lat: pos.coords.latitude, lng: pos.coords.longitude });
+    });
+  }, []);
+
+  // useEffect(() => {
+  //   console.log('현재 저장된 위치들:', dummyLocations);
+  // }, [dummyLocations]);
+
+  // api 호출
   useEffect(() => {
     if (error) {
       console.error('API 에러:', error);
@@ -47,10 +83,11 @@ export default function MapTest() {
     }
   }, [apiData, error]);
 
-  useEffect(() => {
-    console.log(data);
-  }, [data]);
+  // useEffect(() => {
+  //   console.log(data);
+  // }, [data]);
 
+  // 좌표 -> 주소 변환
   const getAddressFromCoords = (lat, lng) => {
     if (!window.kakao?.maps?.services) {
       console.warn('Kakao Maps 서비스가 로드되지 않았습니다.');
@@ -80,12 +117,29 @@ export default function MapTest() {
     });
   };
 
+  const setCenterToMyPosition = () => {
+    setCenter(position);
+  };
+
+
+  const updateCenter = useMemo(
+    () =>
+      debounce((map) => {
+        console.log(map.getCenter());
+        setCenter({
+          lat: map.getCenter().getLat(),
+          lng: map.getCenter().getLng(),
+        });
+      }, 500),
+    [],
+  );
+
   return (
     <>
-      <div className='relative h-[350px] w-full overflow-hidden rounded-xl'>
+      <div className='my-2f relative h-[calc(100vh-100px)] w-full overflow-hidden rounded-xl'>
         <Map
           id='map'
-          center={{ lat: 37.5172, lng: 127.0473 }}
+          center={center}
           style={{ width: '100%', height: '100%' }}
           level={3}
           onClick={(_, mouseEvent) => {
@@ -95,22 +149,61 @@ export default function MapTest() {
             );
             getAddressFromCoords(latlng.getLat(), latlng.getLng());
           }}
+          onCenterChanged={updateCenter}
         >
+          {/* 내 위치 마커 */}
+          <MapMarker
+            position={position}
+            image={{
+              src: mapCircleMarkers('#0066FF', 20),
+              size: {
+                width: 20,
+                height: 20,
+              },
+            }}
+            title='내 위치'
+          />
+
+          {/* 위치 마커 */}
           {dummyLocations.map((position, index) => (
             <MapMarker
               key={`${position.lat - position.lng}`}
               position={{ lat: position.lat, lng: position.lng }} // 마커를 표시할 위치
-              // image={{
-              //   src: 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png', // 마커이미지의 주소입니다
-              //   size: {
-              //     width: 24,
-              //     height: 35,
-              //   }, // 마커이미지의 크기입니다
-              // }}
-              title={position.title} // 마커의 타이틀, 마커에 마우스를 올리면 타이틀이 표시됩니다
+              image={{
+                src: mapMarkers('#FF0000', 24, 35), // 마커이미지
+                size: {
+                  width: 24,
+                  height: 35,
+                }, // 마커이미지의 크기입니다
+              }}
+              clickable={true}
+              onClick={() => {
+                setIsOpen(true);
+                console.log(isOpen);
+              }}
             />
           ))}
         </Map>
+
+        {/* 마커 클릭 */}
+        {isOpen && (
+          <div className='absolute top-4 left-4 z-50 bg-white p-4 shadow-lg'>
+            <img
+              alt='close'
+              width='14'
+              height='13'
+              src='https://t1.daumcdn.net/localimg/localimages/07/mapjsapi/2x/bt_close.gif'
+              style={{
+                position: 'absolute',
+                right: '5px',
+                top: '5px',
+                cursor: 'pointer',
+              }}
+              onClick={() => setIsOpen(false)}
+            />
+            <div style={{ padding: '5px', color: '#000' }}>Hello World!</div>
+          </div>
+        )}
 
         {/* 다크모드 오버레이 */}
         {darkMode && (
@@ -131,6 +224,15 @@ export default function MapTest() {
         >
           {darkMode ? '라이트 모드' : '다크 모드'}
         </button>
+
+        <div className='absolute top-10 right-3 z-20 flex flex-col gap-2.5 p-2.5'>
+          <button
+            className='flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-full bg-white shadow-[0_0_8px_#00000025]'
+            onClick={setCenterToMyPosition}
+          >
+            
+          </button>
+        </div>
       </div>
       <p
         id='result'
