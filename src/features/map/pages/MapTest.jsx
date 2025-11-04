@@ -142,7 +142,7 @@ export default function MapTest() {
 
   return (
     <>
-      <div className='my-2f relative h-[calc(100vh-100px)] w-full overflow-hidden rounded-xl'>
+      <div className='my-2 relative h-[calc(100vh-100px)] w-full overflow-hidden rounded-xl'>
         <Map
           id='map'
           center={center}
