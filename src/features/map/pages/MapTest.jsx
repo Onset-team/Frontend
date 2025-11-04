@@ -131,7 +131,7 @@ export default function MapTest() {
   const updateCenter = useMemo(
     () =>
       debounce((map) => {
-        console.log(map.getCenter()); 
+        console.log(map.getCenter());
         setCenter({
           lat: map.getCenter().getLat(),
           lng: map.getCenter().getLng(),
@@ -142,7 +142,7 @@ export default function MapTest() {
 
   return (
     <>
-      <div className='my-2 relative h-[calc(100vh-100px)] w-full overflow-hidden rounded-xl'>
+      <div className='relative my-2 h-[calc(100vh-100px)] w-full overflow-hidden rounded-xl'>
         <Map
           id='map'
           center={center}
@@ -177,6 +177,25 @@ export default function MapTest() {
               position={{ lat: position.lat, lng: position.lng }} // 마커를 표시할 위치
               image={{
                 src: mapMarkers('#FF0000', 24, 35), // 마커이미지
+                size: {
+                  width: 24,
+                  height: 35,
+                }, // 마커이미지의 크기입니다
+              }}
+              clickable={true}
+              onClick={() => {
+                setIsOpen(true);
+                console.log(isOpen);
+              }}
+            />
+          ))}
+
+          {dummyLocations.map((position, index) => (
+            <MapMarker
+              key={`${position.lat - position.lng}`}
+              position={{ lat: position.lat+0.002, lng: position.lng+0.002 }} // 마커를 표시할 위치
+              image={{
+                src: mapMarkers('#0000ff', 24, 35), // 마커이미지
                 size: {
                   width: 24,
                   height: 35,
@@ -235,9 +254,7 @@ export default function MapTest() {
           <button
             className='flex h-[45px] w-[45px] cursor-pointer items-center justify-center rounded-full bg-white shadow-[0_0_8px_#00000025]'
             onClick={setCenterToMyPosition}
-          >
-            
-          </button>
+          ></button>
         </div>
       </div>
       <p
