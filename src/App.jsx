@@ -10,6 +10,7 @@ import HomePage from '@/features/home/pages/HomePage';
 import InterestPage from '@/features/interest/pages/InterestPage';
 import Mypage from '@/features/mypage/pages/Mypage';
 import MapTest from './features/map/pages/MapTest';
+import NearbyPage from '@/features/nearby/pages/NearbyPage';
 
 
 const router = createBrowserRouter([
