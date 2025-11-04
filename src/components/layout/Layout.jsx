@@ -6,17 +6,15 @@ import Header from '@/components/layout/Header';
 
 export default function Layout() {
   return (
-    <div>
-      <div className='min-h-screen'>
-        <div className='bg-stoov-gray-900 relative mx-auto flex min-h-screen w-full max-w-[500px] flex-col shadow-lg'>
-          <Header />
+    <div className='min-h-screen'>
+      <div className='bg-stoov-gray-900 relative mx-auto flex min-h-screen w-full max-w-[500px] flex-col'>
+        <Header />
 
-          <main className='flex-1'>
-            <Outlet />
-          </main>
+        <main className='min-h-[calc(100vh-60px)] flex-1 pt-15 pb-14'>
+          <Outlet />
+        </main>
 
-          <BottomBar />
-        </div>
+        <BottomBar />
       </div>
     </div>
   );
