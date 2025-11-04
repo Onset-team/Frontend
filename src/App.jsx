@@ -8,6 +8,7 @@ import HomePage from '@/features/home/pages/HomePage';
 import NearbyPage from '@/features/nearby/pages/NearbyPage';
 import InterestPage from '@/features/interest/pages/InterestPage';
 import Mypage from '@/features/mypage/pages/Mypage';
+import MapTest from './features/map/pages/MapTest';
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,7 @@ const router = createBrowserRouter([
             path: '/nearby', // 주변
             element: <NearbyPage />,
           },
+          { path: '/test', element: <MapTest /> },
 
           // 3. 로그인 필요한 페이지
           {
