@@ -7,7 +7,6 @@ import ProtectedRoute from '@/components/layout/ProtectedRoute';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import LoginPage from '@/features/auth/pages/LoginPage';
 import HomePage from '@/features/home/pages/HomePage';
-import NearbyPage from '@/features/nearby/pages/NearbyPage';
 import InterestPage from '@/features/interest/pages/InterestPage';
 import Mypage from '@/features/mypage/pages/Mypage';
 import MapTest from './features/map/pages/MapTest';

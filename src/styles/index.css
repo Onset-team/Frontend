@@ -9,6 +9,7 @@
 
   --color-stoov-orange-100: #ffcbbf;
   --color-stoov-orange-500: #ec3910;
+  --color-stoov-orange-600: #e0350f;
   --color-stoov-orange-700: #a8280a;
 
   --color-stoov-gray-100: #dedede;
@@ -32,10 +33,6 @@
 }
 
 @layer base {
-  :root {
-    color-scheme: light;
-  } /* 다크 모드 쓰면 토글로 교체 */
-
   html,
   body,
   #root {
@@ -50,5 +47,42 @@
 
   button {
     cursor: pointer;
+  }
+
+  /* 숫자 input의 스핀 버튼 제거 */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+}
+
+@layer utilities {
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes slideUp {
+    0% {
+      transform: translateY(100%);
+    }
+    100% {
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeInUp {
+    animation: fadeInUp 0.3s ease-out;
+  }
+
+  .animate-slideUp {
+    animation: slideUp 0.3s ease-out;
   }
 }
