@@ -58,10 +58,12 @@ export default function MapTest() {
 
   // 현재 내 위치, 중심 좌표
   useEffect(() => {
+    // 최초 지도 중심 좌표 : 갱신 x
     navigator.geolocation.getCurrentPosition((pos) => {
       setCenter({ lat: pos.coords.latitude, lng: pos.coords.longitude });
     });
 
+    // 현재 위치 : 이동시 갱신
     navigator.geolocation.watchPosition((pos) => {
       setPosition({ lat: pos.coords.latitude, lng: pos.coords.longitude });
     });
@@ -102,6 +104,7 @@ export default function MapTest() {
         const detailAddr = result[0].road_address
           ? result[0].road_address.address_name
           : result[0].address.address_name;
+
         setAddress(detailAddr);
 
         const newLocation = {
@@ -117,15 +120,18 @@ export default function MapTest() {
     });
   };
 
+  // 중심좌표를 내 위치로 조정
   const setCenterToMyPosition = () => {
     setCenter(position);
   };
 
-
+  // 중심 좌표 이동 감지시, 이동된 좌표로 중심을 이동
+  // 감지가 없을 때에만 center 상태를 갱신 -> 마지막 호출만 실행
+  // useMemo로 디바운스 정상 작동 시킴
   const updateCenter = useMemo(
     () =>
       debounce((map) => {
-        console.log(map.getCenter());
+        console.log(map.getCenter()); 
         setCenter({
           lat: map.getCenter().getLat(),
           lng: map.getCenter().getLng(),
