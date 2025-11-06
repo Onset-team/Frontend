@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useRef, useState } from 'react';
-import { Map, MapMarker } from 'react-kakao-maps-sdk';
+import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import useKakaoLoader from '@/libs/kakaos/useKakaoLoader';
 
 import { useApiCall } from '../hooks/useApiCall';
@@ -131,7 +131,7 @@ export default function MapTest() {
   const updateCenter = useMemo(
     () =>
       debounce((map) => {
-        console.log(map.getCenter());
+        // console.log(map.getCenter());
         setCenter({
           lat: map.getCenter().getLat(),
           lng: map.getCenter().getLng(),
@@ -171,43 +171,48 @@ export default function MapTest() {
           />
 
           {/* 위치 마커 */}
-          {dummyLocations.map((position, index) => (
-            <MapMarker
-              key={`${position.lat - position.lng}`}
-              position={{ lat: position.lat, lng: position.lng }} // 마커를 표시할 위치
-              image={{
-                src: mapMarkers('#FF0000', 24, 35), // 마커이미지
-                size: {
-                  width: 24,
-                  height: 35,
-                }, // 마커이미지의 크기입니다
-              }}
-              clickable={true}
-              onClick={() => {
-                setIsOpen(true);
-                console.log(isOpen);
-              }}
-            />
-          ))}
+          <MarkerClusterer
+            averageCenter={true} // 클러스터 중심을 마커들의 평균 위치로
+            minLevel={5} // 최소 확대 레벨 (숫자가 작을수록 더 확대됨)
+          >
+            {dummyLocations.map((position, index) => (
+              <MapMarker
+                key={`${position.lat - position.lng}`}
+                position={{ lat: position.lat, lng: position.lng }} // 마커를 표시할 위치
+                image={{
+                  src: mapMarkers('#FF0000', 24, 35), // 마커이미지
+                  size: {
+                    width: 24,
+                    height: 35,
+                  }, // 마커이미지의 크기입니다
+                }}
+                clickable={true}
+                onClick={() => {
+                  setIsOpen(true);
+                  // console.log(isOpen);
+                }}
+              />
+            ))}
 
-          {dummyLocations.map((position, index) => (
-            <MapMarker
-              key={`${position.lat - position.lng}`}
-              position={{ lat: position.lat+0.002, lng: position.lng+0.002 }} // 마커를 표시할 위치
-              image={{
-                src: mapMarkers('#0000ff', 24, 35), // 마커이미지
-                size: {
-                  width: 24,
-                  height: 35,
-                }, // 마커이미지의 크기입니다
-              }}
-              clickable={true}
-              onClick={() => {
-                setIsOpen(true);
-                console.log(isOpen);
-              }}
-            />
-          ))}
+            {dummyLocations.map((position, index) => (
+              <MapMarker
+                key={`${position.lat - position.lng}`}
+                position={{ lat: position.lat + 0.002, lng: position.lng + 0.002 }} // 마커를 표시할 위치
+                image={{
+                  src: mapMarkers('#0000ff', 24, 35), // 마커이미지
+                  size: {
+                    width: 24,
+                    height: 35,
+                  }, // 마커이미지의 크기입니다
+                }}
+                clickable={true}
+                onClick={() => {
+                  setIsOpen(true);
+                  // console.log(isOpen);
+                }}
+              />
+            ))}
+          </MarkerClusterer>
         </Map>
 
         {/* 마커 클릭 */}
