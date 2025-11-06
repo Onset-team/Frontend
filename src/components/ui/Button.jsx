@@ -8,21 +8,23 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        fill: 'bg-stoov-orange-500 hover:bg-stoov-orange-600 text-stoov-white',
-        line: 'border-stoov-orange-500 hover:bg-stoov-white-200 bg-stoov-white-100 text-stoov-gray-400 border',
-        icon: 'text-stoov-gray-400 hover:bg-stoov-orange-600 bg-transparent',
+        fill: 'bg-stoov-orange-500 text-stoov-white',
+        line: 'border-stoov-orange-500 bg-stoov-white-100 text-stoov-gray-400 border',
+        icon: 'text-stoov-gray-400 bg-transparent',
       },
       size: {
-        sm: 'h-8 px-3 text-sm',
-        md: 'h-10 px-4 text-base',
-        lg: 'h-12 px-6 text-lg',
-        iconSm: 'h-6 w-6',
-        iconLg: 'h-10 w-10',
+        sm: 'h-8 px-3 text-sm', // height: 32px, padding-left, right: 12px, font-size: 12px
+        md: 'h-10 px-4 text-base', // height: 40px, padding-left, right: 16px, font-size: 16px
+        lg: 'h-12 px-6 text-lg', // height: 48px, padding-left, right: 24px, font-size: 18px
+        iconSm: 'h-6 w-6', // height, width: 24px,
+        iconLg: 'h-10 w-10', // height, width: 40px,
       },
       rounded: {
-        sm: 'rounded-sm',
-        md: 'rounded-md',
-        lg: 'rounded-lg',
+        sm: 'rounded-sm', // 4px
+        md: 'rounded-md', // 6px
+        lg: 'rounded-lg', // 8px
+        xl: 'rounded-xl', // 10px
+        xxxl: 'rounded-3xl', // 20px
         full: 'rounded-full',
       },
     },
