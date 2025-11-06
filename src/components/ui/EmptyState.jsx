@@ -20,21 +20,15 @@ export default function EmptyState({ variant, buttonText, onButtonClick }) {
   const current = variants[variant];
 
   return (
-    <div className='flex min-h-[calc(100vh-118px)] flex-col items-center justify-center gap-5'>
+    <div className='flex min-h-[calc(100vh-118px)] flex-col items-center justify-center gap-5 px-4'>
       {current.icon && <div className=''>{current.icon}</div>}
 
       <div className='flex flex-col items-center gap-3'>
-        <Typography
-          as='div'
-          variant='title'
-          weight='bold'
-          align='center'
-          className='whitespace-pre-line'
-        >
+        <Typography as='h3' variant='headingSm' align='center' className='whitespace-pre-line'>
           {current.title}
         </Typography>
 
-        <Typography align='center' className='whitespace-pre-line'>
+        <Typography variant='bodyLg' align='center' className='whitespace-pre-line'>
           {current.desc}
         </Typography>
       </div>
