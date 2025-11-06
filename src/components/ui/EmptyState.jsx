@@ -20,7 +20,7 @@ export default function EmptyState({ variant, buttonText, onButtonClick }) {
   const current = variants[variant];
 
   return (
-    <div className='flex min-h-[calc(100vh-116px)] flex-col items-center justify-center gap-5'>
+    <div className='flex min-h-[calc(100vh-118px)] flex-col items-center justify-center gap-5'>
       {current.icon && <div className=''>{current.icon}</div>}
 
       <div className='flex flex-col items-center gap-3'>
