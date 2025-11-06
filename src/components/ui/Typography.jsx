@@ -47,7 +47,7 @@ const typographyVariants = cva('', {
     },
   },
   defaultVariants: {
-    variant: 'body',
+    variant: 'bodyMd',
     color: 'default',
     align: 'left',
   },
