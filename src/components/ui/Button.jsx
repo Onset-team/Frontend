@@ -18,6 +18,7 @@ const buttonVariants = cva(
         lg: 'h-12 px-6 text-lg', // height: 48px, padding-left, right: 24px, font-size: 18px
         iconSm: 'h-6 w-6', // height, width: 24px,
         iconLg: 'h-10 w-10', // height, width: 40px,
+        iconXl: 'h-12 w-12', // height, width: 48px,
       },
       rounded: {
         sm: 'rounded-sm', // 4px

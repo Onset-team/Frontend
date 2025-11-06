@@ -3,6 +3,8 @@ import React, { useEffect, useState } from 'react';
 import { cn } from '@/utils/cn';
 // 컴포넌트
 import Button from '@/components/ui/Button';
+// 아이콘
+import IconTop from '@/assets/icons/IconTop.svg';
 
 export default function ToTopButton() {
   const [isVisible, setIsVisible] = useState(false);
@@ -34,18 +36,18 @@ export default function ToTopButton() {
   }, []);
 
   return (
-    <div className='fixed right-0 bottom-0 left-0 z-60 mx-auto h-0 max-w-[500px]'>
+    <div className='absolute right-4 bottom-20'>
       <Button
         onClick={scrollToTop}
-        size='lg'
+        size='iconXl'
         rounded='full'
         aria-label='위로'
         className={cn(
-          'absolute right-5 bottom-20 w-12 transition-all duration-300',
+          'bg-stoov-gray-200 shadow-[0px_3px_4px_0px_rgba(0,0,0,0.35)] transition-all duration-300',
           isVisible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-6 opacity-0',
         )}
       >
-        👆
+        <IconTop className='text-stoov-gray-500' />
       </Button>
     </div>
   );
