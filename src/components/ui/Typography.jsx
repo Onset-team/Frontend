@@ -25,7 +25,14 @@ const typographyVariants = cva('', {
       default: 'text-stoov-white-100', // #ffffff
       primary: 'text-stoov-orange-500', // #ec3910
       black: 'text-stoov-gray-900', // #222222
-      gray: 'text-stoov-gray-100', // #dedede
+      gray100: 'text-stoov-gray-100', // #dedede
+      gray200: 'text-stoov-gray-200', // #c7c7c7
+      gray300: 'text-stoov-gray-300', //#999999
+      gray400: 'text-stoov-gray-400', //#808080
+      gray500: 'text-stoov-gray-500', //#666666
+      gray600: 'text-stoov-gray-600', //#4d4d4d
+      gray800: 'text-stoov-gray-800', //#3a3a3a
+      gray900: 'text-stoov-gray-900', //#222222
     },
     align: {
       left: 'text-left',

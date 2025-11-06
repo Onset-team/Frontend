@@ -8,20 +8,22 @@
   --color-stoov-white-200: #fbf4ee;
 
   --color-stoov-orange-100: #ffcbbf;
+  --color-stoov-orange-300: #f58369;
   --color-stoov-orange-500: #ec3910;
-  --color-stoov-orange-600: #e0350f;
   --color-stoov-orange-700: #a8280a;
 
   --color-stoov-gray-100: #dedede;
-  --color-stoov-gray-200: #999999;
-  --color-stoov-gray-300: #808080;
-  --color-stoov-gray-400: #666666;
-  --color-stoov-gray-500: #4d4d4d;
+  --color-stoov-gray-200: #c7c7c7;
+  --color-stoov-gray-300: #999999;
+  --color-stoov-gray-400: #808080;
+  --color-stoov-gray-500: #666666;
+  --color-stoov-gray-600: #4d4d4d;
   --color-stoov-gray-800: #3a3a3a;
   --color-stoov-gray-900: #222222;
 
-  /* Spacing */
-  --spacing-13: 52px;
+  /* Radius */
+  --radius-xl: 10px; /* rounded-xl */
+  --radius-3xl: 20px; /* rounded-3xl */
 }
 
 @font-face {
