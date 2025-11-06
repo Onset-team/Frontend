@@ -21,9 +21,42 @@
   --color-stoov-gray-800: #3a3a3a;
   --color-stoov-gray-900: #222222;
 
+  /* Font-weight */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Font-size */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 22px;
+  --text-3xl: 24px;
+
+  /* Line-height */
+  --leading-1: 12px;
+  --leading-2: 14px;
+  --leading-3: 16px;
+  --leading-4: 18px;
+  --leading-5: 20px;
+  --leading-6: 22px;
+  --leading-7: 24px;
+  --leading-8: 28px;
+  --leading-9: 32px;
+
   /* Radius */
-  --radius-xl: 10px; /* rounded-xl */
-  --radius-3xl: 20px; /* rounded-3xl */
+  --radius: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-3xl: 20px;
+
+  /* Shadow */
+  --shadow-chip: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+  --shadow-dropdown: 2px 5px 15px 0 rgba(0, 0, 0, 0.4);
+  --shadow-bottomsheet: 0 -6px 10px 0 rgba(0, 0, 0, 0.25);
 }
 
 @font-face {

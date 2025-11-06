@@ -4,23 +4,29 @@ import { cva } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
 
 const typographyVariants = cva('', {
-  // 디자인 시스템 나오면 수정 필요
   variants: {
     variant: {
-      display: 'text-3xl', // 30px
-      h1: 'text-2xl', // 24px
-      title: 'text-xl', // 20px
-      titleSm: 'text-lg', // 18px
-      body: 'text-base', // 16px
-      caption: 'text-sm', // 14px
-      captionSm: 'text-xs', // 12px
+      // Heading
+      headingLg: 'text-3xl leading-9 font-semibold', // font-size:24px, line-height: 32px, font-weight: 600
+      headingSm: 'text-2xl leading-8 font-bold', // font-size:22px, line-height: 28px, font-weight: 700
+      // Title
+      titleLg: 'text-xl leading-8 font-semibold', // font-size:20px, line-height: 28px, font-weight: 600
+      titleSm: 'text-lg leading-6 font-semibold', // font-size:18px, line-height: 22px, font-weight: 600
+      // Body
+      bodyLg: 'text-lg leading-7 font-medium', // font-size:18px, line-height: 24px, font-weight: 500
+      bodyMd: 'text-base leading-6 font-medium', // font-size:16px, line-height: 22px, font-weight: 500
+      bodySm1: 'text-sm leading-5 font-medium', // font-size:14px, line-height: 20px, font-weight: 500
+      bodySm2: 'text-sm leading-5 font-normal', // font-size:14px, line-height: 20px, font-weight: 400
+      // Label
+      labelLg: 'text-base leading-3 font-semibold', // font-size:16px, line-height: 16px, font-weight: 600
+      labelMd1: 'text-sm leading-5 font-semibold', // font-size:14px, line-height: 20px, font-weight: 600
+      labelMd2: 'text-sm leading-5 font-medium', // font-size:14px, line-height: 20px, font-weight: 500
+      labelMd3: 'text-sm leading-5 font-normal', // font-size:14px, line-height: 20px, font-weight: 400
+      labelSm1: 'text-xs leading-4 font-semibold', // font-size:12px, line-height: 18px, font-weight: 600
+      labelSm2: 'text-xs leading-4 font-medium', // font-size:12px, line-height: 18px, font-weight: 500
+      labelSm3: 'text-xs leading-4 font-normal', // font-size:12px, line-height: 18px, font-weight: 400
     },
-    weight: {
-      regular: 'font-normal', // 400
-      medium: 'font-medium', // 500
-      semiBold: 'font-semibold', // 600
-      bold: 'font-bold', // 700
-    },
+
     color: {
       default: 'text-stoov-white-100', // #ffffff
       primary: 'text-stoov-orange-500', // #ec3910
@@ -42,7 +48,6 @@ const typographyVariants = cva('', {
   },
   defaultVariants: {
     variant: 'body',
-    weight: 'regular',
     color: 'default',
     align: 'left',
   },
@@ -51,7 +56,6 @@ const typographyVariants = cva('', {
 export default function Typography({
   as: Comp = 'p',
   variant,
-  weight,
   color,
   align,
   className,
@@ -59,10 +63,7 @@ export default function Typography({
   ...props
 }) {
   return (
-    <Comp
-      className={cn(typographyVariants({ variant, weight, color, align }), className)}
-      {...props}
-    >
+    <Comp className={cn(typographyVariants({ variant, color, align }), className)} {...props}>
       {children}
     </Comp>
   );
