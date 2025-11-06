@@ -9,6 +9,7 @@ import Button from '@/components/ui/Button';
 import Typography from '@/components/ui/Typography';
 // 아이콘
 import Logo from '@/assets/logo.svg';
+import IconLeft from '@/assets/icons/IconLeft.svg';
 
 export default function Header() {
   const navigate = useNavigate();
@@ -39,27 +40,27 @@ export default function Header() {
   return (
     <header
       className={cn(
-        'bg-stoov-gray-900 fixed top-0 left-1/2 flex h-15 w-full max-w-[500px] -translate-x-1/2 items-center px-4',
+        'bg-stoov-gray-900 fixed top-0 left-1/2 z-50 flex h-15 w-full max-w-[500px] -translate-x-1/2 items-center px-4',
         currentMode === 'logo'
           ? 'justify-center shadow-[0px_2px_3px_0px_rgba(0,0,0,0.25)]'
-          : 'justify-start',
+          : 'justify-start shadow-[0px_4px_4px_0px_rgba(0,0,0,0.10)]',
       )}
     >
       {currentMode === 'logo' && (
-        <Link to='/' className='flex w-[84px] items-center'>
-          <Logo className='h-full w-full' />
+        <Link to='/' className='flex items-center'>
+          <Logo className='h-9 w-[84px]' />
         </Link>
       )}
 
       {currentMode === 'title' && (
-        <Typography as='h2' variant='title' weight='semiBold'>
+        <Typography as='h2' variant='titleLg'>
           {currentTitle}
         </Typography>
       )}
 
       {currentMode === 'back' && (
         <Button onClick={goBack} variant='icon' size='iconLg'>
-          👈
+          <IconLeft className='text-stoov-gray-100' />
         </Button>
       )}
     </header>

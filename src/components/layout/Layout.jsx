@@ -14,7 +14,7 @@ export default function Layout() {
       <div className='bg-stoov-gray-900 relative mx-auto flex min-h-screen w-full max-w-[500px] flex-col'>
         <Header />
 
-        <main className='min-h-[calc(100vh-60px)] flex-1 pt-15 pb-14'>
+        <main className='flex-1 pt-15 pb-[58px]'>
           <Outlet />
         </main>
 
