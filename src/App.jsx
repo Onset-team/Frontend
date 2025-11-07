@@ -10,6 +10,7 @@ import HomePage from '@/features/home/pages/HomePage';
 import InterestPage from '@/features/interest/pages/InterestPage';
 import Mypage from '@/features/mypage/pages/Mypage';
 import MapTest from './features/map/pages/MapTest';
+import HttpTest from './features/test/pages/HttpTest';
 
 const router = createBrowserRouter([
   {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
             element: <HomePage />,
           },
           { path: '/test', element: <MapTest /> },
-
+          { path: '/test2', element: <HttpTest /> },
           // 3. 로그인 필요한 페이지
           {
             element: <ProtectedRoute />,
