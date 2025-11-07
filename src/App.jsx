@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
@@ -11,6 +12,8 @@ import InterestPage from '@/features/interest/pages/InterestPage';
 import Mypage from '@/features/mypage/pages/Mypage';
 import MapTest from './features/map/pages/MapTest';
 import HttpTest from './features/test/pages/HttpTest';
+import { useOnlineStatusStore } from './stores/useOnlineStatusStore';
+import NetworkTest from './features/test/pages/NetworkTest';
 
 const router = createBrowserRouter([
   {
@@ -41,6 +44,7 @@ const router = createBrowserRouter([
           },
           { path: '/test', element: <MapTest /> },
           { path: '/test2', element: <HttpTest /> },
+          { path: '/network', element: <NetworkTest /> },
           // 3. 로그인 필요한 페이지
           {
             element: <ProtectedRoute />,
@@ -68,5 +72,10 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
+  useEffect(() => {
+    const cleanup = useOnlineStatusStore.getState().initialize();
+    return cleanup; // 컴포넌트 언마운트 시 cleanup 실행
+  }, []);
+
   return <RouterProvider router={router} />;
 }

@@ -1,4 +1,4 @@
-import { http, HttpResponse } from 'msw';
+import { http, HttpResponse, passthrough } from 'msw';
 
 export const handlers = [
   // 정상 응답
@@ -30,4 +30,8 @@ export const handlers = [
   http.get('/api/error/500', () => {
     return new HttpResponse(null, { status: 500 });
   }),
+
+  // 네트워크 체크 요청은 MSW 우회
+  http.head('/NetworkCheck1px.png', () => passthrough()),
+  http.get('/NetworkCheck1px.png', () => passthrough()),
 ];

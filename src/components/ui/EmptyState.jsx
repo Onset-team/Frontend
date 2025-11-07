@@ -23,6 +23,10 @@ export default function EmptyState({ variant, buttonText, onButtonClick }) {
       icon: '😱',
       title: '서버 오류',
     },
+    offline: {
+      icon: '🛜',
+      title: '네트워크 오류'
+    }
   };
 
   let current;
