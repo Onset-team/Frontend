@@ -4,18 +4,23 @@ import { cva } from 'class-variance-authority';
 import { cn } from '@/utils/cn';
 
 const buttonVariants = cva(
-  'disabled:bg-stoov-gray-100 disabled:border-stoov-gray-100 disabled:text-stoov-gray-300 flex w-full items-center justify-center font-medium transition-colors duration-200 disabled:pointer-events-none disabled:cursor-not-allowed',
+  cn(
+    'flex w-full items-center justify-center transition-colors duration-200',
+    'disabled:bg-stoov-gray-200 disabled:text-stoov-gray-300 disabled:pointer-events-none disabled:cursor-not-allowed',
+  ),
+
   {
     variants: {
       variant: {
-        fill: 'bg-stoov-orange-500 text-stoov-white',
-        line: 'border-stoov-orange-500 bg-stoov-white-100 text-stoov-gray-400 border',
+        primary: 'bg-stoov-orange-500 text-stoov-gray-100',
+        secondary: 'text-stoov-gray-800 bg-stoov-gray-200',
+        iconText: 'bg-stoov-white-200 text-stoov-orange-500 gap-1',
         icon: 'text-stoov-gray-400 bg-transparent',
       },
       size: {
-        sm: 'h-8 px-3 text-sm', // height: 32px, padding-left, right: 12px, font-size: 12px
-        md: 'h-10 px-4 text-base', // height: 40px, padding-left, right: 16px, font-size: 16px
-        lg: 'h-12 px-6 text-lg', // height: 48px, padding-left, right: 24px, font-size: 18px
+        sm: 'h-10 rounded-xl px-5 text-sm leading-5 font-medium', // height: 40px, border-radius: 10px, font-size:14px, line-height: 20px, font-weight: 500
+        lg: 'h-12 rounded-lg px-5 text-base leading-3 font-semibold', // height: 48px, border-radius: 8px, font-size:16px, line-height: 16px, font-weight: 600
+        iconText: 'h-8 w-[120px] rounded-lg px-0 px-5 text-xs leading-4 font-semibold', // height: 32px, border-radius: 8px, font-size:12px, line-height: 18px, font-weight: 600
         iconSm: 'h-6 w-6', // height, width: 24px,
         iconLg: 'h-10 w-10', // height, width: 40px,
         iconXl: 'h-12 w-12', // height, width: 48px,
@@ -30,18 +35,19 @@ const buttonVariants = cva(
       },
     },
     defaultVariants: {
-      variant: 'fill',
-      size: 'md',
-      rounded: 'md',
+      variant: 'primary',
+      size: 'lg',
+      rounded: '',
     },
   },
 );
 
 const Button = forwardRef(
-  ({ variant, size, rounded, className, disabled, children, ...props }, ref) => {
+  ({ variant, size, rounded, className, disabled, children, type = 'button', ...props }, ref) => {
     return (
       <button
         ref={ref}
+        type={type}
         className={cn(buttonVariants({ variant, size, rounded }), className)}
         disabled={disabled}
         {...props}

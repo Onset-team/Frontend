@@ -2,6 +2,8 @@ import { useEffect } from 'react';
 import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-router-dom';
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
+import { Toaster } from 'react-hot-toast';
+
 // 컴포넌트
 import Layout from '@/components/layout/Layout';
 import ProtectedRoute from '@/components/layout/ProtectedRoute';
@@ -23,6 +25,19 @@ const router = createBrowserRouter([
         <Analytics /> {/* 사용자 행동 분석 */}
         <SpeedInsights /> {/* 성능 측정 */}
         <Outlet />
+        <Toaster
+          position='bottom-center'
+          reverseOrder={false}
+          containerStyle={{
+            zIndex: 1000,
+            bottom: '78px',
+          }}
+          toastOptions={{
+            duration: 1500,
+            className:
+              '!rounded-lg !text-stoov-white-100 !bg-stoov-gray-500 !text-stoov-white !px-5 !py-2 !text-sm !leading-5 !font-normal !shadow-toast',
+          }}
+        />
       </>
     ),
     children: [

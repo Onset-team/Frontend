@@ -41,9 +41,7 @@ export default function Header() {
     <header
       className={cn(
         'bg-stoov-gray-900 fixed top-0 left-1/2 z-50 flex h-15 w-full max-w-[500px] -translate-x-1/2 items-center px-4',
-        currentMode === 'logo'
-          ? 'justify-center shadow-[0px_2px_3px_0px_rgba(0,0,0,0.25)]'
-          : 'justify-start shadow-[0px_4px_4px_0px_rgba(0,0,0,0.10)]',
+        currentMode === 'logo' ? 'justify-center' : 'justify-start',
       )}
     >
       {currentMode === 'logo' && (
