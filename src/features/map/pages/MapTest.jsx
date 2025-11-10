@@ -4,6 +4,7 @@ import useKakaoLoader from '@/libs/kakaos/useKakaoLoader';
 
 import { useApiCall } from '../hooks/useApiCall';
 import { useTestStore } from '../stores/useTestStore';
+
 import mapMarkers from '../components/mapMarkers';
 import { mapCircleMarkers } from '../components/mapCircleMarkers';
 import { debounce } from 'lodash';
@@ -13,7 +14,7 @@ export default function MapTest() {
 
   const { data, setData } = useTestStore();
 
-  const { data: apiData, error, isLoading } = useApiCall(1);
+  const { data: apiData, statusCode, error, isLoading } = useApiCall(1);
 
   // 다크모드 필터링
   const [darkMode, setDarkMode] = useState(false);
@@ -85,9 +86,10 @@ export default function MapTest() {
     }
   }, [apiData, error]);
 
-  // useEffect(() => {
-  //   console.log(data);
-  // }, [data]);
+  useEffect(() => {
+      // console.log(apiData);
+    console.log(statusCode);
+  }, [apiData, statusCode]);
 
   // 좌표 -> 주소 변환
   const getAddressFromCoords = (lat, lng) => {

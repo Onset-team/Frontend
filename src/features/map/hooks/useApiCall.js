@@ -6,11 +6,12 @@ export function useApiCall(id) {
     queryKey: [id],
     queryFn: () => testApiCall(),
     select: (result) => {
-      if (!result.success) {
-        throw new Error(result.error); // 에러 메시지를 담은 에러 생성
-      }
-
-      return result.data;
+      return {
+        data: result.success ? result.data : [], 
+        statusCode: result.statusCode, // http코드
+        error: result.error,
+        isError: !result.success,
+      };
     },
     staleTime: 1000 * 60 * 10, // 10분
     cacheTime: 1000 * 60 * 30, // 30분
@@ -20,9 +21,10 @@ export function useApiCall(id) {
 
   return {
     // 데이터
-    data: apiQuery.data,
-    error: apiQuery.error?.message,
+    data: apiQuery.data?.data,
+    statusCode: apiQuery.data?.statusCode, // http코드
+    error: apiQuery.data?.error,
     isLoading: apiQuery.isLoading,
-    isError: apiQuery.isError,
+    isError: apiQuery.data?.isError,
   };
 }

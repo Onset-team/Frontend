@@ -19,7 +19,7 @@ export default function HttpTest() {
   }
 
   return (
-    <div className='flex flex-col gap-3'>
+    <div className='flex flex-col gap-3 p-2 items-center justify-center'>
       <h1>에러 테스트 (콘솔 확인)</h1>
       <button onClick={() => testError(400)}>400 테스트</button>
       <button onClick={() => testError(401)}>401 테스트</button>

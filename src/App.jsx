@@ -72,6 +72,8 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
+
+  // 네트워크 상태 세팅
   useEffect(() => {
     const cleanup = useOnlineStatusStore.getState().initialize();
     return cleanup; // 컴포넌트 언마운트 시 cleanup 실행

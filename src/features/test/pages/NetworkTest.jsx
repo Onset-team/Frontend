@@ -1,9 +1,9 @@
 import EmptyState from '@/components/ui/EmptyState';
-import { useOnlineStatusStore } from '@/stores/useOnlineStatusStore';
+import { useOnlineStatus } from '@/hooks/useOnlineStatus';
 import React from 'react';
 
 export default function NetworkTest() {
-  const isOnline = useOnlineStatusStore((state) => state.isOnline);
+  const { isOnline, checkStatus } = useOnlineStatus();
 
   return (
     <div>
