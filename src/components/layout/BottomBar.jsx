@@ -43,15 +43,19 @@ export default function BottomBar() {
             to={item.to}
             className={({ isActive }) =>
               cn(
-                'flex w-full flex-col items-center justify-center gap-1 text-center transition-colors duration-150',
+                'flex w-full flex-col items-center justify-center text-center transition-colors duration-150',
                 isActive ? 'text-stoov-orange-500' : 'text-stoov-white-100',
               )
             }
           >
-            <div className='flex items-center'>{item.icon}</div>
-            <Typography variant='labelSm3' className='text-inherit'>
-              {item.label}
-            </Typography>
+            {({ isActive }) => (
+              <>
+                <div className='flex items-center'>{item.icon}</div>
+                <Typography variant={isActive ? 'labelSm2' : 'labelSm3'} className='text-inherit'>
+                  {item.label}
+                </Typography>
+              </>
+            )}
           </NavLink>
         ))}
       </nav>

@@ -57,6 +57,8 @@
   --shadow-chip: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
   --shadow-dropdown: 2px 5px 15px 0 rgba(0, 0, 0, 0.4);
   --shadow-bottomsheet: 0 -6px 10px 0 rgba(0, 0, 0, 0.25);
+  --shadow-btn: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
+  --shadow-toast: 0 0 8px 0 rgba(0, 0, 0, 0.4);
 }
 
 @font-face {
@@ -89,6 +91,26 @@
   input[type='number']::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+  }
+
+  /* 스크롤바 */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* ::-webkit-scrollbar-track {
+    background: var(--color-stoov-gray-600);
+    border-radius: 9999px;
+  } */
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-stoov-gray-400);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-stoov-gray-500);
   }
 }
 
