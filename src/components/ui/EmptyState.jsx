@@ -1,4 +1,6 @@
 import React from 'react';
+// 유틸
+import { cn } from '@/utils/cn';
 // 컴포넌트
 import Button from '@/components/ui/Button';
 import Typography from '@/components/ui/Typography';
@@ -11,7 +13,7 @@ import ErrorNetwork from '@/assets/images/ErrorNetwork.png';
 import PlacePlaceholderSmall from '@/assets/images/placePlaceholderSmall.png';
 
 export default function EmptyState({
-  variant = 'default',
+  variant, // 'favorite' | 'search' | 400 | 500 | 'offline' | 'default'
   isShowButton = false,
   buttonLabel = '다시 시도하기',
   onButtonClick,
@@ -22,36 +24,35 @@ export default function EmptyState({
       title: '아직 관심 장소가 없습니다.',
       desc: `지도를 둘러보고 마음에 드는\n 장소에 하트를 눌러보세요.`,
       isShowButton: false,
+      minHeight: 'min-h-[calc(100dvh-118px)]',
     },
     search: {
       image: EmptySearch,
       title: '검색 결과가 없습니다.',
       desc: '다시 한번 검색해보세요!',
       isShowButton: false,
+      minHeight: 'min-h-[calc(100dvh-118px)]',
     },
     400: {
       image: ErrorClient,
       title: '앗, 잠시 오류가 생겼어요!',
       desc: '잠시 후 다시 시도해주세요!',
       isShowButton: true,
+      minHeight: 'min-h-dvh',
     },
     500: {
       image: ErrorServer,
       title: `요청을 처리하는데\n일시적으로 오류가 생겼어요.`,
       desc: '다시 시도해볼까요?',
       isShowButton: true,
+      minHeight: 'min-h-dvh',
     },
     offline: {
       image: ErrorNetwork,
       title: '인터넷 연결이 원활하지 않아요.',
       desc: '연결을 확인하고 다시 시도해주세요.',
       isShowButton: true,
-    },
-    default: {
-      image: PlacePlaceholderSmall,
-      title: '콘텐츠를 불러오지 못했습니다',
-      desc: '잠시 후 다시 시도해주세요.',
-      isShowButton: true,
+      minHeight: 'min-h-dvh',
     },
   };
 
@@ -76,7 +77,9 @@ export default function EmptyState({
   };
 
   return (
-    <div className='flex min-h-[calc(100dvh-118px)] flex-col items-center justify-center gap-4 px-4 pt-4'>
+    <div
+      className={cn('flex flex-col items-center justify-center gap-4 px-4 pt-4', current.minHeight)}
+    >
       {current.image && (
         <div className='h-[200px] w-[200px] overflow-hidden rounded'>
           <img

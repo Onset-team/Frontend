@@ -10,8 +10,8 @@ export default function Layout() {
   const isAuthPage = location.pathname === '/login';
 
   return (
-    <div className='min-h-screen'>
-      <div className='bg-stoov-gray-900 relative mx-auto flex min-h-screen w-full max-w-[500px] flex-col'>
+    <div className='min-h-dvh'>
+      <div className='bg-stoov-gray-900 relative mx-auto flex min-h-dvh w-full max-w-[500px] flex-col'>
         <Header />
 
         <main className='flex-1 pt-15 pb-[58px]'>
