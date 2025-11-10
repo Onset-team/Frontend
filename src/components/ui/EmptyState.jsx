@@ -15,9 +15,31 @@ export default function EmptyState({ variant, buttonText, onButtonClick }) {
       title: '검색 결과가 없습니다.',
       desc: '다시 한번 검색해보세요!',
     },
+    400: {
+      icon: '🥲',
+      title: '오류 발생',
+    },
+    500: {
+      icon: '😱',
+      title: '서버 오류',
+    },
+    offline: {
+      icon: '🛜',
+      title: '네트워크 오류'
+    }
   };
 
-  const current = variants[variant];
+  let current;
+
+  if (variant >= 400 && variant < 500) {
+    current = variants[400];
+    console.log(variant)
+  } else if (variant >= 500) {
+    current = variants[500];
+    console.log(variant)
+  } else {
+    current = variants[variant];
+  }
 
   return (
     <div className='flex min-h-[calc(100vh-118px)] flex-col items-center justify-center gap-4 px-4 pt-4'>

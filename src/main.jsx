@@ -14,8 +14,18 @@ const queryClient = new QueryClient({
   },
 });
 
-createRoot(document.getElementById('root')).render(
-  <QueryClientProvider client={queryClient}>
-    <App />
-  </QueryClientProvider>,
-);
+async function enableMocking() { // msw 설정
+  if (import.meta.env.DEV) { // 개발 환경에서만 작동
+    const { worker } = await import('./mocks/browser'); // 해당 경로의 파일을 import
+    return worker.start();
+  }
+}
+
+enableMocking().then(() => {
+  createRoot(document.getElementById('root')).render(
+    <QueryClientProvider client={queryClient}>
+      <App />
+      <Toaster position='top-center' reverseOrder={false} />
+    </QueryClientProvider>
+  );
+});
