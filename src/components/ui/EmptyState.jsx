@@ -2,48 +2,90 @@ import React from 'react';
 // 컴포넌트
 import Button from '@/components/ui/Button';
 import Typography from '@/components/ui/Typography';
+// 이미지
+import EmptyBookmark from '@/assets/images/EmptyBookmark.png';
+import EmptySearch from '@/assets/images/EmptySearch.png';
+import ErrorClient from '@/assets/images/ErrorClient.png';
+import ErrorServer from '@/assets/images/ErrorServer.png';
+import ErrorNetwork from '@/assets/images/ErrorNetwork.png';
+import PlacePlaceholderSmall from '@/assets/images/placePlaceholderSmall.png';
 
-export default function EmptyState({ variant, buttonText, onButtonClick }) {
+export default function EmptyState({
+  variant = 'default',
+  isShowButton = false,
+  buttonLabel = '다시 시도하기',
+  onButtonClick,
+}) {
   const variants = {
-    interest: {
-      image: '🤍',
-      title: '아직 관심 장소가 없으신가요?',
-      desc: `지도를 둘러보고 마음에 드는 \n 장소에 하트를 눌러보세요.`,
+    favorite: {
+      image: EmptyBookmark,
+      title: '아직 관심 장소가 없습니다.',
+      desc: `지도를 둘러보고 마음에 드는\n 장소에 하트를 눌러보세요.`,
+      isShowButton: false,
     },
     search: {
-      image: '🔍',
+      image: EmptySearch,
       title: '검색 결과가 없습니다.',
       desc: '다시 한번 검색해보세요!',
+      isShowButton: false,
     },
     400: {
-      icon: '🥲',
-      title: '오류 발생',
+      image: ErrorClient,
+      title: '앗, 잠시 오류가 생겼어요!',
+      desc: '잠시 후 다시 시도해주세요!',
+      isShowButton: true,
     },
     500: {
-      icon: '😱',
-      title: '서버 오류',
+      image: ErrorServer,
+      title: `요청을 처리하는데\n일시적으로 오류가 생겼어요.`,
+      desc: '다시 시도해볼까요?',
+      isShowButton: true,
     },
     offline: {
-      icon: '🛜',
-      title: '네트워크 오류'
-    }
+      image: ErrorNetwork,
+      title: '인터넷 연결이 원활하지 않아요.',
+      desc: '연결을 확인하고 다시 시도해주세요.',
+      isShowButton: true,
+    },
+    default: {
+      image: PlacePlaceholderSmall,
+      title: '콘텐츠를 불러오지 못했습니다',
+      desc: '잠시 후 다시 시도해주세요.',
+      isShowButton: true,
+    },
   };
 
   let current;
 
   if (variant >= 400 && variant < 500) {
     current = variants[400];
-    console.log(variant)
+    console.log(variant);
   } else if (variant >= 500) {
     current = variants[500];
-    console.log(variant)
+    console.log(variant);
   } else {
     current = variants[variant];
   }
 
+  // 버튼 클릭
+  const handleButtonClick = () => {
+    // 함수일땐 함수 우선 실행
+    if (typeof onButtonClick === 'function') return onButtonClick();
+    // 함수가 아닌 경우 새로고침
+    if (typeof window !== 'undefined') window.location.reload();
+  };
+
   return (
-    <div className='flex min-h-[calc(100vh-118px)] flex-col items-center justify-center gap-4 px-4 pt-4'>
-      {current.image && <div>{current.image}</div>}
+    <div className='flex min-h-[calc(100dvh-118px)] flex-col items-center justify-center gap-4 px-4 pt-4'>
+      {current.image && (
+        <div className='h-[200px] w-[200px] overflow-hidden rounded'>
+          <img
+            src={current.image || PlacePlaceholderSmall}
+            alt={current.title}
+            className='h-full w-full object-cover'
+          />
+        </div>
+      )}
 
       <div className='flex flex-col items-center gap-2'>
         <Typography as='h3' variant='headingSm' align='center' className='whitespace-pre-line'>
@@ -55,9 +97,9 @@ export default function EmptyState({ variant, buttonText, onButtonClick }) {
         </Typography>
       </div>
 
-      {buttonText && (
-        <Button size='sm' onClick={onButtonClick} className='w-fit rounded-xl'>
-          {buttonText}
+      {isShowButton && (
+        <Button size='sm' onClick={handleButtonClick} className='w-fit rounded-xl'>
+          {buttonLabel}
         </Button>
       )}
     </div>
