@@ -3,11 +3,11 @@ import React from 'react';
 import ToTopButton from '@/components/ui/ToTopButton';
 import EmptyState from '@/components/ui/EmptyState';
 
-export default function InterestPage() {
+export default function FavoritePage() {
   return (
     <div>
       <ToTopButton />
-      <EmptyState variant='interest' buttonText='다시 시도하기' />
+      <EmptyState variant='favorite' />
     </div>
   );
 }
