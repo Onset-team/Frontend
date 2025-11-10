@@ -5,7 +5,7 @@ import { cn } from '@/utils/cn';
 
 const buttonVariants = cva(
   cn(
-    'flex w-full items-center justify-center px-5 transition-colors duration-200',
+    'flex w-full items-center justify-center transition-colors duration-200',
     'disabled:bg-stoov-gray-200 disabled:text-stoov-gray-300 disabled:pointer-events-none disabled:cursor-not-allowed',
   ),
 
@@ -18,9 +18,9 @@ const buttonVariants = cva(
         icon: 'text-stoov-gray-400 bg-transparent',
       },
       size: {
-        sm: 'h-10 rounded-xl text-sm leading-5 font-medium', // height: 40px, border-radius: 10px, font-size:14px, line-height: 20px, font-weight: 500
-        lg: 'h-12 rounded-lg text-base leading-3 font-semibold', // height: 48px, border-radius: 8px, font-size:16px, line-height: 16px, font-weight: 600
-        iconText: 'h-8 w-[120px] rounded-lg px-0 text-xs leading-4 font-semibold', // height: 32px, border-radius: 8px, font-size:12px, line-height: 18px, font-weight: 600
+        sm: 'h-10 rounded-xl px-5 text-sm leading-5 font-medium', // height: 40px, border-radius: 10px, font-size:14px, line-height: 20px, font-weight: 500
+        lg: 'h-12 rounded-lg px-5 text-base leading-3 font-semibold', // height: 48px, border-radius: 8px, font-size:16px, line-height: 16px, font-weight: 600
+        iconText: 'h-8 w-[120px] rounded-lg px-0 px-5 text-xs leading-4 font-semibold', // height: 32px, border-radius: 8px, font-size:12px, line-height: 18px, font-weight: 600
         iconSm: 'h-6 w-6', // height, width: 24px,
         iconLg: 'h-10 w-10', // height, width: 40px,
         iconXl: 'h-12 w-12', // height, width: 48px,
