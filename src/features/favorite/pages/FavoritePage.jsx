@@ -11,19 +11,14 @@ export default function FavoritePage() {
   const totalCount = mockPlaces.length || 0;
 
   return (
-    <div>
+    <>
       <ToTopButton />
 
       {totalCount > 0 ? (
-        <div className='flex flex-col gap-2 pt-4'>
-          <Typography variant='labelMd2' color='gray300' align='right' className='px-4 leading-5'>
-            총 {totalCount}곳
-          </Typography>
-          <PlaceList places={mockPlaces} />
-        </div>
+        <PlaceList places={mockPlaces} totalCount={totalCount} />
       ) : (
         <EmptyState variant='favorite' />
       )}
-    </div>
+    </>
   );
 }
