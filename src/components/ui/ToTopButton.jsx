@@ -36,11 +36,11 @@ export default function ToTopButton() {
   }, []);
 
   return (
-    <div className='absolute right-4 bottom-[82px]'>
+    <div className='fixed right-4 bottom-[82px] z-[100px] w-full max-w-[500px] -translate-x-1/2'>
       <Button
-        onClick={scrollToTop}
         size='iconXl'
         rounded='full'
+        onClick={scrollToTop}
         aria-label='위로'
         className={cn(
           'bg-stoov-gray-200 shadow-btn transition-all duration-300',

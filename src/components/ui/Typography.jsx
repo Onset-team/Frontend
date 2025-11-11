@@ -60,10 +60,10 @@ export default function Typography({
   align,
   className,
   children,
-  ...props
+  ...rest
 }) {
   return (
-    <Comp className={cn(typographyVariants({ variant, color, align }), className)} {...props}>
+    <Comp className={cn(typographyVariants({ variant, color, align }), className)} {...rest}>
       {children}
     </Comp>
   );

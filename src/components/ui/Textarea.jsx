@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { cn } from '@/utils/cn';
 import Typography from '@/components/ui/Typography';
 
-export default function Textarea({ className, isCount = true, ...props }) {
+export default function Textarea({ className, isCount = true, ...rest }) {
   const [textareaCount, setTextareaCount] = useState(0);
 
   const handleChange = (e) => {
@@ -22,7 +22,7 @@ export default function Textarea({ className, isCount = true, ...props }) {
           'placeholder:text-stoov-gray-300 focus:border-stoov-orange-100',
           className,
         )}
-        {...props}
+        {...rest}
       />
       {isCount && (
         <Typography variant='labelSm3' color='gray200' align='right'>
