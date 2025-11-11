@@ -17,9 +17,9 @@ const NAV_ITEMS = [
     icon: <IconMapPin />,
   },
   {
-    id: 'favorite',
+    id: 'bookmark',
     label: '관심',
-    to: '/favorite',
+    to: '/bookmark',
     icon: <IconHeart />,
   },
   {

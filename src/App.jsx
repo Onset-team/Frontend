@@ -10,7 +10,7 @@ import ProtectedRoute from '@/components/layout/ProtectedRoute';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import LoginPage from '@/features/auth/pages/LoginPage';
 import HomePage from '@/features/home/pages/HomePage';
-import FavoritePage from '@/features/favorite/pages/FavoritePage';
+import BookmarkPage from '@/features/bookmark/pages/BookmarkPage';
 import Mypage from '@/features/mypage/pages/Mypage';
 import MapTest from './features/map/pages/MapTest';
 import HttpTest from './features/test/pages/HttpTest';
@@ -65,8 +65,8 @@ const router = createBrowserRouter([
             element: <ProtectedRoute />,
             children: [
               {
-                path: '/favorite', // 관심
-                element: <FavoritePage />,
+                path: '/bookmark', // 관심
+                element: <BookmarkPage />,
               },
               {
                 path: '/mypage', // 마이
