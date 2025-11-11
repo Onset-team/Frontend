@@ -57,7 +57,7 @@ const Input = forwardRef(
       className,
       leftSlot,
       rightSlot,
-      ...props
+      ...rest
     },
     ref,
   ) => {
@@ -96,7 +96,7 @@ const Input = forwardRef(
               }),
               className,
             )}
-            {...props}
+            {...rest}
           />
 
           {rightSlot && (

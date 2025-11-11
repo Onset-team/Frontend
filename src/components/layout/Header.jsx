@@ -57,7 +57,7 @@ export default function Header() {
       )}
 
       {currentMode === 'back' && (
-        <Button onClick={goBack} variant='icon' size='iconLg'>
+        <Button onClick={goBack} variant='icon' size='iconLg' aria-label='뒤로가기'>
           <IconLeft className='text-stoov-gray-100' />
         </Button>
       )}

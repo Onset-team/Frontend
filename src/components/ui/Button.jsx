@@ -43,14 +43,14 @@ const buttonVariants = cva(
 );
 
 const Button = forwardRef(
-  ({ variant, size, rounded, className, disabled, children, type = 'button', ...props }, ref) => {
+  ({ variant, size, rounded, className, disabled, children, type = 'button', ...rest }, ref) => {
     return (
       <button
         ref={ref}
         type={type}
         className={cn(buttonVariants({ variant, size, rounded }), className)}
         disabled={disabled}
-        {...props}
+        {...rest}
       >
         {children}
       </button>

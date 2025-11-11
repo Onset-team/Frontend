@@ -8,7 +8,6 @@ import Typography from '@/components/ui/Typography';
 import IconMapPin from '@/assets/icons/IconMapPin.svg';
 import IconHeart from '@/assets/icons/IconHeart.svg';
 import IconMy from '@/assets/icons/IconMy.svg';
-import ToTopButton from '@/components/ui/ToTopButton';
 
 const NAV_ITEMS = [
   {
@@ -34,9 +33,7 @@ const NAV_ITEMS = [
 export default function BottomBar() {
   return (
     <div className='fixed bottom-0 left-1/2 z-50 h-[58px] w-full max-w-[500px] -translate-x-1/2'>
-      <ToTopButton />
-
-      <nav className='bg-stoov-gray-900 flex py-2'>
+      <nav aria-label='주요 메뉴' className='bg-stoov-gray-900 flex py-2'>
         {NAV_ITEMS.map((item) => (
           <NavLink
             key={item.id}
