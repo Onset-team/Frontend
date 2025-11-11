@@ -22,7 +22,7 @@ export default function Header() {
 
   if (path === '/') {
     currentMode = 'logo';
-  } else if (path === '/interest') {
+  } else if (path === '/favorite') {
     currentMode = 'title';
     currentTitle = '관심';
   } else if (path === '/mypage') {

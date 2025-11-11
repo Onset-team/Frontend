@@ -10,7 +10,7 @@ import ProtectedRoute from '@/components/layout/ProtectedRoute';
 import ScrollToTop from '@/components/layout/ScrollToTop';
 import LoginPage from '@/features/auth/pages/LoginPage';
 import HomePage from '@/features/home/pages/HomePage';
-import InterestPage from '@/features/interest/pages/InterestPage';
+import FavoritePage from '@/features/favorite/pages/FavoritePage';
 import Mypage from '@/features/mypage/pages/Mypage';
 import MapTest from './features/map/pages/MapTest';
 import HttpTest from './features/test/pages/HttpTest';
@@ -65,8 +65,8 @@ const router = createBrowserRouter([
             element: <ProtectedRoute />,
             children: [
               {
-                path: '/interest', // 관심
-                element: <InterestPage />,
+                path: '/favorite', // 관심
+                element: <FavoritePage />,
               },
               {
                 path: '/mypage', // 마이
@@ -87,7 +87,6 @@ const router = createBrowserRouter([
 ]);
 
 export default function App() {
-
   // 네트워크 상태 세팅
   useEffect(() => {
     const cleanup = useOnlineStatusStore.getState().initialize();

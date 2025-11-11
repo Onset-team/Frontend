@@ -20,7 +20,7 @@ export default function Mypage({ profileImageUrl, nickname, email, version }) {
   };
 
   return (
-    <div className='flex min-h-[calc(100vh-118px)] flex-col items-center justify-between px-4 pt-8 pb-[74px]'>
+    <div className='flex min-h-[calc(100dvh-118px)] flex-col items-center justify-between px-4 pt-8 pb-[74px]'>
       <ProfileSection
         profileImageUrl={profileImageUrl}
         nickname={nickname}
