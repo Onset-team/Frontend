@@ -101,7 +101,12 @@ export default function EmptyState({
       </div>
 
       {isShowButton && (
-        <Button size='sm' onClick={handleButtonClick} className='w-fit rounded-xl'>
+        <Button
+          size='sm'
+          onClick={handleButtonClick}
+          aria-label={buttonLabel}
+          className='w-fit rounded-xl'
+        >
           {buttonLabel}
         </Button>
       )}

@@ -48,11 +48,15 @@ export default function ConfirmModal({
         {(leftButtonLabel || rightButtonLabel) && (
           <div className='flex gap-2'>
             {leftButtonLabel && (
-              <Button onClick={onClose} variant='secondary'>
+              <Button onClick={onClose} variant='secondary' aria-label={leftButtonLabel}>
                 {leftButtonLabel}
               </Button>
             )}
-            {rightButtonLabel && <Button onClick={onRightButtonClick}>{rightButtonLabel}</Button>}
+            {rightButtonLabel && (
+              <Button onClick={onRightButtonClick} aria-label={rightButtonLabel}>
+                {rightButtonLabel}
+              </Button>
+            )}
           </div>
         )}
       </div>
