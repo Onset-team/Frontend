@@ -44,7 +44,7 @@ const FavoriteButton = memo(
           className={className}
           {...rest}
         >
-          <HeartIconComponent className={iconClass} />
+          <HeartIconComponent aria-hidden='true' className={iconClass} />
         </Button>
       );
     },

@@ -46,7 +46,7 @@ export default function ProfileSection({
           className='absolute right-0 bottom-0 flex'
         >
           <div className='bg-stoov-white-100 flex h-[30px] w-[30px] items-center justify-center rounded-full'>
-            <IconPenLarge className='text-stoov-gray-300' />
+            <IconPenLarge aria-hidden='true' className='text-stoov-gray-300' />
           </div>
         </Button>
 
@@ -69,7 +69,7 @@ export default function ProfileSection({
           </Typography>
 
           <Button variant='icon' size='iconSm' onClick={onNicknameEdit} aria-label='닉네임 수정'>
-            <IconPenLarge className='text-stoov-gray-300' />
+            <IconPenLarge aria-hidden='true' className='text-stoov-gray-300' />
           </Button>
         </div>
 

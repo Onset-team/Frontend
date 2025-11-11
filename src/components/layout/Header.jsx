@@ -22,7 +22,7 @@ export default function Header() {
 
   if (path === '/') {
     currentMode = 'logo';
-  } else if (path === '/favorite') {
+  } else if (path === '/bookmark') {
     currentMode = 'title';
     currentTitle = '관심';
   } else if (path === '/mypage') {
@@ -58,7 +58,7 @@ export default function Header() {
 
       {currentMode === 'back' && (
         <Button onClick={goBack} variant='icon' size='iconLg' aria-label='뒤로가기'>
-          <IconLeft className='text-stoov-gray-100' />
+          <IconLeft className='text-stoov-gray-100' aria-hidden='true' />
         </Button>
       )}
     </header>
