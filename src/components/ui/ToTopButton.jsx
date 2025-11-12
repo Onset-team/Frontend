@@ -6,7 +6,7 @@ import Button from '@/components/ui/Button';
 // 아이콘
 import IconTop from '@/assets/icons/IconTop.svg';
 
-export default function ToTopButton() {
+export default function ToTopButton({ isBottombar = true }) {
   const [isVisible, setIsVisible] = useState(false);
 
   // 클릭 시 맨 위로
@@ -43,8 +43,9 @@ export default function ToTopButton() {
         onClick={scrollToTop}
         aria-label='위로'
         className={cn(
-          'bg-stoov-gray-200 shadow-btn absolute right-4 bottom-[82px] transition-all duration-300',
+          'bg-stoov-gray-200 shadow-btn absolute right-4 transition-all duration-300',
           isVisible ? 'translate-y-0 opacity-100' : 'pointer-events-none translate-y-6 opacity-0',
+          isBottombar ? 'bottom-[82px]' : 'bottom-6',
         )}
       >
         <IconTop aria-hidden='true' className='text-stoov-gray-500' />
