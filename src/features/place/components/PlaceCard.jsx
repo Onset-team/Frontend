@@ -1,20 +1,23 @@
 import React, { useState } from 'react';
 // 컴포넌트
-import FavoriteButton from '@/components/ui/FavoriteButton';
+import BookmarkButton from '@/components/ui/BookmarkButton';
 import Typography from '@/components/ui/Typography';
 // 이미지
 import PlacePlaceholderSmall from '@/assets/images/placePlaceholderSmall.png';
 
-export default function PlaceCard({ place }) {
-  const [isFavorite, setIsFavorite] = useState(place.isFavorite);
+export default function PlaceCard({ place, onClick }) {
+  const [isBookmark, setIsBookmark] = useState(place.isBookmark);
 
   return (
-    <div className='border-stoov-gray-600 flex cursor-pointer items-center gap-4 border-b px-4 py-5'>
+    <div
+      onClick={onClick}
+      className='border-stoov-gray-600 flex cursor-pointer items-center gap-4 border-b px-4 py-5'
+    >
       {/* 이미지 */}
       <div className='relative'>
         <div className='h-[100px] w-[100px] overflow-hidden rounded-sm'>
           <img
-            src={place.imageUrl || PlacePlaceholderSmall}
+            src={place.thumbnailUrl || PlacePlaceholderSmall}
             alt={place.title}
             crossOrigin='anonymous'
             loading='lazy'
@@ -28,43 +31,41 @@ export default function PlaceCard({ place }) {
           />
         </div>
 
-        <FavoriteButton
-          isActive={isFavorite}
+        <BookmarkButton
+          isActive={isBookmark}
           onToggle={() => {
-            setIsFavorite((prev) => !prev);
-            console.log(place.name, isFavorite ? '관심 해제' : '관심 추가');
+            setIsBookmark((prev) => !prev);
+            console.log(place.name, isBookmark ? '관심 해제' : '관심 추가');
           }}
           className='absolute right-0 bottom-0'
         />
       </div>
 
       {/* 정보 */}
-      <div className='flex flex-1 flex-col gap-2'>
+      <div className='flex flex-1 flex-col gap-1'>
+        {/* 장소명 */}
+        <Typography as='h3' variant='titleSm' className='line-clamp-1'>
+          {place.name}
+        </Typography>
+
+        {/* 주소 */}
+        <Typography variant='bodySm2' color='gray200' className='line-clamp-1'>
+          {place.address}
+        </Typography>
+
         {/* 장소 타입 */}
         <Typography
           as='div'
           variant='labelSm3'
-          className='text-stoov-orange-300 bg-stoov-gray-800 w-fit rounded-full px-2 py-1'
+          className='text-stoov-orange-300 bg-stoov-gray-800 mt-1 w-fit rounded-full px-2 py-1'
         >
           {place.filterLabel}
         </Typography>
 
-        <div className='flex flex-col gap-1'>
-          {/* 장소명 */}
-          <Typography as='h3' variant='titleSm' className='line-clamp-1'>
-            {place.name}
-          </Typography>
-
-          {/* 주소 */}
-          <Typography variant='bodySm2' color='gray200' className='line-clamp-1'>
-            {place.address}
-          </Typography>
-
-          {/* 후기 */}
-          <Typography variant='labelSm3' color='gray100' align='right'>
-            후기 {place.reviewCount}개
-          </Typography>
-        </div>
+        {/* 후기 */}
+        <Typography variant='labelSm3' color='gray100' align='right'>
+          후기 {place.reviewCount}개
+        </Typography>
       </div>
     </div>
   );
