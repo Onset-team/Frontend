@@ -3,6 +3,7 @@ import { createBrowserRouter, Navigate, Outlet, RouterProvider } from 'react-rou
 import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import { Toaster } from 'react-hot-toast';
+import { useOnlineStatusStore } from './stores/useOnlineStatusStore';
 
 // 컴포넌트
 import Layout from '@/components/layout/Layout';
@@ -14,8 +15,8 @@ import BookmarkPage from '@/features/bookmark/pages/BookmarkPage';
 import Mypage from '@/features/mypage/pages/Mypage';
 import MapTest from './features/map/pages/MapTest';
 import HttpTest from './features/test/pages/HttpTest';
-import { useOnlineStatusStore } from './stores/useOnlineStatusStore';
 import NetworkTest from './features/test/pages/NetworkTest';
+import PlaceDetailPage from '@/features/placeDetail/containers/PlaceDetailPage';
 
 const router = createBrowserRouter([
   {
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
               {
                 path: '/bookmark', // 관심
                 element: <BookmarkPage />,
+              },
+              {
+                path: '/places/:placeId',
+                element: <PlaceDetailPage />, // 관심페이지에서 진입
               },
               {
                 path: '/mypage', // 마이
