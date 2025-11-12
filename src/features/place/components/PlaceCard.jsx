@@ -59,7 +59,7 @@ export default function PlaceCard({ place, onClick }) {
           variant='labelSm3'
           className='text-stoov-orange-300 bg-stoov-gray-800 mt-1 w-fit rounded-full px-2 py-1'
         >
-          {place.filterLabel}
+          {place.type}
         </Typography>
 
         {/* 후기 */}
