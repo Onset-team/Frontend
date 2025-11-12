@@ -12,6 +12,8 @@
   --color-stoov-orange-500: #ec3910;
   --color-stoov-orange-700: #a8280a;
 
+  --color-stoov-orange-opacity-100: #f58369;
+
   --color-stoov-gray-100: #dedede;
   --color-stoov-gray-200: #c7c7c7;
   --color-stoov-gray-300: #999999;
@@ -54,9 +56,9 @@
   --radius-3xl: 20px;
 
   /* Shadow */
-  --shadow-chip: 0 4px 8px 0 rgba(0, 0, 0, 0.25);
+  --shadow-chip: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
   --shadow-dropdown: 2px 5px 15px 0 rgba(0, 0, 0, 0.4);
-  --shadow-bottomsheet: 0 -6px 10px 0 rgba(0, 0, 0, 0.25);
+  --shadow-bottomsheet: 0 -4px 5px 0 rgba(0, 0, 0, 0.25);
   --shadow-btn: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
   --shadow-toast: 0 0 8px 0 rgba(0, 0, 0, 0.4);
 }
