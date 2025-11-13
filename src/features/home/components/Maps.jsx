@@ -6,6 +6,8 @@ import mapMarkers from './mapMarkers';
 export default function Maps() {
   useKakaoLoader();
 
+  const [selectedMarker, setSelectedMarker] = useState(null);
+
   // 지도 중심 좌표
   const [center, setCenter] = useState({
     lat: 37.571648599,
@@ -14,23 +16,23 @@ export default function Maps() {
 
   // 클러스터러 스타일
   const clusterStyles = [
-  {
-    width: '52px',
-    height: '52px',
-    background: '#f58369',
-    color: '#ffffff',
-    textColor: '#ffffff',
-    textSize: 14,
-    borderRadius: '50%',
-    textAlign: 'center',
-    lineHeight: '54px',
-    fontWeight: 500,
-    outline: '16px solid rgba(245,131,105, 0.4)',
-    outlineOffset: '0px',
+    {
+      width: '52px',
+      height: '52px',
+      background: '#f58369',
+      color: '#ffffff',
+      textColor: '#ffffff',
+      textSize: 14,
+      borderRadius: '50%',
+      textAlign: 'center',
+      lineHeight: '54px',
+      fontWeight: 500,
+      outline: '16px solid rgba(245,131,105, 0.4)',
+      outlineOffset: '0px',
     },
   ];
 
-    const [dummyLocations, setDummyLocations] = useState([
+  const [dummyLocations, setDummyLocations] = useState([
     { lat: 37.5665, lng: 126.978, address: '서울특별시 중구 세종대로 110' },
     { lat: 37.5511, lng: 126.9882, address: '서울특별시 중구 남산공원길 105' },
     { lat: 37.5796, lng: 126.977, address: '서울특별시 종로구 사직로 161' },
@@ -51,13 +53,7 @@ export default function Maps() {
   return (
     <>
       <div className='relative my-2 h-[calc(100vh-100px)] w-full overflow-hidden'>
-        <Map
-          id='map'
-          center={center}
-          style={{ width: '100%', height: '100%' }}
-          level={5}
-        >
-
+        <Map id='map' center={center} style={{ width: '100%', height: '100%' }} level={5}>
           {/* 위치 마커 */}
           <MarkerClusterer
             averageCenter={true} // 클러스터 중심을 마커들의 평균 위치로
@@ -73,12 +69,11 @@ export default function Maps() {
                   size: {
                     width: 24,
                     height: 35,
-                  }, // 마커이미지의 크기입니다
+                  }, // 마커이미지의 크기
                 }}
                 clickable={true}
                 onClick={() => {
-                  setIsOpen(true);
-                  // console.log(isOpen);
+                  setSelectedMarker(index);
                 }}
               />
             ))}
@@ -92,17 +87,27 @@ export default function Maps() {
                   size: {
                     width: 24,
                     height: 35,
-                  }, // 마커이미지의 크기입니다
+                  }, // 마커이미지의 크기
                 }}
                 clickable={true}
                 onClick={() => {
-                  setIsOpen(true);
-                  // console.log(isOpen);
+                  setSelectedMarker(index);
                 }}
               />
             ))}
           </MarkerClusterer>
         </Map>
+
+        {/* 마커 클릭 */}
+        {selectedMarker !== null && (
+          <div className='absolute top-4 left-4 z-50 bg-white p-4 shadow-lg text-black'>
+            <button onClick={() => setSelectedMarker(null)}>닫기</button>
+            <pre className='mt-2 text-xs'>
+              {JSON.stringify(dummyLocations[selectedMarker], null, 2)}
+            </pre>
+          </div>
+        )}
+
       </div>
     </>
   );
