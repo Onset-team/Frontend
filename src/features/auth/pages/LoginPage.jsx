@@ -1,21 +1,18 @@
-import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
+
 import React from 'react';
+import LoginBtn from '../components/LoginBtn';
+import LoginLogo from '../components/LoginLogo';
 
 export default function LoginPage() {
-  const clientId = import.meta.env.VITE_GOOGLE_TEST_CLIENT_ID;
+
+  // 높이 계산은 100vh에서 헤더와 높이를 빼서 계산
   return (
-    <div className='flex flex-row items-center justify-center'>
+    <div className='flex flex-col items-center h-[calc(100vh-120px)] justify-center gap-16 px-4'>
       {' '}
-      <GoogleOAuthProvider clientId={clientId}>
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            console.log(credentialResponse)
-          }}
-          onError={() => {
-            console.log('Login Failed');
-          }}
-        />
-      </GoogleOAuthProvider>
+      {/* 로고 부분 */}
+        <LoginLogo />
+      {/* 버튼 부분 */}
+        <LoginBtn />
     </div>
   );
 }

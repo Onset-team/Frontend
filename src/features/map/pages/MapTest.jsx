@@ -87,7 +87,7 @@ export default function MapTest() {
   }, [apiData, error]);
 
   useEffect(() => {
-      // console.log(apiData);
+    // console.log(apiData);
     console.log(statusCode);
   }, [apiData, statusCode]);
 
@@ -142,6 +142,23 @@ export default function MapTest() {
     [],
   );
 
+  const clusterStyles = [
+  {
+    width: '52px',
+    height: '52px',
+    background: '#f58369',
+    color: '#ffffff',
+    textColor: '#ffffff',
+    textSize: 14,
+    borderRadius: '50%',
+    textAlign: 'center',
+    lineHeight: '54px',
+    fontWeight: 500,
+    outline: '16px solid rgba(245,131,105, 0.4)',
+    outlineOffset: '0px',
+    },
+  ];
+
   return (
     <>
       <div className='relative my-2 h-[calc(100vh-100px)] w-full overflow-hidden rounded-xl'>
@@ -176,6 +193,7 @@ export default function MapTest() {
           <MarkerClusterer
             averageCenter={true} // 클러스터 중심을 마커들의 평균 위치로
             minLevel={5} // 최소 확대 레벨 (숫자가 작을수록 더 확대됨)
+            styles={clusterStyles} // 클러스터러 스타일
           >
             {dummyLocations.map((position, index) => (
               <MapMarker
