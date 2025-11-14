@@ -22,7 +22,7 @@ export default function BookmarkPage() {
       {totalCount > 0 ? (
         <PlaceList places={mockPlaces} totalCount={totalCount} onClickPlace={handleClickPlace} />
       ) : (
-        <EmptyState variant='favorite' />
+        <EmptyState variant='bookmark' />
       )}
     </>
   );
