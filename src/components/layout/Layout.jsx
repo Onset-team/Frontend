@@ -6,11 +6,12 @@ import Header from '@/components/layout/Header';
 
 export default function Layout() {
   // 오류 방지를 위한 훅 분리
-  const isLoginPage = useMatch('/login');
-  const isPlacesPage = useMatch('/places/*');
+  const isLoginPage = useMatch('/login'); // 로그인
+  const isAgreementPage = useMatch('/agreement/*'); // 이용약관
+  const isPlacesPage = useMatch('/places/*'); // 
   
   // OR 연산
-  const hideBottomBar = isLoginPage || isPlacesPage;
+  const hideBottomBar = isLoginPage || isAgreementPage || isPlacesPage;
 
   return (
     <div className='bg-stoov-gray-900 relative mx-auto flex min-h-dvh w-full max-w-[500px] flex-col'>

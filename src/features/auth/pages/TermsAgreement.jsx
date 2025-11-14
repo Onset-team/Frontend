@@ -41,7 +41,7 @@ export default function TermsAgreement() {
         </Typography>
         <div className='flex'>
           <Typography variant='titleLg' color='white100'>
-            아래 &nbsp;
+            아래&nbsp;
           </Typography>
           <Typography variant='titleLg' color='orange300'>
             항목에 동의
