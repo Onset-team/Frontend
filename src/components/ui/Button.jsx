@@ -21,6 +21,7 @@ const buttonVariants = cva(
         sm: 'h-10 rounded-xl px-5 text-sm leading-5 font-medium', // height: 40px, border-radius: 10px, font-size:14px, line-height: 20px, font-weight: 500
         lg: 'h-12 rounded-lg px-5 text-base leading-3 font-semibold', // height: 48px, border-radius: 8px, font-size:16px, line-height: 16px, font-weight: 600
         iconText: 'h-10 w-[132px] rounded-lg text-sm leading-5 font-semibold', // height: 32px, border-radius: 8px, font-size:14px, line-height: 20px, font-weight: 600
+        iconXs: 'h-[18px] w-[18px]',
         iconSm: 'h-6 w-6', // height, width: 24px,
         iconLg: 'h-10 w-10', // height, width: 40px,
         iconXl: 'h-12 w-12', // height, width: 48px,
