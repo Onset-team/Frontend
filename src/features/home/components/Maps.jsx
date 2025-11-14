@@ -65,7 +65,7 @@ export default function Maps() {
                 key={`${position.lat - position.lng}`}
                 position={{ lat: position.lat, lng: position.lng }} // 마커를 표시할 위치
                 image={{
-                  src: mapMarkers('#666666', 24, 35), // 마커이미지
+                  src: mapMarkers('#4d4d4d', 24, 35), // 마커이미지
                   size: {
                     width: 24,
                     height: 35,

@@ -23,6 +23,7 @@ import HttpTest from './features/test/pages/HttpTest';
 import NetworkTest from './features/test/pages/NetworkTest';
 import TermsAgreement from './features/auth/pages/TermsAgreement';
 import AgreementContent from './features/auth/components/AgreementContent';
+import RequireAuth from './features/auth/pages/RequireAuth';
 
 const router = createBrowserRouter([
   {
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
           {
             path: 'agreement/:type',
             element: <AgreementContent />,
+          },
+          {
+            path: '/loginRequired',
+            element: <RequireAuth />
           },
 
           // 2. 로그인 필요 없는 페이지
