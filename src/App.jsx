@@ -9,14 +9,18 @@ import { useOnlineStatusStore } from './stores/useOnlineStatusStore';
 import Layout from '@/components/layout/Layout';
 import ProtectedRoute from '@/components/layout/ProtectedRoute';
 import ScrollToTop from '@/components/layout/ScrollToTop';
+// 로그인 필요 업는 페이지
 import LoginPage from '@/features/auth/pages/LoginPage';
 import HomePage from '@/features/home/pages/HomePage';
+import PlaceDetailPage from '@/features/placeDetail/containers/PlaceDetailPage';
+// 로그인 필요한 페이지
 import BookmarkPage from '@/features/bookmark/pages/BookmarkPage';
+import ReviewWritePage from '@/features/review/pages/ReviewWritePage';
 import Mypage from '@/features/mypage/pages/Mypage';
+
 import MapTest from './features/map/pages/MapTest';
 import HttpTest from './features/test/pages/HttpTest';
 import NetworkTest from './features/test/pages/NetworkTest';
-import PlaceDetailPage from '@/features/placeDetail/containers/PlaceDetailPage';
 
 const router = createBrowserRouter([
   {
@@ -45,15 +49,11 @@ const router = createBrowserRouter([
       {
         element: <Layout />,
         children: [
-          // 1. Auth 라우트
+          // 1. 로그인 필요 없는 페이지
           {
             path: '/login',
             element: <LoginPage />,
           },
-
-          // 2. 로그인 필요 없는 페이지
-
-          // 페이지명 확정되면 수정 필요함(홈, 주변, 관심)
           {
             path: '/', // 홈
             element: <HomePage />,
@@ -61,7 +61,12 @@ const router = createBrowserRouter([
           { path: '/test', element: <MapTest /> },
           { path: '/test2', element: <HttpTest /> },
           { path: '/network', element: <NetworkTest /> },
-          // 3. 로그인 필요한 페이지
+          {
+            path: '/places/:placeId',
+            element: <PlaceDetailPage />, // 관심페이지에서 진입
+          },
+
+          // 2. 로그인 필요한 페이지
           {
             element: <ProtectedRoute />,
             children: [
@@ -70,8 +75,8 @@ const router = createBrowserRouter([
                 element: <BookmarkPage />,
               },
               {
-                path: '/places/:placeId',
-                element: <PlaceDetailPage />, // 관심페이지에서 진입
+                path: '/places/:placeId/review',
+                element: <ReviewWritePage />,
               },
               {
                 path: '/mypage', // 마이
