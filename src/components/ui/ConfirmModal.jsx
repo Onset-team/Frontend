@@ -1,4 +1,6 @@
 import React, { useEffect } from 'react';
+// 유틸
+import { cn } from '@/utils/cn';
 // 컴포넌트
 import Typography from '@/components/ui/Typography';
 import Button from '@/components/ui/Button';
@@ -10,7 +12,7 @@ export default function ConfirmModal({
   desc,
   leftButtonLabel = '취소',
   rightButtonLabel = '삭제',
-  onRightButtonClick,
+  onConfirm,
 }) {
   // 모달 호출 시 스크롤 막기
   useEffect(() => {
@@ -29,7 +31,11 @@ export default function ConfirmModal({
       ></div>
       <div
         onClick={(e) => e.stopPropagation()}
-        className='bg-stoov-gray-800 animate-fadeInUp absolute top-1/2 left-1/2 flex w-5/6 max-w-[328px] -translate-x-1/2 -translate-y-1/2 flex-col gap-4 overflow-hidden rounded-xl px-4 py-5 transition-all duration-200'
+        className={cn(
+          'bg-stoov-gray-800 flex w-5/6 max-w-[328px] flex-col gap-4 overflow-hidden rounded-xl px-4 py-5',
+          'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
+          'animate-fadeInUp transition-all duration-200',
+        )}
       >
         {/* 모달 컨텐츠 */}
 
@@ -53,7 +59,7 @@ export default function ConfirmModal({
               </Button>
             )}
             {rightButtonLabel && (
-              <Button onClick={onRightButtonClick} aria-label={rightButtonLabel}>
+              <Button onClick={onConfirm} aria-label={rightButtonLabel}>
                 {rightButtonLabel}
               </Button>
             )}

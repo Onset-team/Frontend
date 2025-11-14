@@ -7,19 +7,21 @@ import Typography from '@/components/ui/Typography';
 // 이미지
 import EmptyBookmark from '@/assets/images/EmptyBookmark.png';
 import EmptySearch from '@/assets/images/EmptySearch.png';
+import EmptyReview from '@/assets/images/EmptyReview.png';
+import ErrorLogin from '@/assets/images/ErrorLogin.png';
 import ErrorClient from '@/assets/images/ErrorClient.png';
 import ErrorServer from '@/assets/images/ErrorServer.png';
 import ErrorNetwork from '@/assets/images/ErrorNetwork.png';
 import PlacePlaceholderSmall from '@/assets/images/placePlaceholderSmall.png';
 
 export default function EmptyState({
-  variant, // 'favorite' | 'search' | 400 | 500 | 'offline' | 'default'
+  variant, // 'favorite' | 'search' | 'review' | 'login' | 400 | 500 | 'offline'
   isShowButton = false,
   buttonLabel = '다시 시도하기',
   onButtonClick,
 }) {
   const variants = {
-    favorite: {
+    bookmark: {
       image: EmptyBookmark,
       title: '아직 관심 장소가 없습니다.',
       desc: `지도를 둘러보고 마음에 드는\n 장소에 하트를 눌러보세요.`,
@@ -31,6 +33,19 @@ export default function EmptyState({
       title: '검색 결과가 없습니다.',
       desc: '다시 한번 검색해보세요!',
       isShowButton: false,
+      minHeight: 'min-h-[calc(100dvh-118px)]',
+    },
+    review: {
+      image: EmptyReview,
+      title: '아직 작성한 후기가 없어요.',
+      isShowButton: false,
+      minHeight: 'min-h-[360px]',
+    },
+    login: {
+      image: ErrorLogin,
+      title: '로그인 후 이용해 주세요.',
+      desc: 'STOOV의 다양한 서비스를 사용할 수 있어요.',
+      isShowButton: true,
       minHeight: 'min-h-[calc(100dvh-118px)]',
     },
     400: {
