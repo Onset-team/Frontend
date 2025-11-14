@@ -39,6 +39,7 @@ const typographyVariants = cva('', {
       gray600: 'text-stoov-gray-600', //#4d4d4d
       gray800: 'text-stoov-gray-800', //#3a3a3a
       gray900: 'text-stoov-gray-900', //#222222
+      orange300: 'text-stoov-orange-300' //#f58369
     },
     align: {
       left: 'text-left',
