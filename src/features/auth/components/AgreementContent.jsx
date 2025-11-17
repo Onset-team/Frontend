@@ -7,7 +7,7 @@ export default function AgreementContent() {
 
   const agreementContent = () => {
     switch (type) {
-      case 'privacy':
+      case 'terms':
         return {
           title: '서비스 이용약관',
           effectiveDate: '시행일자 : 2025년 11월 26일',
@@ -351,7 +351,7 @@ export default function AgreementContent() {
             </div>
           ),
         };
-      case 'terms':
+      case 'consent':
         return {
           title: '개인정보 수집 및 이용동의',
           effectiveDate: '시행일자 : 2025년 11월 26일',
@@ -442,7 +442,7 @@ export default function AgreementContent() {
                 <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
                   제4조(개인정보의 이용 목적)
                 </Typography>
-                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                <Typography variant='labelSm2' color='gray300'>
                   회사는 수집한 개인정보를 다음의 목적에 한해 이용합니다.
                 </Typography>
                 <Typography variant='labelSm2' color='gray300' className='indent-1'>
@@ -463,7 +463,7 @@ export default function AgreementContent() {
                 <Typography variant='labelSm2' color='gray300' className='indent-1'>
                   6. 신규 기능, 업데이트, 공지사항 등 서비스 운영 관련 정보 제공
                 </Typography>
-                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                <Typography variant='labelSm2' color='gray300'>
                   (※ 선택 동의: 광고성 정보 수신 관련 내용은 별도의 “마케팅 정보 수신 동의서”로
                   분리하여 안내합니다.)
                 </Typography>
@@ -490,27 +490,23 @@ export default function AgreementContent() {
                   </thead>
                   <tbody className='text-xs leading-4 font-normal'>
                     <tr>
-                      <td className='border-stoov-gray-600 border p-2'>후기 데이터(내용, 장소 ID 등)</td>
-                      <td className='border-stoov-gray-600 border p-2'>서비스 악용 방지 및 분쟁 대응</td>
                       <td className='border-stoov-gray-600 border p-2'>
-                        탈퇴 후 1년
+                        후기 데이터(내용, 장소 ID 등)
                       </td>
-
+                      <td className='border-stoov-gray-600 border p-2'>
+                        서비스 악용 방지 및 분쟁 대응
+                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>탈퇴 후 1년</td>
                     </tr>
                     <tr>
                       <td className='border-stoov-gray-600 border p-2'>접속 로그 및 이용 기록</td>
                       <td className='border-stoov-gray-600 border p-2'>통신비밀보호법 준수</td>
-                      <td className='border-stoov-gray-600 border p-2'>
-                        3개월
-                      </td>
-
+                      <td className='border-stoov-gray-600 border p-2'>3개월</td>
                     </tr>
                     <tr>
                       <td className='border-stoov-gray-600 border p-2'>서비스 이용 동의 내역</td>
                       <td className='border-stoov-gray-600 border p-2'>이용자 확인 근거</td>
-                      <td className='border-stoov-gray-600 border p-2'>
-                        3년
-                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>3년</td>
                     </tr>
                   </tbody>
                 </table>
@@ -540,15 +536,18 @@ export default function AgreementContent() {
                   <tbody className='text-xs leading-4 font-normal'>
                     <tr>
                       <td className='border-stoov-gray-600 border p-2'>Google LLC</td>
-                      <td className='border-stoov-gray-600 border p-2'>소셜 로그인 인증 및 사용자 식별</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        소셜 로그인 인증 및 사용자 식별
+                      </td>
                       <td className='border-stoov-gray-600 border p-2'>
                         회원 탈퇴 또는 위탁 계약 종료시까지
                       </td>
-
                     </tr>
                     <tr>
                       <td className='border-stoov-gray-600 border p-2'>Amazon Web Services Inc.</td>
-                      <td className='border-stoov-gray-600 border p-2'>서비스 서버 운영 및 데이터 보관</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        서비스 서버 운영 및 데이터 보관
+                      </td>
                       <td className='border-stoov-gray-600 border p-2'>
                         회원 탈퇴 또는 계약 종료 시까지
                       </td>
@@ -698,31 +697,362 @@ export default function AgreementContent() {
             </div>
           ),
         };
-      case 'ageVerification':
+      case 'privacy':
         return {
           title: '개인정보 처리방침',
           effectiveDate: '시행일자 : 2025년 11월 26일',
           content: (
-            <div className='max-h-[500px] overflow-y-auto text-sm text-gray-600'>
-              <p>1. 수집 항목</p>
-              <p className='pl-[12px]'>- 키, 현재 체중, 목표 체중, 목표 유형</p>
-              <p className='pb-[12px] pl-[12px]'>- 식단 및 수분 기록, 칼로리·영양성분</p>
+            <div className='flex flex-col gap-5 overflow-y-auto text-sm text-gray-300'>
+              <div className='flex flex-col'>
+                <Typography variant='labelSm2' color='gray300'>
+                  온셋(Onset)(이하 “회사”)는 「개인정보 보호법」 및 관계 법령을 준수하며, 이용자의
+                  개인정보가 어떤 방식으로 처리되는지 안내하기 위하여 다음과 같이 개인정보
+                  처리방침을 수립·공개합니다.
+                </Typography>
+              </div>
 
-              <p>2. 수집 목적</p>
-              <p className='pl-[12px]'>- 맞춤형 건강/식단 관리 서비스 제공</p>
-              <p className='pb-[12px] pl-[12px]'>- 체중·영양·활동량 분석 및 AI 피드백 제공</p>
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제1조(개인정보의 처리 목적)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  회사는 다음의 목적을 위하여 이용자의 개인정보를 처리하며, 그 외의 용도로는
+                  이용하지 않습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 회원가입 및 관리: 회원제 서비스 제공 · 본인식별·인증 등
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 서비스 제공: 관심 장소 저장, 후기 작성, 장소 검색 등 서비스 제공
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 문의‧불만처리: 고객문의 응대, 민원처리 등
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  4. 서비스 개선 및 통계: 이용현황 분석, 신규서비스 개발 등
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  ※ 기타 구체적인 이용 목적은 수집 시 또는 개별 서비스 화면에 별도 고지합니다.
+                </Typography>
+              </div>
 
-              <p>3. 보관 기간</p>
-              <p className='pl-[12px]'>- 회원 탈퇴 시 즉시 삭제</p>
-              <p className='pb-[12px] pl-[12px]'>
-                - 단, 관련 법령에 따라 일정 기간 보관 필요 시 해당 법령에 따름
-              </p>
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제2조(개인정보의 처리 및 보유 기간)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 회사는 법령에 따라 개인정보를 보유·이용하며, 목적이 달성되면 지체 없이
+                  파기합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 다만 아래는 예외적으로 보유하는 기간입니다.
+                </Typography>
+                <table className='mt-1 mb-1 w-full border-collapse'>
+                  <thead className='bg-stoov-gray-800 text-left text-xs leading-4 font-semibold'>
+                    <tr>
+                      <th className='border-stoov-gray-600 w-12 border p-2'>구분</th>
+                      <th className='border-stoov-gray-600 w-20 border p-2'>항목</th>
+                      <th className='border-stoov-gray-600 w-20 border p-2'>보유·이용 기간</th>
+                      <th className='border-stoov-gray-600 w-20 border p-2'>근거법령 또는 동의 근거</th>
+                    </tr>
+                  </thead>
+                  <tbody className='text-xs leading-4 font-normal'>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>후기 게시물</td>
+                      <td className='border-stoov-gray-600 border p-2'>장소 후기 등</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        회원 탈퇴 1년
+                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        내부정책
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>접속기록</td>
+                      <td className='border-stoov-gray-600 border p-2'>로그, 이용기록 등</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        최종 접속일 후 3개월
+                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        내부 시스템 운영상 필요
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>동의내역</td>
+                      <td className='border-stoov-gray-600 border p-2'>동의서·약관동의자료</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        회원 탈퇴 후 3년
+                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>전자상거래 등 법령 준수</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <Typography variant='labelSm2' color='gray300'>
+                  ※ 기타 구체적인 이용 목적은 수집 시 또는 개별 서비스 화면에 별도 고지합니다.
+                </Typography>
+              </div>
 
-              <p>4. 동의 거부권 안내</p>
-              <p className='pl-[12px]'>- 회원은 개인정보 수집·이용에 동의하지 않을 수 있습니다.</p>
-              <p className='pb-[12px] pl-[12px]'>
-                - 단, 필수 항목에 동의하지 않을 경우 회원가입이 제한됩니다.
-              </p>
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제3조(처리하는 개인정보의 항목)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  회사는 서비스 제공을 위해 아래 개인정보 항목을 처리합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  - 필수 항목: 이메일, 소셜로그인 식별자, 프로필 이미지
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  - 선택 항목: 닉네임, 후기 작성 텍스트·이미지
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  - 자동수집 항목: 이용기록(즐겨찾기 등), 접속로그
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  ※ 서비스 가입 및 이용 과정에서 해당 항목 이외의 정보가 추가로 필요할 경우 별도
+                  동의를 받습니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제4조(개인정보의 제3자 제공)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  회사는 원칙적으로 이용자의 개인정보를 제3자에게 제공하지 않습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  다만 다음의 경우에는 예외로 합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 이용자가 동의한 경우
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 법령에 의해 요청이 있는 경우
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 3. 서비스 제공을 위해 위탁한 업체가 업무 수행을 위해 필요한 경우
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  ※ 기타 구체적인 이용 목적은 수집 시 또는 개별 서비스 화면에 별도 고지합니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제5조(개인정보 처리 위탁)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  회사는 원활한 서비스 제공을 위해 아래와 같이 개인정보 처리 업무를 위탁할 수
+                  있습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  - 수탁업체명: Google LLC (소셜 로그인)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  - 수탁업체명: AWS (서버 운영)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  - 위탁 시 회사는 위탁업무의 목적과 범위, 재위탁 제한, 수탁자 관리·감독 등을
+                  위탁계약서 또는 문서로 명시하고 있습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  ※ 위탁업무가 변경될 경우 지체 없이 본 방침을 통해 공개합니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제6조(개인정보 파기절차 및 방법)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 파기절차: 보유기간의 경과, 처리목적 달성 등의 사유가 발생하면 내부
+                  개인정보관리방침에 따라 파기대상 선정 → 책임자 승인 → 파기합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 파기방법: 전자적 파일은 복구 불가능한 기술적 방법으로 삭제하며, 종이로 출력된
+                  개인정보는 분쇄 또는 소각하여 파기합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 회원 탈퇴 시: 서비스 화면에서는 즉시 삭제되며 내부 DB에는 보유기간(1년)에 따라
+                  보관 후 파기됩니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제7조(이용자의 권리 및 그 행사방법)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  이용자는 언제든지 회사에 대해 본인 또는 만 14세 이상 미성년자의 경우 법정대리인을
+                  통해 다음 각 호의 권리를 행사할 수 있습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 개인정보 열람 요구
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 오류 등이 있을 경우 정정·삭제 요구
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 처리정지 요구
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  4. 권리 행사는 이메일(contact@stoov.co.kr) 또는 우편·팩스를 통해 하실 수 있고,
+                  회사는 지체 없이 조치하겠습니다. 만 14세 미만 아동의 경우 법정대리인이 권리를 대신
+                  행사할 수 있습니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제8조(개인정보의 안전성 확보조치)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  회사는 개인정보를 안전하게 관리하기 위하여 「개인정보 보호법」에서 요구하는
+                  최소한의 보호조치를 다음과 같이 시행하고 있습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 개인정보 접근 권한을 최소한으로 부여하고, 권한 부여·변경·말소 내역을
+                  기록·관리합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 서비스 운영 과정에서 발생하는 접속 기록을 보관·모니터링하여 이상 징후를
+                  점검합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 회원 식별 정보는 HTTPS 등 암호화된 통신 구간을 사용하여 안전하게 전송합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  4. 개인정보 보호를 위한 내부 지침을 운영하고 담당자에게 관련 교육을 제공합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  ※ 회사는 서비스 안정성과 보안 수준 강화를 위하여 보호조치를 지속적으로
+                  검토·개선합니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제9조(개인정보 자동 수집 장치의 설치·운영 및 거부에 관한 사항)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  회사는 서비스 제공 과정에서 세션 관리 및 로그인 유지를 위한 세션 쿠키(session
+                  cookie)를 사용할 수 있습니다. 세션 쿠키는 사용자의 브라우저에 저장되며, 서비스
+                  이용 중 원활한 인증 및 사용자 정보 확인을 위해 활용됩니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 세션 쿠키는 이용자 인증 및 로그인 상태 유지, 사용자 계정 정보 및 관심 장소
+                  정보를 정상적으로 불러오기 위한 세션 관리 목적으로 사용되며, 세션 ID(사용자 식별이
+                  가능한 정보)가 수집될 수 있습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 세션 쿠키는 브라우저 종료 시 자동 삭제되며, 사용자가 마지막으로 요청을 보낸
+                  시점부터 2시간 동안 활동이 없을 경우 자동으로 만료됩니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 세션 쿠키는 HTTPS 기반(Secure 속성 적용)으로만 전송되며, HttpOnly 속성이
+                  적용되어 자바스크립트를 통한 접근이 제한되는 등 외부 공격(XSS 등)에 대비하여
+                  안전하게 관리됩니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  4. 이용자는 브라우저 설정을 통해 쿠키 저장을 거부하거나 삭제할 수 있으나, 세션
+                  쿠키를 거부하거나 삭제할 경우 로그인 기능 및 서비스 이용에 제한이 발생할 수
+                  있습니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제10조(가명정보 처리 등에 관한 사항)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  회사는 「개인정보 보호법」 제28조의2 및 제28조의3에 따른 가명정보를 처리하고 있지
+                  않습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  [※ 추후 가명정보 처리 시 별도 고지 예정]
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제11조(개인정보 보호책임자 및 고충처리부서)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  회사는 개인정보 처리에 관한 업무를 총괄하는 책임자 및 고충처리담당 부서를 지정하고
+                  있습니다.
+                </Typography>
+                  <table className='mt-1 mb-1 w-full border-collapse'>
+                  <thead className='bg-stoov-gray-800 text-left text-xs leading-4 font-semibold'>
+                    <tr>
+                      <th className='border-stoov-gray-600 w-40 border p-2'>구분</th>
+                      <th className='border-stoov-gray-600 w-40 border p-2'>담당자 정보</th>
+                    </tr>
+                  </thead>
+                  <tbody className='text-xs leading-4 font-normal'>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>개인정보 보호책임자</td>
+                      <td className='border-stoov-gray-600 border p-2'>이영선</td>
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>담당부서</td>
+                      <td className='border-stoov-gray-600 border p-2'>서비스 기획팀</td>
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>이메일</td>
+                      <td className='border-stoov-gray-600 border p-2'>privacy@stoov.co.kr</td>
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>연락처</td>
+                      <td className='border-stoov-gray-600 border p-2'>02-1234-5678</td>
+                    </tr>
+                  </tbody>
+                </table>
+                <Typography variant='labelSm2' color='gray300'>
+                  이용자는 개인정보 침해 관련 문의를 개인정보 보호책임자 또는 담당부서에 할 수
+                  있으며, 회사는 지체 없이 답변하고 처리합니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제12조(권익침해 구제방법)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  이용자는 개인정보 침해로 인한 구제를 받기 위하여 아래 기관에 문의할 수 있습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 개인정보분쟁조정위원회 : (국번없이) 1833-6972 (www.kopico.go.kr)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 개인정보침해신고센터 : (국번없이) 118 (privacy.kisa.or.kr)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 대검찰청 : (국번없이) 1301 (www.spo.go.kr)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  4. 경찰청 : (국번없이) 182 (ecrm.cyber.go.kr)
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제13조(처리방침 변경)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  본 방침은 법령 및 방침·정책의 변경에 따라 변경될 수 있으며, 변경 시 회사는
+                  시행일자 및 변경사항을 서비스 내에 게시하고 이메일 등을 통해 안내합니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  부칙
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  본 방침은 2025년 11월 26일부터 시행합니다.
+                </Typography>
+              </div>
             </div>
           ),
         };
