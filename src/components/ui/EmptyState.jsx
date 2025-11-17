@@ -11,7 +11,7 @@ import EmptyReview from '@/assets/images/EmptyReview.png';
 import ErrorLogin from '@/assets/images/ErrorLogin.png';
 import ErrorClient from '@/assets/images/ErrorClient.png';
 import ErrorServer from '@/assets/images/ErrorServer.png';
-import ErrorNetwork from '@/assets/images/ErrorNetwork.png';
+import ErrorNetwork from '@/assets/images/ErrorNetwork.png?inline';
 import PlacePlaceholderSmall from '@/assets/images/placePlaceholderSmall.png';
 
 export default function EmptyState({
