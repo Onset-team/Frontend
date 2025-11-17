@@ -16,7 +16,6 @@ import PlacePlaceholderSmall from '@/assets/images/placePlaceholderSmall.png';
 
 export default function EmptyState({
   variant, // 'favorite' | 'search' | 'review' | 'login' | 400 | 500 | 'offline'
-  isShowButton = false,
   buttonLabel = '다시 시도하기',
   onButtonClick,
 }) {
@@ -25,48 +24,48 @@ export default function EmptyState({
       image: EmptyBookmark,
       title: '아직 관심 장소가 없습니다.',
       desc: `지도를 둘러보고 마음에 드는\n 장소에 하트를 눌러보세요.`,
-      isShowButton: false,
+      showButton: false,
       minHeight: 'min-h-[calc(100dvh-118px)]',
     },
     search: {
       image: EmptySearch,
       title: '검색 결과가 없습니다.',
       desc: '다시 한번 검색해보세요!',
-      isShowButton: false,
+      showButton: false,
       minHeight: 'min-h-[calc(100dvh-118px)]',
     },
     review: {
       image: EmptyReview,
       title: '아직 작성한 후기가 없어요.',
-      isShowButton: false,
+      showButton: false,
       minHeight: 'min-h-[360px]',
     },
     login: {
       image: ErrorLogin,
       title: '로그인 후 이용해 주세요.',
       desc: 'STOOV의 다양한 서비스를 사용할 수 있어요.',
-      isShowButton: true,
+      showButton: true,
       minHeight: 'min-h-[calc(100dvh-118px)]',
     },
     400: {
       image: ErrorClient,
       title: '앗, 잠시 오류가 생겼어요!',
       desc: '잠시 후 다시 시도해주세요!',
-      isShowButton: true,
+      showButton: true,
       minHeight: 'min-h-dvh',
     },
     500: {
       image: ErrorServer,
       title: `요청을 처리하는데\n일시적으로 오류가 생겼어요.`,
       desc: '다시 시도해볼까요?',
-      isShowButton: true,
+      showButton: true,
       minHeight: 'min-h-dvh',
     },
     offline: {
       image: ErrorNetwork,
       title: '인터넷 연결이 원활하지 않아요.',
       desc: '연결을 확인하고 다시 시도해주세요.',
-      isShowButton: true,
+      showButton: true,
       minHeight: 'min-h-dvh',
     },
   };
@@ -115,7 +114,7 @@ export default function EmptyState({
         </Typography>
       </div>
 
-      {isShowButton && (
+      {current.showButton && (
         <Button
           size='sm'
           onClick={handleButtonClick}
