@@ -115,6 +115,16 @@
     background-color: var(--color-stoov-gray-500);
   }
 
+  .bottomsheet-container {
+    max-width: 500px;
+    left: 50% !important;
+    max-height: calc(100dvh - 73px) !important;
+    background-color: var(--color-stoov-gray-900) !important;
+    box-shadow: var(--shadow-bottomsheet) !important;
+    border-radius: var(--radius-3xl) !important;
+    overflow: hidden;
+  }
+
   @media (max-width: 500px) {
     body {
       background-color: var(--color-stoov-gray-900);
