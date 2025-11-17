@@ -45,8 +45,8 @@ export default function ReviewItem({ review, onEdit, onDelete, onReport }) {
 
         <ReviewMoreMenu
           isMyReview={review.isMyReview}
-          onEdit={onEdit}
-          onDelete={onDelete}
+          onEdit={() => onEdit(review)}
+          onDelete={() => onDelete(review.reviewId)}
           onReport={onReport}
         />
       </div>
