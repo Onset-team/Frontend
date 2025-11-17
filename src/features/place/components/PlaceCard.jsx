@@ -5,9 +5,18 @@ import Typography from '@/components/ui/Typography';
 // 이미지
 import PlacePlaceholderSmall from '@/assets/images/placePlaceholderSmall.png';
 
-export default function PlaceCard({ place, onClick }) {
-  const [isBookmark, setIsBookmark] = useState(place.isBookmark);
+export default function PlaceCard({
+  place = {},
+  onClick,
+  showBookmarkButton = true,
+  showReviewCount = true,
+}) {
+  const [isBookmark, setIsBookmark] = useState(place.isBookmark || false);
 
+  const handleBookmarkToggle = (e) => {
+    e.stopPropagation();
+    setIsBookmark((prev) => !prev);
+  };
   return (
     <div
       onClick={onClick}
@@ -30,15 +39,13 @@ export default function PlaceCard({ place, onClick }) {
             }}
           />
         </div>
-
-        <BookmarkButton
-          isActive={isBookmark}
-          onToggle={() => {
-            setIsBookmark((prev) => !prev);
-            console.log(place.name, isBookmark ? '관심 해제' : '관심 추가');
-          }}
-          className='absolute right-0 bottom-0'
-        />
+        {showBookmarkButton && (
+          <BookmarkButton
+            isActive={isBookmark}
+            onToggle={handleBookmarkToggle}
+            className='absolute right-0 bottom-0'
+          />
+        )}
       </div>
 
       {/* 정보 */}
@@ -63,9 +70,11 @@ export default function PlaceCard({ place, onClick }) {
         </Typography>
 
         {/* 후기 */}
-        <Typography variant='labelSm3' color='gray100' align='right'>
-          후기 {place.reviewCount}개
-        </Typography>
+        {showReviewCount && (
+          <Typography variant='labelSm3' color='gray100' align='right'>
+            후기 {place.reviewCount}개
+          </Typography>
+        )}
       </div>
     </div>
   );
