@@ -44,7 +44,11 @@ export default function ConfirmModal({
             {title}
           </Typography>
           {desc && (
-            <Typography variant='labelMd2' color='gray100'>
+            <Typography
+              variant='labelMd2'
+              color='gray100'
+              className='text-center whitespace-pre-line'
+            >
               {desc}
             </Typography>
           )}
