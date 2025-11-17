@@ -37,7 +37,15 @@ export default function EmptyState({
     },
     review: {
       image: EmptyReview,
+      title: '아직 후기가 없어요!',
+      desc: '여러분의 생생한 공연 후기를 기다릴게요.',
+      isShowButton: false,
+      minHeight: 'min-h-[360px]',
+    },
+    myReview: {
+      image: EmptyReview,
       title: '아직 작성한 후기가 없어요.',
+
       isShowButton: false,
       minHeight: 'min-h-[360px]',
     },
