@@ -7,19 +7,19 @@ import { Link } from 'react-router-dom';
 
 export default function TermsAgreement() {
   const [agreements, setAgreements] = useState({
-    privacy: false,
+    consent: false,
     terms: false,
     ageVerification: false,
   });
 
   // 전체 동의 여부
-  const isAllChecked = agreements.terms && agreements.privacy && agreements.ageVerification;
+  const isAllChecked = agreements.terms && agreements.consent && agreements.ageVerification;
 
   // 전체 동의 체크
   const handleAllCheck = (checked) => {
     setAgreements({
+      consent: checked,
       terms: checked,
-      privacy: checked,
       ageVerification: checked,
     });
   };
@@ -69,11 +69,11 @@ export default function TermsAgreement() {
 
         <div className='flex flex-row items-center justify-between'>
           <Checkbox
-            checked={agreements.privacy}
-            handleChange={() => handleCheck('privacy')}
+            checked={agreements.consent}
+            handleChange={() => handleCheck('consent')}
             label='[필수] 개인정보 수집 및 이용목적 동의 '
           />
-          <Link to='/agreement/privacy' className='flex items-center'>
+          <Link to='/agreement/consent' className='flex items-center'>
             <IconRight fill='#999999' />
           </Link>
         </div>
