@@ -326,14 +326,18 @@ export default function AgreementContent() {
                   1. “회사”와 “회원” 간에 제기된 소송은 대한민국 법률을 준거법으로 합니다.
                 </Typography>
                 <Typography variant='labelSm2' color='gray300' className='indent-1'>
-                  2. “회사”와 “회원” 간 발생한 분쟁에 관한 소송은 제소 당시 “회원”의 주소를 관할하는 지방법원을 전속관할로 하고, 주소가 없는 경우에는 거소를 관할하는 지방법원을 전속관할로 합니다. 단, 제소 당시 “회원”의 주소 또는 거소가 명확하지 아니한 경우에는 「민사소송법」에 따라 관할법원을 정합니다.
+                  2. “회사”와 “회원” 간 발생한 분쟁에 관한 소송은 제소 당시 “회원”의 주소를 관할하는
+                  지방법원을 전속관할로 하고, 주소가 없는 경우에는 거소를 관할하는 지방법원을
+                  전속관할로 합니다. 단, 제소 당시 “회원”의 주소 또는 거소가 명확하지 아니한
+                  경우에는 「민사소송법」에 따라 관할법원을 정합니다.
                 </Typography>
                 <Typography variant='labelSm2' color='gray300' className='indent-1'>
-                  3. 해외에 주소나 거소가 있는 “회원”의 경우, “회사”와 “회원” 간 발생한 분쟁에 관한 소송은 전항에도 불구하고 대한민국 서울중앙지방법원을 관할법원으로 합니다.
+                  3. 해외에 주소나 거소가 있는 “회원”의 경우, “회사”와 “회원” 간 발생한 분쟁에 관한
+                  소송은 전항에도 불구하고 대한민국 서울중앙지방법원을 관할법원으로 합니다.
                 </Typography>
               </div>
 
-                            <div className='flex flex-col'>
+              <div className='flex flex-col'>
                 <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
                   부칙
                 </Typography>
@@ -343,7 +347,6 @@ export default function AgreementContent() {
                 <Typography variant='labelSm2' color='gray300' className='indent-1'>
                   2. 본 약관은 최초 제정된 약관이며 시행일 이전에는 개정 이력이 없습니다.
                 </Typography>
-
               </div>
             </div>
           ),
@@ -353,18 +356,351 @@ export default function AgreementContent() {
           title: '개인정보 수집 및 이용동의',
           effectiveDate: '시행일자 : 2025년 11월 26일',
           content: (
-            <div className='max-h-[500px] overflow-y-auto text-sm text-gray-600'>
-              <p>
-                본 개인정보 수집 및 이용 동의서는 온셋(Onset)(이하 “회사”)이 운영하는 스투브(STOOV)
-                서비스(이하 “서비스”)를 이용함에 있어, 이용자의 개인정보가 어떠한 방식으로
-                수집·이용·보관·파기되는지를 설명함을 목적으로 합니다.
-              </p>
+            <div className='flex flex-col gap-5 overflow-y-auto text-sm text-gray-300'>
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제1조(목적)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  본 개인정보 수집 및 이용 동의서는 온셋(Onset)(이하 “회사”)이 운영하는
+                  스투브(STOOV) 서비스(이하 “서비스”)를 이용함에 있어, 이용자의 개인정보가 어떠한
+                  방식으로 수집·이용·보관·파기되는지를 설명함을 목적으로 합니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제2조(개인정보 수집의 원칙)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 회사는 「개인정보 보호법」 등 관련 법령을 준수하며, 서비스 제공에 필요한
+                  최소한의 개인정보만을 수집합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 이용자의 동의 없이는 수집 목적 외로 이용하거나 제3자에게 제공하지 않습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 단, 법령에 근거하거나 수사·조사 등 공공기관의 요청이 있는 경우 예외로 합니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제3조(수집 항목 및 수집 방법)
+                </Typography>
+                <table className='mt-1 w-full border-collapse'>
+                  <thead className='bg-stoov-gray-800 text-left text-xs leading-4 font-semibold'>
+                    <tr>
+                      <th className='border-stoov-gray-600 w-10 border p-2'>구분</th>
+                      <th className='border-stoov-gray-600 w-20 border p-2'>수집 목적</th>
+                      <th className='border-stoov-gray-600 w-22 border p-2'>수집 항목</th>
+                      <th className='border-stoov-gray-600 w-20 border p-2'>수집 방법</th>
+                    </tr>
+                  </thead>
+                  <tbody className='text-xs leading-4 font-normal'>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>필수</td>
+                      <td className='border-stoov-gray-600 border p-2'>회원가입 및 본인 식별</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        구글 계정 이메일, 프로필 이미지
+                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        Google OAuth 로그인 시 자동 수집
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>필수</td>
+                      <td className='border-stoov-gray-600 border p-2'>서비스 이용 기록 관리</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        장소 즐겨찾기, 후기 작성 이력, 접속 로그, 이용 시간 등
+                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        서비스 이용 시 자동 생성 및 수집
+                      </td>
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>필수</td>
+                      <td className='border-stoov-gray-600 border p-2'>후기 작성</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        후기 내용, 작성 일시, 장소 ID
+                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>회원이 직접 입력</td>
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>선택</td>
+                      <td className='border-stoov-gray-600 border p-2'>사용자 편의 제공</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        프로필 이미지 변경 시 업로드 파일
+                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>회원 설정 시 직접 입력</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제4조(개인정보의 이용 목적)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  회사는 수집한 개인정보를 다음의 목적에 한해 이용합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 회원 식별, 로그인 인증 및 서비스 제공
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 관심 장소 저장, 후기 작성 등 개인화 서비스 제공
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 고객 문의 응대 및 불만 처리
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  4. 서비스 이용 통계, 기능 개선 및 품질 향상
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  5. 서비스 부정 이용 방지 및 안전한 이용환경 조성
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  6. 신규 기능, 업데이트, 공지사항 등 서비스 운영 관련 정보 제공
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  (※ 선택 동의: 광고성 정보 수신 관련 내용은 별도의 “마케팅 정보 수신 동의서”로
+                  분리하여 안내합니다.)
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제5조(개인정보의 보유 및 이용 기간)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 회사는 개인정보의 수집·이용 목적이 달성된 후에는 원칙적으로 해당 정보를 지체
+                  없이 파기합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 본 동의서에서는 회원 가입 및 서비스 이용 과정에서 아래 항목을 수집·이용합니다.
+                </Typography>
+                <table className='mt-1 mb-1 w-full border-collapse'>
+                  <thead className='bg-stoov-gray-800 text-left text-xs leading-4 font-semibold'>
+                    <tr>
+                      <th className='border-stoov-gray-600 border p-2'>보관 항목</th>
+                      <th className='border-stoov-gray-600 border p-2'>보관 사유</th>
+                      <th className='border-stoov-gray-600 border p-2'>보유 기간</th>
+                    </tr>
+                  </thead>
+                  <tbody className='text-xs leading-4 font-normal'>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>후기 데이터(내용, 장소 ID 등)</td>
+                      <td className='border-stoov-gray-600 border p-2'>서비스 악용 방지 및 분쟁 대응</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        탈퇴 후 1년
+                      </td>
+
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>접속 로그 및 이용 기록</td>
+                      <td className='border-stoov-gray-600 border p-2'>통신비밀보호법 준수</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        3개월
+                      </td>
+
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>서비스 이용 동의 내역</td>
+                      <td className='border-stoov-gray-600 border p-2'>이용자 확인 근거</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        3년
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 보유 기간 경과 후 개인정보는 복구 불가능한 방식으로 즉시 파기합니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제6조(개인정보의 제3자 제공 및 위탁)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 회사는 원칙적으로 이용자의 동의 없이 개인정보를 제3자에게 제공하지 않습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 단, 서비스 제공을 위하여 다음과 같이 위탁할 수 있습니다.
+                </Typography>
+                <table className='mt-1 w-full border-collapse'>
+                  <thead className='bg-stoov-gray-800 text-left text-xs leading-4 font-semibold'>
+                    <tr>
+                      <th className='border-stoov-gray-600 border p-2'>수탁 업체</th>
+                      <th className='border-stoov-gray-600 border p-2'>위탁 업무 내용</th>
+                      <th className='border-stoov-gray-600 border p-2'>보유 및 이용 기간</th>
+                    </tr>
+                  </thead>
+                  <tbody className='text-xs leading-4 font-normal'>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>Google LLC</td>
+                      <td className='border-stoov-gray-600 border p-2'>소셜 로그인 인증 및 사용자 식별</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        회원 탈퇴 또는 위탁 계약 종료시까지
+                      </td>
+
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>Amazon Web Services Inc.</td>
+                      <td className='border-stoov-gray-600 border p-2'>서비스 서버 운영 및 데이터 보관</td>
+                      <td className='border-stoov-gray-600 border p-2'>
+                        회원 탈퇴 또는 계약 종료 시까지
+                      </td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제7조(회원 탈퇴 및 개인정보 파기 절차)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 회원 탈퇴 시 작성한 후기는 서비스 화면에서 즉시 삭제됩니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 단, 서비스 악용 방지 및 이용자 보호를 위해 내부 DB에는 1년간 보관 후 완전
+                  파기합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 회사는 개인정보 파기 시 복구 및 재생이 불가능한 기술적 조치를 적용합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  4. 종이문서의 경우에는 분쇄하거나 소각하여 파기합니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제8조(만 14세 이상 이용 동의)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 본 서비스는 만 14세 미만 아동의 회원가입을 허용하지 않습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 회사는 필요 시 연령 확인 절차를 거칠 수 있으며, 허위 정보 기재가 확인된 경우
+                  이용계약을 해지할 수 있습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 회원가입 시 “만 14세 이상입니다” 항목에 동의해야 서비스 가입이 가능합니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제9조(이용자의 권리와 행사 방법)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 이용자는 언제든지 자신의 개인정보를 열람, 수정, 삭제할 수 있습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 개인정보 열람·정정·삭제 요청은 아래의 공식 이메일을 통해 신청할 수 있습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-3'>
+                  - 개인정보 요청 접수 이메일 : contact@stoov.co.kr
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 회사는 본인 확인 후 지체 없이 필요한 조치를 취합니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제10조(개인정보 보호책임자)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  회원은 아래의 연락처로 개인정보보호 관련 민원을 개인정보 관리책임자 혹은
+                  담당부서로 신고할 수 있습니다.
+                </Typography>
+                <table className='mt-1 w-full border-collapse'>
+                  <thead className='bg-stoov-gray-800 text-left text-xs leading-4 font-semibold'>
+                    <tr>
+                      <th className='border-stoov-gray-600 w-40 border p-2'>구분</th>
+                      <th className='border-stoov-gray-600 w-40 border p-2'>담당자 정보</th>
+                    </tr>
+                  </thead>
+                  <tbody className='text-xs leading-4 font-normal'>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>개인정보 보호책임자</td>
+                      <td className='border-stoov-gray-600 border p-2'>이영선</td>
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>담당부서</td>
+                      <td className='border-stoov-gray-600 border p-2'>서비스 기획팀</td>
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>이메일</td>
+                      <td className='border-stoov-gray-600 border p-2'>privacy@stoov.co.kr</td>
+                    </tr>
+                    <tr>
+                      <td className='border-stoov-gray-600 border p-2'>연락처</td>
+                      <td className='border-stoov-gray-600 border p-2'>02-1234-5678</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제11조(권익침해에 대한 구제방법)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300'>
+                  기타 개인정보 침해에 대해 피해구제, 상담 당을 아래의 기관에 문의하실 수 있습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 개인정보분쟁조정위원회 : (국번없이) 1833-6972 (www.kopico.go.kr)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 개인정보침해신고센터 : (국번없이) 118 (privacy.kisa.or.kr)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 대검찰청 : (국번없이) 1301 (www.spo.go.kr)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  4. 경찰청 : (국번없이) 182 (ecrm.cyber.go.kr)
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  제12조(방침의 변경 및 고지)
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 회사는 관련 법령, 정부지침, 서비스 정책 변경에 따라 본 동의서를 개정할 수
+                  있습니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 개정 시 시행일 7일 전부터 서비스 내 공지하며, 이용자 권리에 중대한 변경이 있을
+                  경우 30일 전부터 공지합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  3. 본 동의서는 서비스 내 [이용약관 및 정책] 메뉴에서 언제든지 확인할 수 있습니다.
+                </Typography>
+              </div>
+
+              <div className='flex flex-col'>
+                <Typography variant='labelSm1' color='gray300' className='h-7.5 leading-7.5'>
+                  부칙
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  1. 본 동의서는 서비스 정식 오픈일인 2025년 11월 26일부터 시행합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  2. 본 동의서는 최초 제정된 버전으로, 시행일 이전에는 개정 이력이 없습니다.
+                </Typography>
+              </div>
             </div>
           ),
         };
       case 'ageVerification':
         return {
-          title: '[필수] 민감정보 수집 및 이용 동의',
+          title: '개인정보 처리방침',
           effectiveDate: '시행일자 : 2025년 11월 26일',
           content: (
             <div className='max-h-[500px] overflow-y-auto text-sm text-gray-600'>
