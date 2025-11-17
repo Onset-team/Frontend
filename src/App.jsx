@@ -15,7 +15,7 @@ import HomePage from '@/features/home/pages/HomePage';
 import PlaceDetailPage from '@/features/placeDetail/containers/PlaceDetailPage';
 // 로그인 필요한 페이지
 import BookmarkPage from '@/features/bookmark/pages/BookmarkPage';
-import ReviewWritePage from '@/features/review/pages/ReviewWritePage';
+import ReviewWritePage from '@/features/review/components/ReviewWriteModal';
 import Mypage from '@/features/mypage/pages/Mypage';
 
 import MapTest from './features/map/pages/MapTest';
@@ -90,10 +90,6 @@ const router = createBrowserRouter([
               {
                 path: '/bookmark', // 관심
                 element: <BookmarkPage />,
-              },
-              {
-                path: '/places/:placeId/review',
-                element: <ReviewWritePage />,
               },
               {
                 path: '/mypage', // 마이
