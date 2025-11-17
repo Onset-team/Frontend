@@ -6,6 +6,7 @@ import EmptyState from '@/components/ui/EmptyState';
 
 export default function ReviewList({ review, onEdit, onDelete, onReport }) {
   const [onlyMyReview, setOnlyMyReview] = useState(false);
+  const hasReviews = review.length > 0; // 리뷰 존재 여부
 
   // 내 후기만 토글
   const toggleOnlyMyReview = (e) => {
@@ -18,20 +19,24 @@ export default function ReviewList({ review, onEdit, onDelete, onReport }) {
   // 최신순으로 정렬 필요
   return (
     <>
-      {filteredReviews.length > 0 ? (
+      {hasReviews ? (
         <div className='flex flex-col items-end gap-2'>
           <Checkbox checked={onlyMyReview} handleChange={toggleOnlyMyReview} label='내 후기만' />
 
           <div className='flex w-full flex-col gap-3'>
-            {filteredReviews.map((item) => (
-              <ReviewItem
-                key={item.reviewId}
-                review={item}
-                onEdit={onEdit}
-                onDelete={onDelete}
-                onReport={onReport}
-              />
-            ))}
+            {filteredReviews.length > 0 ? (
+              filteredReviews.map((item) => (
+                <ReviewItem
+                  key={item.reviewId}
+                  review={item}
+                  onEdit={onEdit}
+                  onDelete={onDelete}
+                  onReport={onReport}
+                />
+              ))
+            ) : (
+              <EmptyState variant='myReview' />
+            )}
           </div>
         </div>
       ) : (

@@ -28,7 +28,7 @@ export default function PlaceDetailContent() {
 
       <div className='px-4 pt-4'>
         {activeTab === 'info' && <DetailInfoTab place={place} />}
-        {activeTab === 'review' && <DetailReviewTab placeId={placeId} activeTab={activeTab} />}
+        {activeTab === 'review' && <DetailReviewTab place={place} />}
       </div>
 
       <ToTopButton isBottombar={false} />
