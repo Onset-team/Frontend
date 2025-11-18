@@ -1,18 +1,25 @@
 import useKakaoLoader from '@/libs/kakaos/useKakaoLoader';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import mapMarkers from './mapMarkers';
+import { useMapStore } from '../stores/useMapStore';
 
-export default function Maps() {
+export default function Maps({ locations = [] }) {
   useKakaoLoader();
 
+  // 맵 스토어
+  const mapCenter = useMapStore(state => state.mapCenter);
+  const setMapCenter = useMapStore(state => state.setMapCenter);
+
+  const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
 
-  // 지도 중심 좌표
-  const [center, setCenter] = useState({
-    lat: 37.571648599,
-    lng: 126.976372775,
-  });
+  // 지도 장소 클릭시, 맵 센터 변경 
+  useEffect(() => {
+    if (!map) return;
+    const moveLatLon = new kakao.maps.LatLng(mapCenter.lat, mapCenter.lng);
+    map.panTo(moveLatLon);
+  }, [map, mapCenter]);
 
   // 클러스터러 스타일
   const clusterStyles = [
@@ -32,35 +39,17 @@ export default function Maps() {
     },
   ];
 
-  const [dummyLocations, setDummyLocations] = useState([
-    { lat: 37.5665, lng: 126.978, address: '서울특별시 중구 세종대로 110' },
-    { lat: 37.5511, lng: 126.9882, address: '서울특별시 중구 남산공원길 105' },
-    { lat: 37.5796, lng: 126.977, address: '서울특별시 종로구 사직로 161' },
-    { lat: 37.5662, lng: 126.9784, address: '서울특별시 중구 태평로1가 31' },
-    { lat: 37.5515, lng: 126.9882, address: '서울특별시 용산구 이태원로 54길 60-16' },
-    { lat: 37.5793, lng: 126.977, address: '서울특별시 종로구 삼청로 30' },
-    { lat: 37.5219, lng: 127.0411, address: '서울특별시 강남구 테헤란로 152' },
-    { lat: 37.5172, lng: 127.0473, address: '서울특별시 강남구 봉은사로 524' },
-    { lat: 37.4979, lng: 127.0276, address: '서울특별시 서초구 서초대로 396' },
-    { lat: 37.5133, lng: 127.1028, address: '서울특별시 송파구 올림픽로 300' },
-    { lat: 37.5642, lng: 126.9759, address: '서울특별시 중구 을지로 281' },
-    { lat: 37.5547, lng: 126.9707, address: '서울특별시 용산구 한강대로 405' },
-    { lat: 37.54, lng: 126.9565, address: '서울특별시 용산구 이촌로 87' },
-    { lat: 37.5326, lng: 126.99, address: '서울특별시 용산구 서빙고로 137' },
-    { lat: 37.4848, lng: 127.0317, address: '서울특별시 서초구 강남대로 201' },
-  ]);
-
   return (
     <>
       <div className='relative my-2 h-[calc(100vh-100px)] w-full overflow-hidden'>
-        <Map id='map' center={center} style={{ width: '100%', height: '100%' }} level={5}>
+        <Map id='map' center={mapCenter} style={{ width: '100%', height: '100%' }} level={5} onCreate={setMap}>
           {/* 위치 마커 */}
           <MarkerClusterer
             averageCenter={true} // 클러스터 중심을 마커들의 평균 위치로
             minLevel={5} // 최소 확대 레벨 (숫자가 작을수록 더 확대됨)
             styles={clusterStyles} // 클러스터러 스타일
           >
-            {dummyLocations.map((position, index) => (
+            {locations.map((position, index) => (
               <MapMarker
                 key={`${position.lat - position.lng}`}
                 position={{ lat: position.lat, lng: position.lng }} // 마커를 표시할 위치
@@ -73,12 +62,13 @@ export default function Maps() {
                 }}
                 clickable={true}
                 onClick={() => {
-                  setSelectedMarker(index);
+                  setSelectedMarker(position.placeId);
+                  setMapCenter(position.lat, position.lng);
                 }}
               />
             ))}
 
-            {dummyLocations.map((position, index) => (
+            {/* {locations.map((position, index) => (
               <MapMarker
                 key={`${position.lat - position.lng}`}
                 position={{ lat: position.lat + 0.002, lng: position.lng + 0.002 }} // 마커를 표시할 위치
@@ -94,7 +84,7 @@ export default function Maps() {
                   setSelectedMarker(index);
                 }}
               />
-            ))}
+            ))} */}
           </MarkerClusterer>
         </Map>
 
@@ -103,7 +93,7 @@ export default function Maps() {
           <div className='absolute top-4 left-4 z-50 bg-white p-4 shadow-lg text-black'>
             <button onClick={() => setSelectedMarker(null)}>닫기</button>
             <pre className='mt-2 text-xs'>
-              {JSON.stringify(dummyLocations[selectedMarker], null, 2)}
+              {JSON.stringify(locations[selectedMarker], null, 2)}
             </pre>
           </div>
         )}

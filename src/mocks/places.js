@@ -16,6 +16,8 @@ export const mockPlaces = [
       'https://hangang.seoul.go.kr/www/file/down.do?fkey=03f778f7dfd22846a39917169747c91d844e65920d822a7f1302ca1bb09979bbfceef97a8e067e868c313da7650b8d1ab394f46d748bc9eaf89f3dbd470b1a42',
     isBookmark: true,
     reviewCount: 7,
+    lat: 37.5697255,
+    lng: 126.8516917,
   },
   {
     placeId: 2,
@@ -35,6 +37,8 @@ export const mockPlaces = [
       'https://yeyak.seoul.go.kr/cmsdata/web_upload/svc/20241204/1733270978027BLUIPWF465NEIIE05F01QAHHW.jpg',
     isBookmark: false,
     reviewCount: 0,
+    lat: 37.5595278,
+    lng: 126.9247949,
   },
   {
     placeId: 3,
@@ -53,6 +57,8 @@ export const mockPlaces = [
       'https://hangang.seoul.go.kr/www/file/down.do?fkey=c188b125b95ab30170129553ecd5ee52706b16d5de6e3d5b8de72b80628606c94e965a4b8a475f72707bfc198be4e28c7495018b55b503ac08ed3998ad6f6040',
     isBookmark: false,
     reviewCount: 15,
+    lat: 37.5419724, 
+    lng: 127.1154939,
   },
   {
     placeId: 4,
@@ -71,6 +77,8 @@ export const mockPlaces = [
       'https://hangang.seoul.go.kr/www/file/down.do?fkey=282828cf19508daa868d3837d7eadea5eaeeacc165a5d444586b62c219c48a6c24df143b3d9243f10394af00f9d8a394fb7168c0f9eb22b8e338718314d3ad9a',
     isBookmark: true,
     reviewCount: 35,
+    lat: 37.5599333,
+    lng: 126.8898156,
   },
   {
     placeId: 5,
@@ -89,6 +97,8 @@ export const mockPlaces = [
       'https://v5.airtableusercontent.com/v3/u/47/47/1762963200000/mLtV05nAzAbl1MgktBI3mg/Qk1M9YqTrSl27b35caaWi9Oe1vUWFVNGN_qQ2n_eZGhPeBiFGNatF_h4kK9FoxmcrbkIaTSLIDwLoHAfVaiihLK84C599-4SKJ8TUJ7rU1ebgqurfJrI3nS8wVUNVixI/i4oRg3QzCOyvJ6N3JI70IuxcbWFDjrn41ecaZD-Bf54',
     isBookmark: false,
     reviewCount: 3,
+    lat: 37.5285425,
+    lng: 127.0720827,
   },
   {
     placeId: 6,
@@ -108,6 +118,8 @@ export const mockPlaces = [
       'https://yeyak.seoul.go.kr/cmsdata/web_upload/svc/20250729/17537526448232UYCB43KI45NK7OEJX2YI3SBL.jpg',
     isBookmark: false,
     reviewCount: 0,
+    lat: 37.5609856,
+    lng: 126.8307515
   },
   {
     placeId: 7,
@@ -127,6 +139,8 @@ export const mockPlaces = [
       'https://yeyak.seoul.go.kr/cmsdata/web_upload/svc/20250729/1753754722435RQFJ04UF4PAEBG75MS3FB1VIV.jpg',
     isBookmark: false,
     reviewCount: 8,
+    lat: 37.5605492,
+    lng: 126.8339514,
   },
   {
     placeId: 8,
@@ -146,6 +160,8 @@ export const mockPlaces = [
       'https://yeyak.seoul.go.kr/cmsdata/web_upload/svc/20240328/1711589409623ML7RIRE6XK9V43RW0CFGX8S80.jpg',
     isBookmark: false,
     reviewCount: 9,
+    lat: 37.535786,
+    lng: 126.9438083,
   },
   {
     placeId: 9,
@@ -164,6 +180,8 @@ export const mockPlaces = [
       'https://hangang.seoul.go.kr/www/file/down.do?fkey=a34b3cf11b65481b814716c413f45345113a4239a563f4d96cf8ab6af00fbed9c79b5980243bca7719406d86f28f773ff64b89334c290c3299e57b5597ba8ea7',
     isBookmark: false,
     reviewCount: 26,
+    lat: 37.5562398,
+    lng: 126.8944879,
   },
   {
     placeId: 10,
@@ -182,6 +200,8 @@ export const mockPlaces = [
       'https://v5.airtableusercontent.com/v3/u/47/47/1762963200000/95ATkUKHEyrlqFG8zNpIlw/FwTWI4CaGrQewb73CZJeH-b9GAdk_Z-FElTl7kVtZ6EwN0MhxKlNsCwWmWypUY02sWtJznbRnshqop0A9nAyRIeh10hEAekk8tM7GQWt0aa8hGbmjnTyjE8A7Dr5mXyv/G94rw-RpBlCiyMMHOH-tbdp3lS10Pt7OarqZBSKaUIU',
     isBookmark: false,
     reviewCount: 1,
+    lat: 37.5535709,
+    lng: 126.8974783,
   },
   {
     placeId: 11,
@@ -201,6 +221,8 @@ export const mockPlaces = [
       'https://yeyak.seoul.go.kr/cmsdata/web_upload/svc/20231124/1700789417443Q6OP0L58NTLMM9RCD2Q1ZIZL1.jpg',
     isBookmark: true,
     reviewCount: 9,
+    lat: 37.5639764,
+    lng: 126.984217,
   },
   {
     placeId: 12,
@@ -218,6 +240,8 @@ export const mockPlaces = [
     thumbnailUrl: '공식 사진 url 불러오기 불가ㅠ',
     isBookmark: false,
     reviewCount: 5,
+    lat: 37.5574011,
+    lng: 126.9372133,
   },
   {
     placeId: 13,
@@ -236,6 +260,8 @@ export const mockPlaces = [
       'https://hangang.seoul.go.kr/www/file/down.do?fkey=cf577c594d386052fe11d870efdf648e0823979d0f800ebb359ef181dc7a77ea1559e93daf63f930cbc728382a77077ef165a3ec60dff0bffad40b28767c3e0c',
     isBookmark: false,
     reviewCount: 4,
+    lat: 37.5122255, 
+    lng: 126.9978153,
   },
   {
     placeId: 14,
@@ -256,6 +282,8 @@ export const mockPlaces = [
       'https://yeyak.seoul.go.kr/cmsdata/web_upload/svc/20250731/1753934911590LUR0JBNW089HFFD0F82RP6DES.jpg',
     isBookmark: true,
     reviewCount: 2,
+    lat: 37.5495886, 
+    lng: 127.081578,
   },
   {
     placeId: 15,
@@ -275,5 +303,7 @@ export const mockPlaces = [
       'https://yeyak.seoul.go.kr/cmsdata/web_upload/svc/20241230/1735534104657816L4CPKD0DQ4L67PMLBTXIQY.png',
     isBookmark: false,
     reviewCount: 6,
+    lat: 37.5425312,
+    lng: 126.9019908,
   },
 ];
