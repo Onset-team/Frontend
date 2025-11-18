@@ -75,6 +75,10 @@ const router = createBrowserRouter([
             path: '/', // 홈
             element: <HomePage />,
           },
+          {
+            path: ':placeId',
+            element: <HomePage />
+          },
           { path: '/test', element: <MapTest /> },
           { path: '/test2', element: <HttpTest /> },
           { path: '/network', element: <NetworkTest /> },
