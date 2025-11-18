@@ -15,7 +15,6 @@ import HomePage from '@/features/home/pages/HomePage';
 import PlaceDetailPage from '@/features/placeDetail/containers/PlaceDetailPage';
 // 로그인 필요한 페이지
 import BookmarkPage from '@/features/bookmark/pages/BookmarkPage';
-import ReviewWritePage from '@/features/review/components/ReviewWriteModal';
 import Mypage from '@/features/mypage/pages/Mypage';
 
 import MapTest from './features/map/pages/MapTest';
@@ -67,7 +66,7 @@ const router = createBrowserRouter([
           },
           {
             path: '/loginRequired',
-            element: <RequireAuth />
+            element: <RequireAuth />,
           },
 
           // 2. 로그인 필요 없는 페이지
