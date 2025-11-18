@@ -29,6 +29,46 @@ api.interceptors.response.use(
     return response.data;
   },
   (error) => {
-    return Promise.reject(error);
+    const { response } = error;
+
+    // 네트워크 에러
+    if (!response) {
+      console.error('[Network Error]', error);
+      return Promise.reject({
+        message: '서버와 연결할 수 없습니다.',
+        status: null,
+      });
+    }
+
+    const { status, data } = response;
+
+    // 공통 에러
+    switch (status) {
+      case 400:
+        console.warn('400 Bad Request:', data);
+        break;
+      case 401:
+        console.warn('401 Unauthorized');
+        // 토큰 만료 시 로그아웃 처리 넣어도 됨
+        break;
+      case 403:
+        console.warn('403 Forbidden');
+        break;
+      case 404:
+        console.warn('404 Not Found');
+        break;
+      case 500:
+        console.error('500 Server Error');
+        break;
+      default:
+        console.error(`${status} Error`, data);
+    }
+
+    return Promise.reject({
+      status,
+      message: data?.message || '요청 중 오류가 발생했습니다.',
+    });
   },
 );
+
+export default api;
