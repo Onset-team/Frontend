@@ -1,6 +1,6 @@
 // import Button from '@/components/ui/Button';
 import SearchBar from '@/components/ui/SearchBar';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Maps from '../components/Maps';
 import BottomSheet from '@/components/ui/BottomSheet';
 import PlaceList from '@/features/place/components/PlaceList';
@@ -14,10 +14,13 @@ export default function HomePage() {
   const { setMapCenter, resetMapCenter } = useMapStore();
   const navigate = useNavigate();
 
+  // 선택한 장소
   const [selectedPlace, setSelectedPlace] = useState(null);
 
+  // 바텀 시트 오픈
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(true);
 
+  // 리스트에서 장소 하나 클릭
   const handleClickPlace = (placeId) => {
     const place = mockPlaces.find((item) => item.placeId === placeId);
     setSelectedPlace(place);
@@ -25,6 +28,7 @@ export default function HomePage() {
     navigate(`/${placeId}`);
   };
 
+  // 검색 창 뒤로가기 버튼
   const onBack = () => {
     setSelectedPlace(null);
     resetMapCenter();
