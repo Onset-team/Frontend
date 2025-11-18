@@ -1,6 +1,7 @@
 import React from 'react';
 // 컴포넌트
 import Typography from '@/components/ui/Typography';
+import PlaceFacilities from '@/features/placeDetail/components/PlaceFacilities';
 // 아이콘
 import IconLink from '@/assets/icons/IconLink.svg';
 
@@ -18,8 +19,7 @@ export default function DetailInfoTab({ place }) {
     },
     {
       id: 'reservation',
-      title: '예약',
-      label: '예약 상시 오픈',
+      title: '예약 사이트',
       link: place.reservationUrl,
     },
     {
@@ -31,12 +31,13 @@ export default function DetailInfoTab({ place }) {
       id: 'notice',
       title: '안내사항',
       label: '자세한 사항은 예약 링크를 통해 확인해 보세요.',
+      isFacilitySection: true,
     },
   ];
 
   return (
     <div className='flex flex-col gap-7'>
-      {infoItem.map(({ id, title, label, link }) => (
+      {infoItem.map(({ id, title, label, link, isFacilitySection }) => (
         <div key={id} className='flex flex-col gap-3'>
           <div className='flex flex-col gap-1'>
             <Typography as='h4' variant='bodyMd'>
@@ -50,6 +51,7 @@ export default function DetailInfoTab({ place }) {
             )}
           </div>
 
+          {/* 링크 */}
           {link && (
             <div className='flex items-center gap-1'>
               <IconLink className='text-stoov-gray-100' />
@@ -63,6 +65,15 @@ export default function DetailInfoTab({ place }) {
                 {link}
               </a>
             </div>
+          )}
+
+          {/* 안내사항 아이콘 */}
+          {isFacilitySection && (
+            <PlaceFacilities
+              electricity={place.electricity}
+              peopleLimit={place.peopleLimit}
+              isPaid={place.isPaid}
+            />
           )}
         </div>
       ))}
