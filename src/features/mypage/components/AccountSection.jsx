@@ -9,13 +9,11 @@ export default function AccountSection({ onAccountDelete, onLogout }) {
 
   // 회원탈퇴 클릭
   const openAccountDeleteConfirm = () => {
-    console.log('탈퇴 버튼 클릭');
     setIsDeleteConfirmOpen(true);
   };
 
   // 컨펌창에서 회원탈퇴 클릭
   const confirmAccountDelete = () => {
-    console.log('탈퇴 컨펌 실행');
     setIsDeleteConfirmOpen(false);
     onAccountDelete?.();
   };
