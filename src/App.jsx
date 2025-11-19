@@ -23,6 +23,7 @@ import NetworkTest from './features/test/pages/NetworkTest';
 import TermsAgreement from './features/auth/pages/TermsAgreement';
 import AgreementContent from './features/auth/components/AgreementContent';
 import RequireAuth from './features/auth/pages/RequireAuth';
+import ReviewFormPage from '@/features/review/pages/ReviewFormPage';
 
 const router = createBrowserRouter([
   {
@@ -76,7 +77,7 @@ const router = createBrowserRouter([
           },
           {
             path: ':placeId',
-            element: <HomePage />
+            element: <HomePage />,
           },
           { path: '/test', element: <MapTest /> },
           { path: '/test2', element: <HttpTest /> },
@@ -93,6 +94,14 @@ const router = createBrowserRouter([
               {
                 path: '/bookmark', // 관심
                 element: <BookmarkPage />,
+              },
+              {
+                path: '/places/:placeId/reviews/new', // 리뷰 작성
+                element: <ReviewFormPage />,
+              },
+              {
+                path: '/reviews/:reviewId', // 리뷰 수정
+                element: <ReviewFormPage />,
               },
               {
                 path: '/mypage', // 마이

@@ -4,9 +4,9 @@ import ReviewItem from '@/features/review/components/ReviewItem';
 import Checkbox from '@/components/ui/Checkbox';
 import EmptyState from '@/components/ui/EmptyState';
 
-export default function ReviewList({ review, onEdit, onDelete, onReport }) {
+export default function ReviewList({ reviews = [], onEdit, onDelete, onReport }) {
   const [onlyMyReview, setOnlyMyReview] = useState(false);
-  const hasReviews = review.length > 0; // 리뷰 존재 여부
+  const hasReviews = reviews.length > 0; // 리뷰 존재 여부
 
   // 내 후기만 토글
   const toggleOnlyMyReview = (e) => {
@@ -14,7 +14,7 @@ export default function ReviewList({ review, onEdit, onDelete, onReport }) {
   };
 
   // 내 후기만 필터링
-  const filteredReviews = onlyMyReview ? review.filter((item) => item.isMyReview) : review;
+  const filteredReviews = onlyMyReview ? reviews.filter((item) => item.isMyReview) : reviews;
 
   // 최신순으로 정렬 필요
   return (

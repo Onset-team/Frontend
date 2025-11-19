@@ -2,91 +2,93 @@ import React, { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { mockReviews } from '@/mocks/reviews';
 import toast from 'react-hot-toast';
+import { useDeleteReviewMutation, useReviewsQuery } from '@/features/review/hooks/useReviews';
 // 컴포넌트
 import ReviewList from '@/features/review/components/ReviewList';
 import ReviewWriteSection from '@/features/review/components/ReviewWriteSection';
 import ConfirmModal from '@/components/ui/ConfirmModal';
-import ReviewWriteModal from '@/features/review/components/ReviewWriteModal';
 
 export default function DetailReviewTab({ place }) {
-  // const navigate = useNavigate();
-  // const { placeId } = useParams();
+  const navigate = useNavigate();
+  const { placeId } = useParams();
   const [reviews, setReviews] = useState(mockReviews);
-
-  // 수정 모달 상태
-  const [isWriteOpen, setIsWriteOpen] = useState(false);
-  const [editingReview, setEditingReview] = useState(null);
 
   // 삭제 컨펌 상태
   const [isDeleteModal, setIsDeleteModal] = useState(false);
   const [targetReviewId, setTargetReviewId] = useState(null);
 
-  // 후기 작성 모달 열기
-  const openWriteModal = () => {
-    setEditingReview(null);
-    setIsWriteOpen(true);
+  // const {
+  //   data: reviews = [],
+  //   isLoading,
+  //   isError,
+  // } = useReviewsQuery({ placeId: placeId, onlyMyReview: false });
+
+  const deleteMutation = useDeleteReviewMutation(placeId);
+
+  // 후기 작성 페이지로 이동
+  const openWritePage = () => {
+    if (!place) return;
+    navigate(`/places/${place.placeId}/reviews/new`, {
+      state: { place },
+      replace: true,
+    });
   };
 
-  // 후기 작성 모달 닫기
-  const closeWriteModal = () => {
-    setIsWriteOpen(false);
-    setEditingReview(null);
-  };
-
-  // 수정
+  // 후기 수정 페이지로 이동
   const handleEdit = (review) => {
-    setEditingReview(review);
-    setIsWriteOpen(true);
+    if (!review) return;
+    navigate(`/reviews/${review.reviewId}`, {
+      state: { place, review },
+      replace: true,
+    });
   };
 
-  // 삭제
+  // 삭제 클릭 시 컨펌창 열기
   const handleDelete = (reviewId) => {
     setTargetReviewId(reviewId);
     setIsDeleteModal(true);
   };
 
-  // 컨펌창 삭제 클릭 시 API 호출
-  const confirmDelete = async () => {
-    console.log('컨펌창 삭제 클릭');
-    setReviews((prev) => prev.filter((r) => r.reviewId !== targetReviewId));
-    toast('후기가 삭제되었습니다.');
-
-    setIsDeleteModal(false);
-    setTargetReviewId(null);
-  };
-
   // 컨펌창 닫기
   const closeDeleteModal = () => {
-    console.log('컨펌창 취소 클릭');
     setIsDeleteModal(false);
     setTargetReviewId(null);
   };
 
-  // 오류 제보
+  // 오류 제보 클릭 시 오픈 채팅방
   const handleReport = () => {
     window.open('https://www.naver.com', '_blank', 'noopener,noreferrer');
   };
 
-  // 후기 등록, 수정 완료시
-  const handleSubmitReview = (reviewData, { mode }) => {
-    console.log('리뷰 저장/수정', mode, reviewData);
-    // 후기 등록
-    if (mode === 'create') {
-      toast('후기가 등록되었습니다.');
-    }
+  // 컨펌창 삭제 클릭 시
+  const confirmDelete = async () => {
+    if (!targetReviewId) return;
 
-    // 후기 수정
-    if (mode === 'edit') {
-      toast('후기가 수정되었습니다.');
+    const toastId = toast.loading('후기를 삭제 중입니다...');
+
+    try {
+      await deleteMutation.mutateAsync({ reviewId: targetReviewId });
+      toast('후기가 삭제되었습니다.', { id: toastId });
+      closeDeleteModal();
+    } catch (error) {
+      console.error('리뷰 삭제 실패:', error);
+      toast.error('후기 삭제에 실패했습니다.', { id: toastId });
     }
   };
 
+  // if (isLoading) {
+  //   return <div>리뷰를 로딩 중입니다...</div>;
+  // }
+  // if (isError) {
+  //   return <div>오류가 발생했습니다.</div>;
+  // }
+
   return (
     <>
-      <ReviewWriteSection onClick={openWriteModal} />
+      <ReviewWriteSection onClick={openWritePage} />
 
       <ReviewList
-        review={reviews}
+        reviews={reviews}
         onEdit={handleEdit}
         onDelete={handleDelete}
         onReport={handleReport}
@@ -102,17 +104,6 @@ export default function DetailReviewTab({ place }) {
           leftButtonLabel='취소'
           rightButtonLabel='삭제'
           onConfirm={confirmDelete}
-        />
-      )}
-
-      {/* 후기 작성 모달 */}
-      {isWriteOpen && (
-        <ReviewWriteModal
-          isOpen={isWriteOpen}
-          onClose={closeWriteModal}
-          place={place}
-          review={editingReview}
-          onSubmit={handleSubmitReview}
         />
       )}
     </>
