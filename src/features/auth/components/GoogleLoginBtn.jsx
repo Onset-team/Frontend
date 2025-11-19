@@ -1,8 +1,15 @@
 import { GoogleLogin, GoogleOAuthProvider } from '@react-oauth/google';
 import React, { useEffect, useState } from 'react';
+import { useAuthCall } from '../hooks/useAuthCall';
 
 export default function LoginPage() {
   const clientId = import.meta.env.VITE_GOOGLE_TEST_CLIENT_ID;
+
+  const { mutate, isPending } = useAuthCall();
+
+  const handleLoginClick = () => {
+      mutate(1);
+  };
 
   const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
 
@@ -19,12 +26,11 @@ export default function LoginPage() {
   // 너비 계산 로직:
   // 1. 현재 윈도우 너비의 90%를 사용
   // 2. 최대 너비는 400px을 넘지 않도록.
-  const buttonWidth = Math.min(currentWidth * 0.9, 400); 
+  const buttonWidth = Math.min(currentWidth * 0.9, 400);
 
   // 속성 분기
-  const buttonSize = isSmallMobile ? 'medium' : 'large'; 
+  const buttonSize = isSmallMobile ? 'medium' : 'large';
   const buttonText = isSmallMobile ? 'signin_with' : 'continue_with';
-
 
   return (
     <div className='flex flex-row items-center justify-center'>
@@ -32,16 +38,14 @@ export default function LoginPage() {
       <GoogleOAuthProvider clientId={clientId}>
         <GoogleLogin
           onSuccess={(credentialResponse) => {
-            console.log(credentialResponse)
+            handleLoginClick();
           }}
           onError={() => {
             console.log('Login Failed');
           }}
-
-        width={buttonWidth} 
-        
-        size={buttonSize} 
-        text={buttonText}
+          width={buttonWidth}
+          size={buttonSize}
+          text={buttonText}
         />
       </GoogleOAuthProvider>
     </div>
