@@ -54,6 +54,11 @@ export default function ReviewFormPage() {
   };
 
   const handleGoBack = () => {
+    if (!content.trim()) {
+      goBackToReviewTab();
+      return;
+    }
+    // 작성한 내용 있으면 컨펌창
     setIsConfirmOpen(true);
   };
 

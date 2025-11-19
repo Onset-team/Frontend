@@ -57,7 +57,7 @@ export default function DetailReviewTab({ place }) {
 
   // 오류 제보 클릭 시 오픈 채팅방
   const handleReport = () => {
-    window.open('https://www.naver.com', '_blank', 'noopener,noreferrer');
+    window.open('https://open.kakao.com/o/pttP9E2h', '_blank', 'noopener,noreferrer');
   };
 
   // 컨펌창 삭제 클릭 시
