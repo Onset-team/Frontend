@@ -27,7 +27,7 @@ export default function HomePage() {
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(true);
 
   // 관심 장소 보기 / 안보기
-  const [handleBookmark, setHandleBookmark] = useState(true);
+  const [handleBookmark, setHandleBookmark] = useState(false);
 
   // 관심 칩 높이 계산
   const [snapIndex, setSnapIndex] = useState(1);
