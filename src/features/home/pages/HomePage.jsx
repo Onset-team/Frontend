@@ -20,7 +20,7 @@ export default function HomePage() {
   // 맵 스토어
   const { placeLists } = usePlaceListQuery();
 
-  const { places, setPlaces, setMapCenter, resetMapCenter } = useMapStore();
+  const { places, initializePlaces, setMapCenter, resetMapCenter } = useMapStore();
   const navigate = useNavigate();
 
   // 선택한 장소
@@ -41,7 +41,7 @@ export default function HomePage() {
   const isChipVisible = isBottomSheetOpen && bottomSheetHeight < 70;
 
   useEffect(() => {
-    setPlaces(placeLists)
+    initializePlaces(placeLists)
   }, [placeLists])
 
   // 리스트에서 장소 하나 클릭
