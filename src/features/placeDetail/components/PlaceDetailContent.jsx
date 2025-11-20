@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { usePlaceDetailQuery } from '@/features/placeDetail/hooks/usePlaceDetail';
 // 컴포넌트
@@ -7,6 +7,7 @@ import DetailTabBar from '@/features/placeDetail/components/DetailTabBar';
 import DetailInfoTab from '@/features/placeDetail/components/DetailInfoTab';
 import DetailReviewTab from '@/features/placeDetail/components/DetailReviewTab';
 import ToTopButton from '@/components/ui/ToTopButton';
+import api from '@/apis/axiosInstance';
 
 const TAB_ITEM = [
   { id: 'info', label: '안내' },

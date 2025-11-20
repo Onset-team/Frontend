@@ -66,7 +66,10 @@ api.interceptors.response.use(
 
     return Promise.reject({
       status,
-      message: data?.message || '요청 중 오류가 발생했습니다.',
+      code: data?.error?.code ?? 'UNKNOWN_ERROR',
+      message: data?.error?.message ?? data?.message ?? '요청 중 오류가 발생했습니다.',
+      timestamp: data?.timestamp,
+      raw: data,
     });
   },
 );
