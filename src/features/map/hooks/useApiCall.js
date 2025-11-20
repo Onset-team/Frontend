@@ -6,6 +6,7 @@ export function useApiCall(id) {
     queryKey: [id],
     queryFn: () => testApiCall(),
     select: (result) => {
+      console.log(result)
       return {
         data: result.success ? result.data : [], 
         statusCode: result.statusCode, // http코드

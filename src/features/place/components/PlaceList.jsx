@@ -3,11 +3,12 @@ import React from 'react';
 import PlaceCard from '@/features/place/components/PlaceCard';
 import Typography from '@/components/ui/Typography';
 
-export default function PlaceList({ places, totalCount, onClickPlace }) {
+export default function PlaceList({ places = [], totalCount, onClickPlace }) {
+
   return (
     <div className='flex flex-col gap-2 pt-4 pb-8'>
       <Typography variant='labelMd2' color='gray300' align='right' className='px-4 leading-5'>
-        총 {totalCount}곳
+        총 {places.length}곳
       </Typography>
 
       <div className='flex flex-col'>

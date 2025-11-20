@@ -3,7 +3,9 @@ import { errorMessages } from "@/utils/httpErrorsMessage";
 
 export async function testApiCall() {
   try {
-    const res = await axios.get('https://jsonplaceholder.typicode.com/comments');
+    const res = await axios.get('https://api.stoo-v.com/api/places');
+
+    console.log(res)
 
     return {
       success: true,

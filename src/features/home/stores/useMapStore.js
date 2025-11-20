@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export const useMapStore = create((set, get) => ({
-  data: [],
+  places: [],
   mapCenter: {
     lat: 37.571648599,
     lng: 126.976372775,
@@ -13,7 +13,8 @@ export const useMapStore = create((set, get) => ({
   // ui
 
   // 데이터
-  setData: (data) => set({ data: data }),
+  setPlaces: (data) => set({ places: data }),
+
   setMapCenter: (lat, lng) => {
     const currentOffset = get().latOffset; 
     set({ mapCenter: { lat: lat - currentOffset, lng: lng } });

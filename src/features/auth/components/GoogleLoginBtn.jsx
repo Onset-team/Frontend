@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useAuthCall } from '../hooks/useAuthCall';
 
 export default function LoginPage() {
-  const clientId = import.meta.env.VITE_GOOGLE_TEST_CLIENT_ID;
+  const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID;
 
   const { mutate, isPending } = useAuthCall();
 

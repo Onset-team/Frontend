@@ -2,17 +2,11 @@ import axios from 'axios';
 import { errorMessages } from '@/utils/httpErrorsMessage';
 import api from '@/apis/axiosInstance';
 
-export async function authApi() {
+export async function placeListApi() {
   try {
-    const res = await api.post('/users/google');
+    const res = await api.get('/places');
 
-    console.log('isNewUser:', res.data.isNewUser);
-
-    return {
-      success: true,
-      data: res.data,
-      statusCode: res.status,
-    };
+    return res;
   } catch (error) {
     // console.error(error);
     const status = error.response?.status;

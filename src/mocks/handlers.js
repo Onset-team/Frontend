@@ -35,22 +35,22 @@ export const handlers = [
   http.head('/NetworkCheck1px.png', () => passthrough()),
   http.get('/NetworkCheck1px.png', () => passthrough()),
 
-  http.get('/api/users/google', () => {
-    return HttpResponse.json(
-      {
-        success: true,
-        data: {
-          isNewUser: false,
-          nickname: 'tpgus',
-          profileImageUrl: 'https://example.com/profile.jpg',
-        },
-        timestamp: new Date().toISOString(),
-      },
-      {
-        headers: {
-          'Set-Cookie': 'JSESSIONID=ABC123XYZ; Path=/; HttpOnly',
-        },
-      },
-    );
-  }),
+  // http.get('/api/users/google', () => {
+  //   return HttpResponse.json(
+  //     {
+  //       success: true,
+  //       data: {
+  //         isNewUser: false,
+  //         nickname: 'tpgus',
+  //         profileImageUrl: 'https://example.com/profile.jpg',
+  //       },
+  //       timestamp: new Date().toISOString(),
+  //     },
+  //     {
+  //       headers: {
+  //         'Set-Cookie': 'JSESSIONID=ABC123XYZ; Path=/; HttpOnly',
+  //       },
+  //     },
+  //   );
+  // }),
 ];
