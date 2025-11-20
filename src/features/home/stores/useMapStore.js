@@ -1,7 +1,8 @@
 import { create } from "zustand";
 
 export const useMapStore = create((set, get) => ({
-  data: [],
+  places: [],
+  originalPlaces: [],
   mapCenter: {
     lat: 37.571648599,
     lng: 126.976372775,
@@ -13,7 +14,29 @@ export const useMapStore = create((set, get) => ({
   // ui
 
   // 데이터
-  setData: (data) => set({ data: data }),
+  initializePlaces: (data) => set({
+    originalPlaces: data,
+    places: data,
+  }),
+
+  // setPlaces: (data) => set({ places: data }),
+
+  filterPlaces: (selectedValue) => {
+    const { originalPlaces } = get();
+
+    if (selectedValue) { // 필터링
+      const filteredData = originalPlaces.filter(place => {
+
+        return place.type === selectedValue; 
+      });
+
+      set({ places: filteredData });
+
+    } else { // 복원
+      set({ places: originalPlaces });
+    }
+  },
+
   setMapCenter: (lat, lng) => {
     const currentOffset = get().latOffset; 
     set({ mapCenter: { lat: lat - currentOffset, lng: lng } });

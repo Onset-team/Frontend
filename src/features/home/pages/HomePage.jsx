@@ -3,7 +3,7 @@ import SearchBar from '@/components/ui/SearchBar';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { mockPlaces } from '@/mocks/places';
+// import { mockPlaces } from '@/mocks/places';
 import { useMapStore } from '../stores/useMapStore';
 
 import PlaceList from '@/features/place/components/PlaceList';
@@ -14,10 +14,13 @@ import BottomSheet from '@/components/ui/BottomSheet';
 import ChipGroup from '../components/ChipGroup';
 import Chip from '@/components/ui/Chip';
 import FloatingChip from '../components/FloatingChip';
+import { usePlaceListQuery } from '../hooks/usePlaceListQuery';
 
 export default function HomePage() {
   // 맵 스토어
-  const { setMapCenter, resetMapCenter } = useMapStore();
+  const { placeLists } = usePlaceListQuery();
+
+  const { places, initializePlaces, setMapCenter, resetMapCenter } = useMapStore();
   const navigate = useNavigate();
 
   // 선택한 장소
@@ -37,11 +40,15 @@ export default function HomePage() {
   const bottomSheetHeight = actualHeights[snapIndex];
   const isChipVisible = isBottomSheetOpen && bottomSheetHeight < 70;
 
+  useEffect(() => {
+    initializePlaces(placeLists)
+  }, [placeLists])
+
   // 리스트에서 장소 하나 클릭
   const handleClickPlace = (placeId) => {
-    const place = mockPlaces.find((item) => item.placeId === placeId);
+    const place = places.find((item) => item.placeId === placeId);
     setSelectedPlace(place);
-    setMapCenter(place.lat, place.lng);
+    setMapCenter(place.lng, place.lat);
     navigate(`/${placeId}`);
   };
 
@@ -60,7 +67,7 @@ export default function HomePage() {
         <ChipGroup />
       </div>
 
-      <Maps locations={mockPlaces} />
+      <Maps locations={places} />
       <div>
         <FloatingChip
           bottomSheetHeight={bottomSheetHeight} 
@@ -84,7 +91,7 @@ export default function HomePage() {
           {selectedPlace ? (
             <PlaceDetailContent place={selectedPlace} />
           ) : (
-            <PlaceList places={mockPlaces} onClickPlace={handleClickPlace} />
+            <PlaceList places={places} onClickPlace={handleClickPlace} />
           )}
         </BottomSheet>
       </div>
