@@ -133,26 +133,17 @@
 }
 
 @layer utilities {
-  @keyframes fadeInUp {
+  /* 컨펌 모달창 */
+  @keyframes fadeIn {
     0% {
       opacity: 0;
-      transform: translateY(20px);
     }
     100% {
       opacity: 1;
-      transform: translateY(0);
     }
   }
 
-  @keyframes slideUp {
-    0% {
-      transform: translateY(100%);
-    }
-    100% {
-      transform: translateY(0);
-    }
-  }
-
+  /* 드롭다운 */
   @keyframes dropdownIn {
     0% {
       opacity: 0;
@@ -164,15 +155,25 @@
     }
   }
 
-  .animate-fadeInUp {
-    animation: fadeInUp 0.3s ease-out;
+  /* 상세 페이지, 후기 작성, 수정 페이지, 동의 페이지 */
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
   }
 
-  .animate-slideUp {
-    animation: slideUp 0.3s ease-out;
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
   }
 
   .animate-dropdownIn {
     animation: dropdownIn 0.15s ease-out;
+  }
+
+  .animate-slideInFromRight {
+    animation: slideInFromRight 0.3s ease-out;
   }
 }

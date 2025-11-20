@@ -23,7 +23,7 @@ export default function EmptyState({
     bookmark: {
       image: EmptyBookmark,
       title: '아직 관심 장소가 없습니다.',
-      desc: `지도를 둘러보고 마음에 드는\n 장소에 하트를 눌러보세요.`,
+      desc: `지도를 둘러보고 마음에 드는\n장소에 하트를 눌러보세요.`,
       showButton: false,
       minHeight: 'min-h-[calc(100dvh-118px)]',
     },

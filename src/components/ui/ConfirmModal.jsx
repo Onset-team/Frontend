@@ -24,7 +24,12 @@ export default function ConfirmModal({
   if (!isOpen) return null;
 
   return (
-    <div className='fixed bottom-0 left-1/2 z-50 h-full w-full max-w-[500px] -translate-x-1/2'>
+    <div
+      className={cn(
+        'fixed bottom-0 left-1/2 z-50 h-full w-full max-w-[500px] -translate-x-1/2',
+        'animate-fadeIn transition-all duration-200',
+      )}
+    >
       <div
         onClick={onClose}
         className='h-full w-full bg-black/50 transition-all duration-200'
@@ -34,7 +39,6 @@ export default function ConfirmModal({
         className={cn(
           'bg-stoov-gray-800 flex w-5/6 max-w-[328px] flex-col gap-4 overflow-hidden rounded-xl px-4 py-5',
           'absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2',
-          'animate-fadeInUp transition-all duration-200',
         )}
       >
         {/* 모달 컨텐츠 */}

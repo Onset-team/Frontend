@@ -16,7 +16,7 @@ export default function DetailTabBar({ activeTab, onClick, tabItem }) {
           active={activeTab === tab.id}
           onClick={() => onClick(tab.id)}
           className={cn(
-            'bg-stoov-gray-900 w-full border-b-2',
+            'bg-stoov-gray-900 w-full border-b-2 transition-all duration-300 ease-in',
             activeTab === tab.id ? 'border-stoov-orange-500' : 'border-stoov-gray-900',
           )}
         >

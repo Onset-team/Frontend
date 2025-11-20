@@ -56,7 +56,7 @@ export default function AccountSection({ onAccountDelete, onLogout }) {
         <ConfirmModal
           isOpen={isLogoutConfirmOpen}
           title='로그아웃 하시겠어요?'
-          desc={`현재 계정에서 로그아웃되며,\n다시 로그인 후 서비스를 이용하실 수 있습니다.`}
+          desc={`로그인 없이도 기본 제공 서비스는\n계속 이용하실 수 있습니다.`}
           rightButtonLabel='로그아웃'
           onClose={() => setIsLogoutConfirmOpen(false)}
           onConfirm={confirmLogout}
