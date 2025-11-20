@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
 import { usePlaceDetailQuery } from '@/features/placeDetail/hooks/usePlaceDetail';
 // 컴포넌트
 import DetailCard from '@/features/placeDetail/components/DetailCard';
@@ -14,7 +14,12 @@ const TAB_ITEM = [
 ];
 export default function PlaceDetailContent({ place }) {
   // export default function PlaceDetailContent() {
-  const [activeTab, setActiveTab] = useState('info');
+
+  const { placeId } = useParams();
+  const location = useLocation();
+
+  const initialTab = location.state?.initialTab ?? 'info';
+  const [activeTab, setActiveTab] = useState(initialTab);
 
   // const { id } = useParams();
   // const { data: place, isLoading, isError } = usePlaceDetailQuery(id);
@@ -44,7 +49,7 @@ export default function PlaceDetailContent({ place }) {
         {activeTab === 'review' && <DetailReviewTab place={place} />}
       </div>
 
-      <ToTopButton isBottombar={false} />
+      <ToTopButton />
     </div>
   );
 }
