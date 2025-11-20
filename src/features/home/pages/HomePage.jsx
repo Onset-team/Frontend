@@ -32,8 +32,10 @@ export default function HomePage() {
   // 관심 칩 높이 계산
   const [snapIndex, setSnapIndex] = useState(1);
   const snapPoints = [0, 0.5, 0.85];
-  const bottomSheetHeight = snapPoints[snapIndex] * 100;
-  const isChipVisible = isBottomSheetOpen && bottomSheetHeight < 85; 
+  const actualHeights = [0, 40, 80];  // 실제 사용할 높이 (vh 단위)
+  
+  const bottomSheetHeight = actualHeights[snapIndex];
+  const isChipVisible = isBottomSheetOpen && bottomSheetHeight < 70;
 
   // 리스트에서 장소 하나 클릭
   const handleClickPlace = (placeId) => {
@@ -80,7 +82,7 @@ export default function HomePage() {
           onSnapChange={setSnapIndex}
         >
           {selectedPlace ? (
-            <PlaceDetailContent />
+            <PlaceDetailContent place={selectedPlace} />
           ) : (
             <PlaceList places={mockPlaces} onClickPlace={handleClickPlace} />
           )}
