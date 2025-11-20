@@ -10,6 +10,7 @@ export default function BottomSheet({
   snapPoints = [0, 0.5], // 바텀시트 높이
   initialSnap = 1, // 스냅 포인트중 어느 위치에서 처음 열릴지 결정
   contentClassName,
+  onSnapChange, // 높이 변경 함수
   children,
 }) {
   const [snapIndex, setSnapIndex] = useState(initialSnap);
@@ -42,6 +43,7 @@ export default function BottomSheet({
       detent='content'
       onSnap={(i) => {
         setSnapIndex(i);
+        onSnapChange?.(i);
         if (i === 0) onOpenChange(false);
       }}
       className='!z-40'
