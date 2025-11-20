@@ -74,14 +74,10 @@ export default function ProfileSection({ profileImageUrl, nickname, email, onPro
 
       {/* 닉네임, 이메일 */}
       <div className='flex flex-col items-center gap-1'>
-        <Typography variant='titleLg'>
-          {/* {nickname} */}
-          Username
-        </Typography>
+        <Typography variant='titleLg'>{nickname || 'Username'}</Typography>
 
         <Typography variant='labelMd2' color='gray200'>
-          {/* {email} */}
-          Username@gmail.com
+          {email || 'Username@gmail.com'}
         </Typography>
       </div>
     </div>

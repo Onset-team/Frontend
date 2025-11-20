@@ -9,21 +9,23 @@ import { useOnlineStatusStore } from './stores/useOnlineStatusStore';
 import Layout from '@/components/layout/Layout';
 import ProtectedRoute from '@/components/layout/ProtectedRoute';
 import ScrollToTop from '@/components/layout/ScrollToTop';
+
 // 로그인 필요 업는 페이지
 import LoginPage from '@/features/auth/pages/LoginPage';
 import HomePage from '@/features/home/pages/HomePage';
 import PlaceDetailPage from '@/features/placeDetail/containers/PlaceDetailPage';
+import TermsAgreement from './features/auth/pages/TermsAgreement';
+import AgreementContent from './features/auth/components/AgreementContent';
+import RequireAuth from './features/auth/pages/RequireAuth';
+
 // 로그인 필요한 페이지
 import BookmarkPage from '@/features/bookmark/pages/BookmarkPage';
 import Mypage from '@/features/mypage/pages/Mypage';
+import ReviewFormPage from '@/features/review/pages/ReviewFormPage';
 
 import MapTest from './features/map/pages/MapTest';
 import HttpTest from './features/test/pages/HttpTest';
 import NetworkTest from './features/test/pages/NetworkTest';
-import TermsAgreement from './features/auth/pages/TermsAgreement';
-import AgreementContent from './features/auth/components/AgreementContent';
-import RequireAuth from './features/auth/pages/RequireAuth';
-import ReviewFormPage from '@/features/review/pages/ReviewFormPage';
 
 const router = createBrowserRouter([
   {
@@ -41,7 +43,7 @@ const router = createBrowserRouter([
             bottom: '78px',
           }}
           toastOptions={{
-            duration: 1500,
+            duration: 3000,
             className:
               '!rounded-lg !text-stoov-white-100 !bg-stoov-gray-500 !text-stoov-white !px-5 !py-2 !text-sm !leading-5 !font-normal !shadow-toast',
           }}

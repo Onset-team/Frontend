@@ -7,6 +7,7 @@ export const useAuthStore = create(
       userId: null,
       nickname: null,
       profileImageUrl: null,
+      isLoggedIn: false,
 
       // 로그인
       setUser: (user) =>
@@ -14,6 +15,7 @@ export const useAuthStore = create(
           userId: user.userId,
           nickname: user.nickname,
           profileImageUrl: user.profileImageUrl,
+          isLoggedIn: true,
         }),
 
       // 로그아웃
@@ -22,6 +24,7 @@ export const useAuthStore = create(
           userId: null,
           nickname: null,
           profileImageUrl: null,
+          isLoggedIn: false,
         }),
     }),
 
@@ -32,6 +35,7 @@ export const useAuthStore = create(
         userId: state.userId,
         nickname: state.nickname,
         profileImageUrl: state.profileImageUrl,
+        isLoggedIn: state.isLoggedIn,
       }),
     },
   ),
