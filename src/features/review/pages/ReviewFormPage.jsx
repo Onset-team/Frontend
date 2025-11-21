@@ -20,22 +20,24 @@ export default function ReviewFormPage() {
 
   const place = location.state?.place ?? null;
   const review = location.state?.review ?? null;
+  const from = location.state?.from ?? 'bookmark';
 
   const isEdit = Boolean(reviewId);
 
   const [content, setContent] = useState(review?.content ?? '');
   const [isConfirmOpen, setIsConfirmOpen] = useState(false);
 
-  const createMutation = useCreateReviewMutation(placeId);
-  const updateMutation = useUpdateReviewMutation(placeId);
+  const createMutation = useCreateReviewMutation(Number(placeId));
+  const updateMutation = useUpdateReviewMutation(Number(placeId));
 
   // 수정 모드일 때, review가 바뀌면 내용 다시 세팅
   useEffect(() => {
     setContent(review?.content ?? '');
   }, [review]);
 
+  // textarea 값 없으면 버튼 disabled
   const isSubmitDisabled =
-    content.trim().length === 0 || createMutation.isPending || updateMutation.isPending; // textarea 값 없으면 버튼 disabled
+    content.trim().length === 0 || createMutation.isPending || updateMutation.isPending;
 
   // 후기 탭 유지
   const goBackToReviewTab = () => {
@@ -47,10 +49,19 @@ export default function ReviewFormPage() {
       return;
     }
 
-    navigate(`/places/${targetPlaceId}`, {
-      state: { initialTab: 'review' },
-      replace: true,
-    });
+    if (from === 'home') {
+      // 홈 바텀시트 상세로 복귀
+      navigate(`/${targetPlaceId}`, {
+        state: { initialTab: 'review' },
+        replace: true,
+      });
+    } else {
+      // 관심 상세로 복귀
+      navigate(`/places/${targetPlaceId}`, {
+        state: { initialTab: 'review' },
+        replace: true,
+      });
+    }
   };
 
   const handleGoBack = () => {

@@ -4,8 +4,9 @@ import ReviewItem from '@/features/review/components/ReviewItem';
 import Checkbox from '@/components/ui/Checkbox';
 import EmptyState from '@/components/ui/EmptyState';
 
-export default function ReviewList({ reviews = [], onEdit, onDelete, onReport }) {
+export default function ReviewList({ reviews = [], onEdit, onDelete, onReport, isLoggedIn }) {
   const [onlyMyReview, setOnlyMyReview] = useState(false);
+
   const hasReviews = reviews.length > 0; // 리뷰 존재 여부
 
   // 내 후기만 토글
@@ -21,7 +22,9 @@ export default function ReviewList({ reviews = [], onEdit, onDelete, onReport })
     <>
       {hasReviews ? (
         <div className='flex flex-col items-end gap-2'>
-          <Checkbox checked={onlyMyReview} handleChange={toggleOnlyMyReview} label='내 후기만' />
+          {isLoggedIn && (
+            <Checkbox checked={onlyMyReview} handleChange={toggleOnlyMyReview} label='내 후기만' />
+          )}
 
           <div className='flex w-full flex-col gap-3'>
             {filteredReviews.length > 0 ? (

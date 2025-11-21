@@ -102,7 +102,7 @@ const router = createBrowserRouter([
                 element: <ReviewFormPage />,
               },
               {
-                path: '/reviews/:reviewId', // 리뷰 수정
+                path: '/places/:placeId/reviews/:reviewId', // 리뷰 수정
                 element: <ReviewFormPage />,
               },
               {
