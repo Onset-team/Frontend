@@ -17,6 +17,7 @@ import BottomSheet from '@/components/ui/BottomSheet';
 import ChipGroup from '../components/ChipGroup';
 import Chip from '@/components/ui/Chip';
 import FloatingChip from '../components/FloatingChip';
+import { usePlaceSearchQuery } from '../hooks/usePlaceSearchQuery';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -25,9 +26,15 @@ export default function HomePage() {
   // 장소 상세
   const { data: placeDetail, isLoading, isError } = usePlaceDetailQuery(placeId);
 
+  // 검색어
+  const [keyword, setKeyword] = useState('');
+
   const { placeLists } = usePlaceListQuery();
   // 맵 스토어
   const { places, initializePlaces, setMapCenter, resetMapCenter } = useMapStore();
+  
+  // 검색 쿼리
+  const { mutate } = usePlaceSearchQuery();
 
   // 컨펌 상태
   const [isLoginConfirmOpen, setIsLoginConfirmOpen] = useState(false);
@@ -74,10 +81,20 @@ export default function HomePage() {
     navigate('/login');
   };
 
+  // 검색어 입력
+  const handleChange = (e) => {
+    setKeyword(e.target.value);
+  };
+
+  // 검색 버튼 클릭
+  const handleSearch = () => {
+    mutate({ keyword })
+  };
+
   return (
     <div className='relative h-[calc(100vh-118px)] w-full overflow-hidden'>
       <div className='absolute top-2 z-20 flex w-full flex-col gap-2 px-4'>
-        <SearchBar onBack={onBack} />
+        <SearchBar onBack={onBack} onChange={handleChange} onSearch={handleSearch} />
 
         <ChipGroup />
       </div>

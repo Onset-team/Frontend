@@ -13,7 +13,7 @@ export default function LoginPage() {
       const select_by = credentialResponse?.select_by
       mutate({credential, clientId, select_by});
   };
-
+  
   const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
 
   // 윈도우 너비 감지 및 상태 업데이트
