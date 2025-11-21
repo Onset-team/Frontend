@@ -16,7 +16,7 @@ export const usePlaceSearchQuery = () => {
       // 성공 여부 판단
 
       if (result.success) {
-        initializePlaces(result.data.content); 
+        initializePlaces(result?.data?.content); 
       } else {
         initializePlaces([]); 
       }
