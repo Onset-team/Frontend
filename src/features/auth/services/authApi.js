@@ -2,17 +2,15 @@ import axios from 'axios';
 import { errorMessages } from '@/utils/httpErrorsMessage';
 import api from '@/apis/axiosInstance';
 
-export async function authApi() {
+export async function authApi({ credential, clientId, select_by }) {
   try {
-    const res = await api.post('/users/google');
+    const res = await api.post('/users/google', {
+      credential,
+      clientId,
+      select_by,
+    });
 
-    console.log('isNewUser:', res.data.isNewUser);
-
-    return {
-      success: true,
-      data: res.data,
-      statusCode: res.status,
-    };
+    return res;
   } catch (error) {
     // console.error(error);
     const status = error.response?.status;

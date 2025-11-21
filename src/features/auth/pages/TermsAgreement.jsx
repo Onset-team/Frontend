@@ -4,8 +4,14 @@ import Typography from '@/components/ui/Typography';
 import IconRight from '../components/IconRight';
 import Button from '@/components/ui/Button';
 import { Link } from 'react-router-dom';
+import { placeListApi } from '@/features/home/services/placeListApi';
+import api from '@/apis/axiosInstance';
+import { useAgreementQuery } from '../hooks/useAgreement';
 
 export default function TermsAgreement() {
+
+  const { mutate, isPending } = useAgreementQuery();
+
   const [agreements, setAgreements] = useState({
     consent: false,
     terms: false,
@@ -30,6 +36,10 @@ export default function TermsAgreement() {
       ...agreements,
       [name]: !agreements[name],
     });
+  };
+
+  const handleAgreementClick = () => {
+      mutate()
   };
 
   return (
@@ -99,7 +109,9 @@ export default function TermsAgreement() {
       </div>
 
       <div>
-        <Button disabled={!isAllChecked}>동의하고 시작하기</Button>
+        <Button disabled={!isAllChecked} onClick={() => handleAgreementClick()}>
+          동의하고 시작하기
+        </Button>
       </div>
     </div>
   );

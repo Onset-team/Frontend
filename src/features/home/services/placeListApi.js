@@ -4,7 +4,7 @@ import api from '@/apis/axiosInstance';
 
 export async function placeListApi() {
   try {
-    const res = await api.get('/places');
+    const res = await api.get('/places', { withCredentials: true });
 
     return res;
   } catch (error) {

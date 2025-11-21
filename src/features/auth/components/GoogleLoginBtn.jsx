@@ -7,8 +7,11 @@ export default function LoginPage() {
 
   const { mutate, isPending } = useAuthCall();
 
-  const handleLoginClick = () => {
-      mutate(1);
+  const handleLoginClick = (credentialResponse) => {
+      const credential = credentialResponse?.credential
+      const clientId = credentialResponse?.clientId
+      const select_by = credentialResponse?.select_by
+      mutate({credential, clientId, select_by});
   };
 
   const [currentWidth, setCurrentWidth] = useState(window.innerWidth);
@@ -38,7 +41,7 @@ export default function LoginPage() {
       <GoogleOAuthProvider clientId={clientId}>
         <GoogleLogin
           onSuccess={(credentialResponse) => {
-            handleLoginClick();
+            handleLoginClick(credentialResponse);
           }}
           onError={() => {
             console.log('Login Failed');

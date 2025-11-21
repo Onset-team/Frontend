@@ -12,10 +12,11 @@ export function useAuthCall() {
 
     onSuccess: (result) => {
       // 사용자 정보 저장
-      setUser(result.data?.data)
+      setUser(result?.data)
+      // console.log(result.data?.newUser)
 
       // 신규/기존 유저 분기 및 뒤로 가기 무효화
-      if (result.data?.data?.isNewUser) {
+      if (result.data?.newUser) {
         navigate('/agreement', { replace: true });
       } else {
         navigate('/', { replace: true });

@@ -4,7 +4,7 @@ import { persist } from 'zustand/middleware';
 export const useAuthStore = create(
   persist(
     (set) => ({
-      userId: null,
+      // userId: null,
       nickname: null,
       profileImageUrl: null,
       isLoggedIn: false,
@@ -12,7 +12,7 @@ export const useAuthStore = create(
       // 로그인
       setUser: (user) =>
         set({
-          userId: user.userId,
+          // userId: user.userId,
           nickname: user.nickname,
           profileImageUrl: user.profileImageUrl,
           isLoggedIn: true,
@@ -32,7 +32,7 @@ export const useAuthStore = create(
     {
       name: 'auth-storage', // localStorage key
       partialize: (state) => ({
-        userId: state.userId,
+        // userId: state.userId,
         nickname: state.nickname,
         profileImageUrl: state.profileImageUrl,
         isLoggedIn: state.isLoggedIn,
