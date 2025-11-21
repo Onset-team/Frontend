@@ -58,7 +58,7 @@ export default function DetailCard({
           alt={place.title}
           crossOrigin='anonymous'
           loading='lazy'
-          fetchpriority='high'
+          fetchPriority='high'
           width={100}
           height={100}
           className='h-full w-full object-cover'

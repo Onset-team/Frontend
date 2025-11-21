@@ -33,7 +33,7 @@ export default function HomePage() {
   const [isLoginConfirmOpen, setIsLoginConfirmOpen] = useState(false);
 
   // 선택한 장소
-  const [selectedPlace, setSelectedPlace] = useState(null);
+  // const [selectedPlace, setSelectedPlace] = useState(null);
 
   // 바텀 시트 오픈
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(true);
@@ -43,7 +43,7 @@ export default function HomePage() {
 
   // 관심 칩 높이 계산
   const [snapIndex, setSnapIndex] = useState(1);
-  const snapPoints = [0, 0.5, 0.85];
+  const snapPoints = [0, 0.5, 1];
   const actualHeights = [0, 40, 80]; // 실제 사용할 높이 (vh 단위)
 
   const bottomSheetHeight = actualHeights[snapIndex];
@@ -56,14 +56,14 @@ export default function HomePage() {
   // 리스트에서 장소 하나 클릭
   const handleClickPlace = (placeId) => {
     const place = places.find((item) => item.placeId === placeId);
-    setSelectedPlace(place);
+    // setSelectedPlace(place);
     setMapCenter(place.lng, place.lat);
     navigate(`/${placeId}`);
   };
 
   // 검색 창 뒤로가기 버튼
   const onBack = () => {
-    setSelectedPlace(null);
+    // setSelectedPlace(null);
     resetMapCenter();
     navigate(`/`);
   };
@@ -100,7 +100,7 @@ export default function HomePage() {
           initialSnap={1}
           onSnapChange={setSnapIndex}
         >
-          {selectedPlace ? (
+          {placeId ? (
             <PlaceDetailContent place={placeDetail} setIsLoginConfirmOpen={setIsLoginConfirmOpen} />
           ) : (
             <PlaceList
