@@ -6,15 +6,18 @@ import { cn } from '@/utils/cn';
 const buttonVariants = cva(
   cn(
     'flex w-full items-center justify-center transition-colors duration-200',
-    'disabled:bg-stoov-gray-200 disabled:text-stoov-gray-300 disabled:pointer-events-none disabled:cursor-not-allowed',
+    'disabled:pointer-events-none disabled:cursor-not-allowed',
   ),
 
   {
     variants: {
       variant: {
-        primary: 'bg-stoov-orange-500 text-stoov-gray-100',
-        secondary: 'text-stoov-gray-800 bg-stoov-gray-200',
-        iconText: 'bg-stoov-white-200 text-stoov-orange-500 gap-1',
+        primary:
+          'bg-stoov-orange-500 text-stoov-gray-100 disabled:bg-stoov-gray-200 disabled:text-stoov-gray-300',
+        secondary:
+          'text-stoov-gray-800 bg-stoov-gray-200 disabled:bg-stoov-gray-200 disabled:text-stoov-gray-300',
+        iconText:
+          'bg-stoov-white-200 text-stoov-orange-500 disabled:bg-stoov-gray-200 disabled:text-stoov-gray-300 gap-1',
         icon: 'text-stoov-gray-400 bg-transparent',
       },
       size: {

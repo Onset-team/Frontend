@@ -5,13 +5,14 @@ import Button from '@/components/ui/Button';
 import IconHeart from '@/assets/icons/IconHeart.svg';
 import IconHeartLarge from '@/assets/icons/IconHeartLarge.svg';
 
-const FavoriteButton = memo(
+const BookmarkButton = memo(
   forwardRef(
     (
       {
         isActive,
         onToggle,
         size = 'default', // 'default' | 'large'
+        disabled,
         className,
         stopPropagation = true,
         ...rest
@@ -41,6 +42,7 @@ const FavoriteButton = memo(
           onClick={handleClick}
           aria-pressed={isActive}
           aria-label={ariaLabel}
+          disabled={disabled}
           className={className}
           {...rest}
         >
@@ -51,5 +53,5 @@ const FavoriteButton = memo(
   ),
 );
 
-FavoriteButton.displayName = 'FavoriteButton';
-export default FavoriteButton;
+BookmarkButton.displayName = 'BookmarkButton';
+export default BookmarkButton;

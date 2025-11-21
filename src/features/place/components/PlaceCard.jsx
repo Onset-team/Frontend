@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // 컴포넌트
 import BookmarkButton from '@/components/ui/BookmarkButton';
 import Typography from '@/components/ui/Typography';
@@ -10,12 +10,13 @@ export default function PlaceCard({
   onClick,
   showBookmarkButton = true,
   showReviewCount = true,
+  isBookmarked = false,
+  onToggleBookmark,
+  isPending,
 }) {
-  const [isBookmark, setIsBookmark] = useState(place.isBookmark || false);
-
-  const handleBookmarkToggle = (e) => {
+  const handleBookmarkClick = (e) => {
     e.stopPropagation();
-    setIsBookmark((prev) => !prev);
+    onToggleBookmark?.();
   };
   return (
     <div
@@ -41,8 +42,9 @@ export default function PlaceCard({
         </div>
         {showBookmarkButton && (
           <BookmarkButton
-            isActive={isBookmark}
-            onToggle={handleBookmarkToggle}
+            isActive={isBookmarked}
+            onToggle={handleBookmarkClick}
+            disabled={isPending}
             className='absolute right-0 bottom-0'
           />
         )}

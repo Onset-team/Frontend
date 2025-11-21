@@ -19,4 +19,7 @@ export const searchPlaces = (params) => api.get('/places/search', { params });
  * 장소 상세 조회
  * @param {number} placeId - 장소 ID
  */
-export const getPlaceDetail = (placeId) => api.get(`/places/${placeId}`);
+export const getPlaceDetail = async (placeId) => {
+  const res = await api.get(`/places/${Number(placeId)}`);
+  return res.data;
+};

@@ -41,7 +41,7 @@ export default function Maps({ locations = [] }) {
 
   return (
     <>
-      <div className='relative my-2 h-[calc(100vh-100px)] w-full overflow-hidden'>
+      <div className='relative h-[calc(100vh-100px)] w-full overflow-hidden'>
         <Map
           id='map'
           center={mapCenter}

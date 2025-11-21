@@ -6,11 +6,13 @@ import PlaceFacilities from '@/features/placeDetail/components/PlaceFacilities';
 import IconLink from '@/assets/icons/IconLink.svg';
 
 export default function DetailInfoTab({ place }) {
+  if (!place) return null;
+
   const infoItem = [
     {
       id: 'time',
       title: '운영 시간',
-      label: `${place.operatingTime || ''} ${place.availableDays || ''}`,
+      label: `${place.operatingTime || ''} (${place.availableDays || ''})`,
     },
     {
       id: 'apply',

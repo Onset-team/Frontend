@@ -1,12 +1,23 @@
-import React, { useState } from 'react';
+import React from 'react';
 // 컴포넌트
 import Typography from '@/components/ui/Typography';
 import BookmarkButton from '@/components/ui/BookmarkButton';
 // 이미지
 import PlacePlaceholderLarge from '@/assets/images/placePlaceholderLarge.png';
 
-export default function DetailCard({ place }) {
-  const [isBookmark, setIsBookmark] = useState(place.isBookmark);
+export default function DetailCard({
+  place,
+  isBookmarked = false,
+  onToggleBookmark,
+  isPending,
+  setIsLoginConfirmOpen,
+}) {
+  if (!place) return null;
+
+  const handleBookmarkClick = () => {
+    onToggleBookmark?.();
+  };
+
   return (
     <div className='flex flex-col gap-4 p-4'>
       {/* 정보 */}
@@ -34,11 +45,9 @@ export default function DetailCard({ place }) {
 
         <BookmarkButton
           size='large'
-          isActive={isBookmark}
-          onToggle={() => {
-            setIsBookmark((prev) => !prev);
-            console.log(place.name, isBookmark ? '관심 해제' : '관심 추가');
-          }}
+          isActive={isBookmarked}
+          onToggle={handleBookmarkClick}
+          disabled={isPending}
         />
       </div>
 
