@@ -10,17 +10,16 @@ export default function Layout() {
   const isLoginPage = useMatch('/login'); // 로그인
   const isAgreementPage = useMatch('/agreement/*'); // 이용약관
   const isPlacesDetailPage = useMatch('/places/:placeId'); // 상세페이지
-  const isPlacesPage = useMatch('/places/:placeId/reviews/new'); // 후기 작성
-  const isReviewPage = useMatch('/reviews/*'); // 후기 수정
+  const isReviewPage = useMatch('/places/:placeId/reviews/*'); // 후기 작성
 
   // 바텀바 숨김
-  const hideBottomBar = isLoginPage || isAgreementPage || isPlacesPage || isReviewPage;
+  const hideBottomBar = isLoginPage || isAgreementPage || isReviewPage;
 
   // 헤더 숨김
-  const hideHeader = isPlacesPage || isReviewPage;
+  const hideHeader = isReviewPage;
 
   // 슬라이드 페이지
-  const isSlidePage = isPlacesDetailPage || isPlacesPage || isReviewPage || isAgreementPage;
+  const isSlidePage = isPlacesDetailPage || isReviewPage || isAgreementPage;
   // 상세 페이지 추가하면 후기페이지에서 슬라이드가 안됨??
 
   return (
