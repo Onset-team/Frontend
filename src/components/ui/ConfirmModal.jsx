@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ReactDOM from 'react-dom';
 // 유틸
 import { cn } from '@/utils/cn';
 // 컴포넌트
@@ -23,7 +24,7 @@ export default function ConfirmModal({
 
   if (!isOpen) return null;
 
-  return (
+  return ReactDOM.createPortal(
     <div
       className={cn(
         'fixed bottom-0 left-1/2 z-50 h-full w-full max-w-[500px] -translate-x-1/2',
@@ -74,6 +75,7 @@ export default function ConfirmModal({
           </div>
         )}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }

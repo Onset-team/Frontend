@@ -11,7 +11,22 @@ export const useReviewsQuery = ({ placeId, onlyMyReview }) => {
     queryKey: ['placeReviews', placeId, onlyMyReview],
     queryFn: () => getPlaceReviews({ placeId, onlyMyReview }),
     enabled: !!placeId,
-    staleTime: 5 * 60 * 1000, // 5분
+    staleTime: 5 * 60 * 1000,
+    refetchType: 'all',
+
+    select: (list) => {
+      // 정렬 기준: 등록일(수정일 있으면 수정일로)
+      const sortedList = [...list].sort((a, b) => {
+        const aBase = a.updatedAt ?? a.createdAt;
+        const bBase = b.updatedAt ?? b.createdAt;
+        const aTime = new Date(aBase).getTime();
+        const bTime = new Date(bBase).getTime();
+
+        return bTime - aTime; // 최신순
+      });
+
+      return sortedList;
+    },
   });
 };
 
@@ -28,6 +43,9 @@ export const useCreateReviewMutation = (placeId) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
       queryClient.invalidateQueries({ queryKey: ['placeReviews', placeId] });
+    },
+    onError: (error) => {
+      console.error('후기 작성 실패', error);
     },
   });
 };
@@ -46,6 +64,9 @@ export const useUpdateReviewMutation = (placeId) => {
       queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
       queryClient.invalidateQueries({ queryKey: ['placeReviews', placeId] });
     },
+    onError: (error) => {
+      console.error('후기 수정 실패', error);
+    },
   });
 };
 
@@ -62,6 +83,9 @@ export const useDeleteReviewMutation = (placeId) => {
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
       queryClient.invalidateQueries({ queryKey: ['placeReviews', placeId] });
+    },
+    onError: (error) => {
+      console.error('후기 삭제 실패', error);
     },
   });
 };

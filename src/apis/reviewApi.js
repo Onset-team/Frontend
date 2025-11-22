@@ -6,10 +6,16 @@ import api from '@/apis/axiosInstance';
  * @param {boolean} [onlyMyReview] - 내 후기만 보기 여부
  */
 export const getPlaceReviews = async ({ placeId, onlyMyReview = false }) => {
-  const response = await api.get(`/places/${Number(placeId)}/reviews`, {
-    params: { onlyMyReview },
-  });
-  return response.data;
+  try {
+    const response = await api.get(`/places/${Number(placeId)}/reviews`, {
+      params: { onlyMyReview },
+    });
+
+    return response.data;
+  } catch (error) {
+    console.error('후기 조회 중 오류 발생:', error);
+    throw error;
+  }
 };
 
 /**
@@ -18,8 +24,14 @@ export const getPlaceReviews = async ({ placeId, onlyMyReview = false }) => {
  * @param {string} content - 후기 내용
  */
 export const createReview = async ({ placeId, content }) => {
-  const response = await api.post(`/places/${Number(placeId)}/reviews`, { content });
-  return response.data;
+  try {
+    const response = await api.post(`/places/${Number(placeId)}/reviews`, { content });
+
+    return response.data;
+  } catch (error) {
+    console.error('후기 저장 중 오류 발생:', error);
+    throw error;
+  }
 };
 
 /**
@@ -28,8 +40,14 @@ export const createReview = async ({ placeId, content }) => {
  * @param {string} content - 수정할 후기 내용
  */
 export const updateReview = async ({ reviewId, content }) => {
-  const response = await api.patch(`/reviews/${Number(reviewId)}`, { content });
-  return response.data;
+  try {
+    const response = await api.patch(`/reviews/${Number(reviewId)}`, { content });
+
+    return response.data;
+  } catch (error) {
+    console.error('후기 수정 중 오류 발생:', error);
+    throw error;
+  }
 };
 
 /**
@@ -37,6 +55,11 @@ export const updateReview = async ({ reviewId, content }) => {
  * @param {number} reviewId - 후기 ID
  */
 export const deleteReview = async ({ reviewId }) => {
-  const response = await api.delete(`/reviews/${Number(reviewId)}`);
-  return response.data;
+  try {
+    const response = await api.delete(`/reviews/${Number(reviewId)}`);
+    return response.data;
+  } catch (error) {
+    console.error('후기 삭제 중 오류 발생:', error);
+    throw error;
+  }
 };

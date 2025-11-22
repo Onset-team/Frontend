@@ -12,7 +12,6 @@ import DetailTabBar from '@/features/placeDetail/components/DetailTabBar';
 import DetailInfoTab from '@/features/placeDetail/components/DetailInfoTab';
 import DetailReviewTab from '@/features/placeDetail/components/DetailReviewTab';
 import ToTopButton from '@/components/ui/ToTopButton';
-import api from '@/apis/axiosInstance';
 
 const TAB_ITEM = [
   { id: 'info', label: '안내' },
@@ -23,6 +22,10 @@ export default function PlaceDetailContent({ setIsLoginConfirmOpen }) {
   const location = useLocation();
   const { placeId } = useParams();
   const { isLoggedIn } = useAuthStore();
+
+  const pathname = location.pathname;
+  const isBookmarkDetail = pathname.startsWith('/places/');
+  const detailSource = isBookmarkDetail ? 'bookmark' : 'home';
 
   const { data: place, isLoading, isError } = usePlaceDetailQuery(placeId);
   const { mutateAsync: toggleBookmark, isPending } = useToggleBookmarkMutation();
@@ -83,7 +86,7 @@ export default function PlaceDetailContent({ setIsLoginConfirmOpen }) {
 
       <div className='px-4 pt-4 pb-8'>
         {activeTab === 'info' && <DetailInfoTab place={place} />}
-        {activeTab === 'review' && <DetailReviewTab place={place} />}
+        {activeTab === 'review' && <DetailReviewTab place={place} source={detailSource} />}
       </div>
 
       <ToTopButton />
