@@ -72,6 +72,7 @@ export default function HomePage() {
     resetMapCenter();
     setKeyword('')
     resetOriginalPlaces();
+    navigate('/');
   };
 
   // 컨펌창에서 로그인 클릭 시
