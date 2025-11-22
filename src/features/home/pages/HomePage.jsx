@@ -2,8 +2,6 @@
 import SearchBar from '@/components/ui/SearchBar';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { usePlaceListQuery } from '../hooks/usePlaceListQuery';
-import { usePlaceDetailQuery } from '@/features/placeDetail/hooks/usePlaceDetail';
 
 // import { mockPlaces } from '@/mocks/places';
 import { useMapStore } from '../stores/useMapStore';
@@ -17,7 +15,11 @@ import BottomSheet from '@/components/ui/BottomSheet';
 import ChipGroup from '../components/ChipGroup';
 import Chip from '@/components/ui/Chip';
 import FloatingChip from '../components/FloatingChip';
+
 import { usePlaceSearchQuery } from '../hooks/usePlaceSearchQuery';
+import { useHandleClickPlace } from '../hooks/useHandleClickPlace';
+import { usePlaceListQuery } from '../hooks/usePlaceListQuery';
+import { usePlaceDetailQuery } from '@/features/placeDetail/hooks/usePlaceDetail';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -28,7 +30,7 @@ export default function HomePage() {
 
   const { placeLists, refetch } = usePlaceListQuery();
   // 맵 스토어
-  const { places, initializePlaces, resetOriginalPlaces, keyword, setKeyword,
+  const { places, selectedPlace, resetSelectedPlace, initializePlaces, resetOriginalPlaces, keyword, setKeyword,
     setMapCenter, resetMapCenter } = useMapStore();
   
   // 검색 쿼리
@@ -36,9 +38,6 @@ export default function HomePage() {
 
   // 컨펌 상태
   const [isLoginConfirmOpen, setIsLoginConfirmOpen] = useState(false);
-
-  // 선택한 장소
-  const [selectedPlace, setSelectedPlace] = useState(null);
 
   // 바텀 시트 오픈
   const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(true);
@@ -59,16 +58,11 @@ export default function HomePage() {
   }, [placeLists]);
 
   // 리스트에서 장소 하나 클릭
-  const handleClickPlace = (placeId) => {
-    const place = places.find((item) => item.placeId === placeId);
-    setSelectedPlace(place);
-    setMapCenter(place.lng, place.lat);
-    navigate(`/${placeId}`);
-  };
+  const handleClickPlace = useHandleClickPlace();
 
   // 검색 창 뒤로가기 버튼
   const onBack = () => {
-    setSelectedPlace(null);
+    resetSelectedPlace(null);
     resetMapCenter();
     setKeyword('')
     resetOriginalPlaces();

@@ -8,6 +8,8 @@ export const useMapStore = create((set, get) => ({
   // 전체 목록
   originalPlaces: [],
 
+  selectedPlace: null,
+
   // 검색어
   keyword: '',
 
@@ -15,6 +17,9 @@ export const useMapStore = create((set, get) => ({
     lat: 37.571648599,
     lng: 126.976372775,
   },
+
+  // 맵 확대 레벨
+  level: 9,
 
   // 지도 중앙 오프셋
   latOffset: 0.006,
@@ -26,6 +31,7 @@ export const useMapStore = create((set, get) => ({
     set({
       originalPlaces: data,
       places: data,
+      level: 9,
     });
 
     // 중심 계산 및 설정
@@ -55,7 +61,31 @@ export const useMapStore = create((set, get) => ({
     };
   },
 
-  // setPlaces: (data) => set({ places: data }),
+  // 확대레벨 리셋
+  resetSelectedPlace: () => set({ level: 9 }),
+
+  // 하나의 장소를 골랐을 때
+  selectPlace: (placeId) => {
+    const { originalPlaces } = get();
+    const currentOffset = get().latOffset;
+
+    const place = originalPlaces.find((item) => item.placeId === placeId);
+
+    console.log(place.lng, place.lat)
+
+    if (place) {
+      set({
+        selectedPlace: place,
+        mapCenter: { lat: place.lng - currentOffset, lng: place.lat },
+        level: 5
+      });
+    }
+
+    return place
+  },
+
+  // 장소 선택 리셋
+  resetSelectedPlace: () => set({ selectedPlace: null }),
 
   // 칩 버튼 필터링
   filterPlaces: (selectedValue) => {
@@ -96,6 +126,7 @@ export const useMapStore = create((set, get) => ({
   },
 
   resetMapCenter: () => {
-    set({ mapCenter: { lat: 37.571648599, lng: 126.976372775 } });
+    const center = get().calculateCenterFromOriginal();
+    set({ mapCenter: center, level: 9 });
   },
 }));

@@ -10,6 +10,7 @@ export default function Maps({ locations = [] }) {
   // 맵 스토어
   const mapCenter = useMapStore((state) => state.mapCenter);
   const setMapCenter = useMapStore((state) => state.setMapCenter);
+  const mapLevel = useMapStore((state) => state.level);
 
   const [map, setMap] = useState(null);
   const [selectedMarker, setSelectedMarker] = useState(null);
@@ -46,7 +47,7 @@ export default function Maps({ locations = [] }) {
           id='map'
           center={mapCenter}
           style={{ width: '100%', height: '100%' }}
-          level={9}
+          level={mapLevel}
           onCreate={setMap}
         >
           {/* 위치 마커 */}
