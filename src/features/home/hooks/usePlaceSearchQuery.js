@@ -7,7 +7,7 @@ import { useMapStore } from '../stores/useMapStore';
  */
 
 export const usePlaceSearchQuery = () => {
-  const initializePlaces = useMapStore((state) => state.initializePlaces);
+  const setPlaceSearch = useMapStore((state) => state.setPlaceSearch);
 
   const mutation = useMutation({
     mutationFn: (keyword) => placeSearchApi(keyword),
@@ -16,11 +16,12 @@ export const usePlaceSearchQuery = () => {
       // 성공 여부 판단
 
       if (result.success) {
-        initializePlaces(result?.data?.content); 
+        setPlaceSearch(result?.data?.content); 
       } else {
-        initializePlaces([]); 
+        setPlaceSearch([]); 
       }
     },
+
 
     onError: (error) => {
       console.error('검색 실패:', error);
