@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import mapMarkers from './mapMarkers';
 import { useMapStore } from '../stores/useMapStore';
+import { useHandleClickPlace } from '../hooks/useHandleClickPlace';
 
 export default function Maps({ locations = [] }) {
   useKakaoLoader();
@@ -12,8 +13,10 @@ export default function Maps({ locations = [] }) {
   const setMapCenter = useMapStore((state) => state.setMapCenter);
   const mapLevel = useMapStore((state) => state.level);
 
+  const handleClickPlace = useHandleClickPlace();
+
   const [map, setMap] = useState(null);
-  const [selectedMarker, setSelectedMarker] = useState(null);
+  // const [selectedMarker, setSelectedMarker] = useState(null);
 
   // 지도 장소 클릭시, 맵 센터 변경
   useEffect(() => {
@@ -66,8 +69,7 @@ export default function Maps({ locations = [] }) {
                 }}
                 clickable={true}
                 onClick={() => {
-                  setSelectedMarker(position.placeId);
-                  setMapCenter(position.lng, position.lat);
+                  handleClickPlace(position.placeId)
                 }}
               />
             ))}

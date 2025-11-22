@@ -8,7 +8,7 @@ export function useHandleClickPlace() {
   const handleClickPlace = (placeId) => {
   
     const place = selectPlace(placeId);
-    console.log(place)
+    // console.log(place)
     if (place) {
       navigate(`/${placeId}`);
     }

@@ -56,7 +56,7 @@ export const useMapStore = create((set, get) => ({
     );
 
     return {
-      lat: sum.lng / originalPlaces.length - currentOffset,
+      lat: sum.lng / originalPlaces.length - 0.06,
       lng: sum.lat / originalPlaces.length,
     };
   },
@@ -71,7 +71,7 @@ export const useMapStore = create((set, get) => ({
 
     const place = originalPlaces.find((item) => item.placeId === placeId);
 
-    console.log(place.lng, place.lat)
+    // console.log(placeId, place.lng, place.lat)
 
     if (place) {
       set({
