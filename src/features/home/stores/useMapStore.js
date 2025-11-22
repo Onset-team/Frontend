@@ -22,11 +22,38 @@ export const useMapStore = create((set, get) => ({
   // ui
 
   // 데이터
-  initializePlaces: (data) =>
+  initializePlaces: (data) => {
     set({
       originalPlaces: data,
       places: data,
-    }),
+    });
+
+    // 중심 계산 및 설정
+    const center = get().calculateCenterFromOriginal();
+    set({ mapCenter: center });
+  },
+
+  calculateCenterFromOriginal: () => {
+    const { originalPlaces } = get();
+    const currentOffset = get().latOffset;
+
+    if (!originalPlaces || originalPlaces.length === 0) {
+      return { lat: 37.5665, lng: 126.978 };
+    }
+
+    const sum = originalPlaces.reduce(
+      (acc, place) => ({
+        lat: acc.lat + place.lat,
+        lng: acc.lng + place.lng,
+      }),
+      { lat: 0, lng: 0 },
+    );
+
+    return {
+      lat: sum.lng / originalPlaces.length - currentOffset,
+      lng: sum.lat / originalPlaces.length,
+    };
+  },
 
   // setPlaces: (data) => set({ places: data }),
 

@@ -241,6 +241,19 @@ export default function AgreementContent() {
                   3. 회원 탈퇴 시 작성한 후기는 서비스 화면에서는 즉시 비노출 처리되며, 내부 DB에는
                   1년간 보관 후 삭제됩니다. (보관 기간은 개인정보 처리방침의 기준을 따릅니다.)
                 </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  4. 회원은 회사가 서비스 운영 및 품질 개선을 위해 회원이 작성한 후기(게시물)를
+                  서비스 내 다양한 영역(예: 장소 상세페이지, 추천 목록, 검색 결과 등)에
+                  재노출하거나, 서비스 제공 목적 범위 내에서 필요한 방식으로 편집·요약하여 사용할 수
+                  있음을 동의합니다. 이는 회사가 회원의 저작권을 양도받는 것이 아니라, 서비스 제공을
+                  위해 필요한 비독점적·무상 이용권을 부여하는 것을 의미합니다.
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  5. 회원 탈퇴 후에도 내부 DB에 보관되는 기간(1년) 동안, 장소 정보 제공 및 서비스
+                  품질 유지 목적의 범위 내에서 회원이 작성한 후기(게시물)를 제4항과 동일한 방식으로
+                  활용할 수 있습니다. 단, 탈퇴한 회원의 식별이 불가능하도록 필요한 경우 닉네임 등
+                  개인정보는 가명처리 또는 비식별 처리하여 활용합니다.
+                </Typography>
               </div>
 
               <div className='flex flex-col'>
@@ -462,6 +475,14 @@ export default function AgreementContent() {
                 </Typography>
                 <Typography variant='labelSm2' color='gray300' className='indent-1'>
                   6. 신규 기능, 업데이트, 공지사항 등 서비스 운영 관련 정보 제공
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  7. 장소 정보 제공 및 서비스 품질 개선을 위하여 회원이 작성한 후기 내용을 서비스 내
+                  다른 화면(예: 장소 상세페이지 등)에 재노출하거나 안내 정보로 활용
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  8. 회원 탈퇴 후에도 내부 DB에 보관되는 기간(1년) 동안 장소 정보 제공 및 서비스
+                  품질 유지 목적의 범위 내에서 회원이 작성한 후기 내용을 동일한 방식으로 활용
                 </Typography>
                 <Typography variant='labelSm2' color='gray300'>
                   (※ 선택 동의: 광고성 정보 수신 관련 내용은 별도의 “마케팅 정보 수신 동의서”로
@@ -731,6 +752,19 @@ export default function AgreementContent() {
                 <Typography variant='labelSm2' color='gray300' className='indent-1'>
                   4. 서비스 개선 및 통계: 이용현황 분석, 신규서비스 개발 등
                 </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  5. 부정 이용 방지 및 안전성 확보: 부정회원 식별·서비스 사기 방지 등
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  6. 장소 정보 제공 및 서비스 품질 개선: 회원이 작성한 후기 내용을 장소 상세페이지,
+                  검색 결과, 추천 영역 등 서비스 내 다른 화면에서 안내 정보로 활용하는 등 서비스
+                  품질 개선 목적의 처리
+                </Typography>
+                <Typography variant='labelSm2' color='gray300' className='indent-1'>
+                  7. 탈퇴 후 데이터 보관 기간 중 활용: 회원이 탈퇴한 이후에도 내부 DB에 보관되는
+                  기간(1년) 동안 서비스 품질 유지 및 장소 정보 제공 목적의 범위 내에서 작성한 후기
+                  내용을 동일하게 활용
+                </Typography>
                 <Typography variant='labelSm2' color='gray300'>
                   ※ 기타 구체적인 이용 목적은 수집 시 또는 개별 서비스 화면에 별도 고지합니다.
                 </Typography>
@@ -753,36 +787,28 @@ export default function AgreementContent() {
                       <th className='border-stoov-gray-600 w-12 border p-2'>구분</th>
                       <th className='border-stoov-gray-600 w-20 border p-2'>항목</th>
                       <th className='border-stoov-gray-600 w-20 border p-2'>보유·이용 기간</th>
-                      <th className='border-stoov-gray-600 w-20 border p-2'>근거법령 또는 동의 근거</th>
+                      <th className='border-stoov-gray-600 w-20 border p-2'>
+                        근거법령 또는 동의 근거
+                      </th>
                     </tr>
                   </thead>
                   <tbody className='text-xs leading-4 font-normal'>
                     <tr>
                       <td className='border-stoov-gray-600 border p-2'>후기 게시물</td>
                       <td className='border-stoov-gray-600 border p-2'>장소 후기 등</td>
-                      <td className='border-stoov-gray-600 border p-2'>
-                        회원 탈퇴 1년
-                      </td>
-                      <td className='border-stoov-gray-600 border p-2'>
-                        내부정책
-                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>회원 탈퇴 1년</td>
+                      <td className='border-stoov-gray-600 border p-2'>내부정책</td>
                     </tr>
                     <tr>
                       <td className='border-stoov-gray-600 border p-2'>접속기록</td>
                       <td className='border-stoov-gray-600 border p-2'>로그, 이용기록 등</td>
-                      <td className='border-stoov-gray-600 border p-2'>
-                        최종 접속일 후 3개월
-                      </td>
-                      <td className='border-stoov-gray-600 border p-2'>
-                        내부 시스템 운영상 필요
-                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>최종 접속일 후 3개월</td>
+                      <td className='border-stoov-gray-600 border p-2'>내부 시스템 운영상 필요</td>
                     </tr>
                     <tr>
                       <td className='border-stoov-gray-600 border p-2'>동의내역</td>
                       <td className='border-stoov-gray-600 border p-2'>동의서·약관동의자료</td>
-                      <td className='border-stoov-gray-600 border p-2'>
-                        회원 탈퇴 후 3년
-                      </td>
+                      <td className='border-stoov-gray-600 border p-2'>회원 탈퇴 후 3년</td>
                       <td className='border-stoov-gray-600 border p-2'>전자상거래 등 법령 준수</td>
                     </tr>
                   </tbody>
@@ -831,7 +857,7 @@ export default function AgreementContent() {
                   2. 법령에 의해 요청이 있는 경우
                 </Typography>
                 <Typography variant='labelSm2' color='gray300' className='indent-1'>
-                  2. 3. 서비스 제공을 위해 위탁한 업체가 업무 수행을 위해 필요한 경우
+                  3. 서비스 제공을 위해 위탁한 업체가 업무 수행을 위해 필요한 경우
                 </Typography>
                 <Typography variant='labelSm2' color='gray300'>
                   ※ 기타 구체적인 이용 목적은 수집 시 또는 개별 서비스 화면에 별도 고지합니다.
@@ -982,7 +1008,7 @@ export default function AgreementContent() {
                   회사는 개인정보 처리에 관한 업무를 총괄하는 책임자 및 고충처리담당 부서를 지정하고
                   있습니다.
                 </Typography>
-                  <table className='mt-1 mb-1 w-full border-collapse'>
+                <table className='mt-1 mb-1 w-full border-collapse'>
                   <thead className='bg-stoov-gray-800 text-left text-xs leading-4 font-semibold'>
                     <tr>
                       <th className='border-stoov-gray-600 w-40 border p-2'>구분</th>

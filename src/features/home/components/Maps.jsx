@@ -46,7 +46,7 @@ export default function Maps({ locations = [] }) {
           id='map'
           center={mapCenter}
           style={{ width: '100%', height: '100%' }}
-          level={5}
+          level={9}
           onCreate={setMap}
         >
           {/* 위치 마커 */}
