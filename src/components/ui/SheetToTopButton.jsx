@@ -6,21 +6,22 @@ import Button from '@/components/ui/Button';
 // 아이콘
 import IconTop from '@/assets/icons/IconTop.svg';
 
-export default function ToTopButton({ isBottombar = true }) {
+export default function SheetToTopButton({ targetEl, isBottombar = true }) {
   const [isVisible, setIsVisible] = useState(false);
 
   // 50px 이상 스크롤 했을 때 버튼 표시
   const handleScroll = () => {
-    if (window.scrollY > 50) {
-      setIsVisible(true);
-    } else {
-      setIsVisible(false);
-    }
+    if (!targetEl) return;
+
+    const currentScroll = targetEl.scrollTop;
+    setIsVisible(currentScroll > 50);
   };
 
   // 클릭 시 맨 위로
   const scrollToTop = () => {
-    window.scrollTo({
+    if (!targetEl) return;
+
+    targetEl.scrollTo({
       top: 0,
       behavior: 'smooth',
     });
@@ -28,15 +29,18 @@ export default function ToTopButton({ isBottombar = true }) {
 
   // 스크롤 감지
   useEffect(() => {
-    window.addEventListener('scroll', handleScroll);
+    if (!targetEl) return;
+
+    targetEl.addEventListener('scroll', handleScroll);
+    handleScroll(); // 초기 상태
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      targetEl.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [targetEl]);
 
   return (
-    <div className='fixed bottom-0 left-1/2 z-[100px] w-full max-w-[500px] -translate-x-1/2'>
+    <div className='fixed bottom-0 left-1/2 z-50 w-full max-w-[500px] -translate-x-1/2'>
       <Button
         size='iconXl'
         rounded='full'

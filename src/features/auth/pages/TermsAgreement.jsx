@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+// 훅
+import { useAgreementQuery } from '../hooks/useAgreement';
+// 컴포넌트
 import Checkbox from '@/components/ui/Checkbox';
 import Typography from '@/components/ui/Typography';
-import IconRight from '../components/IconRight';
 import Button from '@/components/ui/Button';
-import { Link } from 'react-router-dom';
-import { placeListApi } from '@/features/home/services/placeListApi';
-import api from '@/apis/axiosInstance';
-import { useAgreementQuery } from '../hooks/useAgreement';
+// 아이콘
+import IconRight from '../components/IconRight';
 
 export default function TermsAgreement() {
-
   const { mutate, isPending } = useAgreementQuery();
 
   const [agreements, setAgreements] = useState({
@@ -39,31 +39,28 @@ export default function TermsAgreement() {
   };
 
   const handleAgreementClick = () => {
-      mutate()
+    mutate();
   };
 
   return (
-    <div className='flex h-[calc(100vh-120px)] flex-col justify-center gap-7 px-4 py-4'>
+    <div className='flex h-[calc(100vh-92px)] flex-col justify-center gap-7 px-4 pt-4'>
       {/* 약관 제목 */}
       <div className='inline-flex flex-col'>
         <Typography variant='titleLg' color='white100'>
           서비스 이용을 위해
         </Typography>
-        <div className='flex'>
-          <Typography variant='titleLg' color='white100'>
-            아래&nbsp;
-          </Typography>
-          <Typography variant='titleLg' color='orange300'>
+
+        <Typography variant='titleLg' color='white100'>
+          아래&nbsp;
+          <Typography as='span' variant='titleLg' color='orange300'>
             항목에 동의
           </Typography>
-          <Typography variant='titleLg' color='white100'>
-            해주세요.
-          </Typography>
-        </div>
+          해주세요.
+        </Typography>
       </div>
 
       {/* 약관 동의 항목 */}
-      <div className='flex flex-1 flex-col gap-4'>
+      <div className='flex flex-1 flex-col gap-4 px-2 pt-4'>
         <div className='flex flex-col gap-1'>
           <div className='flex flex-row items-center justify-between'>
             <Checkbox
@@ -108,11 +105,9 @@ export default function TermsAgreement() {
         </div>
       </div>
 
-      <div>
-        <Button disabled={!isAllChecked} onClick={() => handleAgreementClick()}>
-          동의하고 시작하기
-        </Button>
-      </div>
+      <Button disabled={!isAllChecked} onClick={() => handleAgreementClick()}>
+        동의하고 시작하기
+      </Button>
     </div>
   );
 }

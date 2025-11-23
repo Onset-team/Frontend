@@ -51,7 +51,6 @@ export default function DetailCard({ place, isBookmarked = false, onToggleBookma
           src={place.thumbnailUrl || PlacePlaceholderLarge}
           alt={place.title}
           crossOrigin='anonymous'
-          loading='lazy'
           fetchPriority='high'
           width={100}
           height={100}

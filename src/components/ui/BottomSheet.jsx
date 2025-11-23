@@ -1,8 +1,9 @@
-// components/ui/BottomSheet.jsx
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Sheet } from 'react-modal-sheet';
 // 유틸
 import { cn } from '@/utils/cn';
+// 컴포넌트
+import SheetToTopButton from '@/components/ui/SheetToTopButton';
 
 export default function BottomSheet({
   open,
@@ -16,8 +17,18 @@ export default function BottomSheet({
   const [snapIndex, setSnapIndex] = useState(initialSnap);
 
   const sheetRef = useRef(null);
-  const [scrollEl, setScrollEl] = useState(null);
-  const contentRef = useCallback((node) => setScrollEl(node || null), []);
+  const [scrollerEl, setScrollerEl] = useState(null);
+
+  const contentRef = useCallback((node) => {
+    if (!node) {
+      setScrollerEl(null);
+      return;
+    }
+
+    // 바텀시트 내부에 생성한 스크롤러를 찾아서 ref로 등록
+    const scroller = node.querySelector('.react-modal-sheet-content-scroller');
+    setScrollerEl(scroller);
+  }, []);
 
   const lastSnap = snapPoints.length - 1;
   const safeInitialSnap = Math.min(initialSnap, lastSnap);
@@ -59,12 +70,12 @@ export default function BottomSheet({
         <Sheet.Content
           ref={contentRef}
           disableScroll={false}
-          className={cn(
-            'touch-pan-y overflow-y-auto overscroll-contain pt-2 pb-[58px]',
-            contentClassName,
-          )}
+          className='relative touch-pan-y overflow-y-auto overscroll-contain pt-2 pb-[58px]'
         >
           {children}
+
+          {/* 바텀 시트 내 탑버튼 */}
+          <SheetToTopButton targetEl={scrollerEl} />
         </Sheet.Content>
       </Sheet.Container>
     </Sheet>
