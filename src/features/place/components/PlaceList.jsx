@@ -1,6 +1,8 @@
 import React from 'react';
 import toast from 'react-hot-toast';
+// 스토어
 import { useAuthStore } from '@/stores/useAuthStore';
+// 훅
 import { useToggleBookmarkMutation } from '@/features/bookmark/hooks/useBookmarks';
 // 컴포넌트
 import PlaceCard from '@/features/place/components/PlaceCard';
@@ -15,7 +17,6 @@ export default function PlaceList({ places = [], onClickPlace, setIsLoginConfirm
   const handleToggleBookmark = async (place) => {
     if (!isLoggedIn) {
       setIsLoginConfirmOpen(true);
-      console.log('클릭');
       return;
     }
 
