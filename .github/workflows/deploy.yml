@@ -41,7 +41,7 @@ jobs:
 
       - name: Sync to S3
         run: |
-          aws s3 sync dist/ s3://stoov-frontend-prod --delete
+          aws s3 sync dist/ s3://stoov-frontend --delete
 
       - name: Invalidate CloudFront cache
         run: |
