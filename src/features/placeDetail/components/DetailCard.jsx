@@ -5,17 +5,11 @@ import BookmarkButton from '@/components/ui/BookmarkButton';
 // 이미지
 import PlacePlaceholderLarge from '@/assets/images/placePlaceholderLarge.png';
 
-export default function DetailCard({
-  place,
-  isBookmarked = false,
-  onToggleBookmark,
-  isPending,
-  setIsLoginConfirmOpen,
-}) {
+export default function DetailCard({ place, isBookmarked = false, onToggleBookmark, isPending }) {
   if (!place) return null;
 
   const handleBookmarkClick = () => {
-    onToggleBookmark?.();
+    onToggleBookmark?.(place);
   };
 
   return (

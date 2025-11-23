@@ -20,6 +20,12 @@ export const searchPlaces = (params) => api.get('/places/search', { params });
  * @param {number} placeId - 장소 ID
  */
 export const getPlaceDetail = async (placeId) => {
-  const res = await api.get(`/places/${Number(placeId)}`);
-  return res.data;
+  try {
+    const response = await api.get(`/places/${Number(placeId)}`);
+
+    return response.data;
+  } catch (error) {
+    console.error('장소 상세 조회 중 오류 발생:', error);
+    throw error;
+  }
 };

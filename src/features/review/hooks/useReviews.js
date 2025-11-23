@@ -11,7 +11,7 @@ export const useReviewsQuery = ({ placeId, onlyMyReview }) => {
     queryKey: ['placeReviews', placeId, onlyMyReview],
     queryFn: () => getPlaceReviews({ placeId, onlyMyReview }),
     enabled: !!placeId,
-    staleTime: 5 * 60 * 1000,
+    staleTime: 0,
     refetchType: 'all',
 
     select: (list) => {
