@@ -20,5 +20,6 @@ export const usePlaceListQuery = () => {
   return {
     success: listQuery.data?.success,
     placeLists: listQuery.data?.placesLists,
+    refetch: listQuery.refetch,
   };
 };
