@@ -135,7 +135,7 @@ export default function ReviewFormPage() {
 
   return (
     <>
-      <div className='bg-stoov-gray-900 fixed top-0 left-1/2 z-50 flex h-15 w-full max-w-[500px] -translate-x-1/2 items-center px-5'>
+      <div className='bg-stoov-gray-900 fixed top-0 left-1/2 z-50 flex h-15 w-full max-w-[500px] -translate-x-1/2 items-center px-4'>
         <Button variant='icon' size='iconLg' onClick={handleGoBack}>
           <IconLeft className='text-stoov-gray-100' />
         </Button>

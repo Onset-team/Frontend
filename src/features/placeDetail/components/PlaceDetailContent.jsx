@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import toast from 'react-hot-toast';
 // 스토어
@@ -27,7 +27,10 @@ export default function PlaceDetailContent({ setIsLoginConfirmOpen }) {
   const isBookmarkDetail = pathname.startsWith('/places/');
   const detailSource = isBookmarkDetail ? 'bookmark' : 'home';
 
-  const { data: place, isLoading, isError } = usePlaceDetailQuery(placeId);
+  // 장소 상세 쿼리
+  const { data: place, isLoading, isError } = usePlaceDetailQuery(Number(placeId));
+
+  // 관심 토글
   const { mutateAsync: toggleBookmark, isPending } = useToggleBookmarkMutation();
 
   const initialTab = location.state?.initialTab ?? 'info';
@@ -38,20 +41,19 @@ export default function PlaceDetailContent({ setIsLoginConfirmOpen }) {
     setActiveTab(tabId);
   };
 
-  // 하트 버튼 클릭 시
+  // 관심 토클
   const handleToggleBookmark = async (place) => {
     if (!isLoggedIn) {
       setIsLoginConfirmOpen(true);
-      console.log('클릭');
       return;
     }
 
-    const bookmarked = place.isBookmark;
+    const bookmarked = place.bookmarked;
 
     try {
       await toggleBookmark({
         placeId: place.placeId ?? place.id,
-        isBookmarked: place.isBookmark,
+        isBookmarked: place.bookmarked,
       });
 
       if (bookmarked) {
@@ -77,7 +79,7 @@ export default function PlaceDetailContent({ setIsLoginConfirmOpen }) {
     <div className='pb-8'>
       <DetailCard
         place={place}
-        isBookmarked={place.isBookmark}
+        isBookmarked={place.bookmarked}
         onToggleBookmark={handleToggleBookmark}
         isPending={isPending}
       />

@@ -6,14 +6,13 @@ import { useAuthStore } from '@/stores/useAuthStore';
  * 관심 장소 리스트 조회
  */
 export const useBookmarksQuery = () => {
-  const { userId } = useAuthStore();
+  const { isLoggedIn } = useAuthStore();
 
   return useQuery({
-    queryKey: ['bookmarks', userId],
+    queryKey: ['bookmarks'],
     queryFn: getBookmarks,
-    enabled: !!userId,
-    staleTime: 5 * 60 * 1000, // 5분
-    select: (data) => data ?? [],
+    enabled: !!isLoggedIn,
+    staleTime: 30 * 60 * 1000, // 30분
   });
 };
 
@@ -28,19 +27,16 @@ export const useToggleBookmarkMutation = () => {
 
   return useMutation({
     mutationFn: ({ placeId, isBookmarked }) => {
-      if (isBookmarked) {
-        return deleteBookmark({ placeId });
-      }
-      return postBookmark({ placeId });
+      return isBookmarked
+        ? deleteBookmark({ placeId }) // 관심 해제
+        : postBookmark({ placeId }); // 관심 저장
     },
-    onSuccess: (_, variables) => {
-      const { userId } = useAuthStore.getState();
-
+    onSuccess: (_, { placeId }) => {
       // 관심 목록 새로고침
-      queryClient.invalidateQueries({ queryKey: ['bookmarks', userId] });
+      queryClient.invalidateQueries({ queryKey: ['bookmarks'] });
 
       // 장소 상세 페이지 새로고침
-      queryClient.invalidateQueries({ queryKey: ['placeDetail', variables.placeId] });
+      queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
 
       // 장소 리스트 새로고침
       queryClient.invalidateQueries({ queryKey: ['placeList'] });

@@ -20,15 +20,22 @@ export default function Header() {
   let currentMode = mode; // 'logo' | 'title' | 'back'
   let currentTitle = title;
 
-  if (path === '/' || path === ':placeId') {
+  // 장소 페이지, 상세: 로고
+  if (path === '/' || /^\/\d+$/.test(path)) {
     currentMode = 'logo';
-  } else if (path === '/bookmark') {
+  }
+  // 관심 페이지: 타이틀
+  else if (path === '/bookmark') {
     currentMode = 'title';
     currentTitle = '관심';
-  } else if (path === '/mypage') {
+  }
+  // 마이 페이지: 타이틀
+  else if (path === '/mypage') {
     currentMode = 'title';
     currentTitle = '마이 프로필';
-  } else if (path !== '/' && path === '/login' && path !== '/bookmark' && path !== '/mypage') {
+  }
+  // 그 외 뒤로가기 모드
+  else {
     currentMode = 'back';
   }
 
