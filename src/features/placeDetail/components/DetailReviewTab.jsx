@@ -9,6 +9,7 @@ import { useAuthStore } from '@/stores/useAuthStore';
 import ReviewList from '@/features/review/components/ReviewList';
 import ReviewWriteSection from '@/features/review/components/ReviewWriteSection';
 import ConfirmModal from '@/components/ui/ConfirmModal';
+import EmptyState from '@/components/ui/EmptyState';
 
 export default function DetailReviewTab({ place, source }) {
   const navigate = useNavigate();
@@ -24,6 +25,8 @@ export default function DetailReviewTab({ place, source }) {
     data: reviews = [],
     isLoading,
     isError,
+    error,
+    refetch,
   } = useReviewsQuery({
     placeId: Number(placeId),
     onlyMyReview: false,
@@ -128,11 +131,18 @@ export default function DetailReviewTab({ place, source }) {
 
   const currentConfig = modalType ? MODAL_CONFIG[modalType] : null;
 
+  // 로딩
   if (isLoading) {
-    return <div>리뷰를 로딩 중입니다...</div>;
+    return <div>리뷰를 불러오는 중입니다...</div>;
   }
+
+  // 에러
   if (isError) {
-    return <div>오류가 발생했습니다.</div>;
+    console.error(error.message);
+    const status = error?.status;
+    const variant = status == null ? 'offline' : status;
+
+    return <EmptyState variant={variant} onButtonClick={() => refetch()} fullScreen />;
   }
 
   return (
