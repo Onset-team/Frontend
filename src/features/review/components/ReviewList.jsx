@@ -17,34 +17,32 @@ export default function ReviewList({ reviews = [], onEdit, onDelete, onReport, i
   // 내 후기만 필터링
   const filteredReviews = onlyMyReview ? reviews.filter((item) => item.isMyReview) : reviews;
 
-  // 최신순으로 정렬 필요
-  return (
-    <>
-      {hasReviews ? (
-        <div className='flex flex-col items-end gap-2'>
-          {isLoggedIn && (
-            <Checkbox checked={onlyMyReview} handleChange={toggleOnlyMyReview} label='내 후기만' />
-          )}
+  //  리뷰 없을 경우
+  if (!hasReviews) {
+    return <EmptyState variant='review' />;
+  }
 
-          <div className='flex w-full flex-col gap-3'>
-            {filteredReviews.length > 0 ? (
-              filteredReviews.map((item) => (
-                <ReviewItem
-                  key={item.reviewId}
-                  review={item}
-                  onEdit={onEdit}
-                  onDelete={onDelete}
-                  onReport={onReport}
-                />
-              ))
-            ) : (
-              <EmptyState variant='myReview' />
-            )}
-          </div>
-        </div>
-      ) : (
-        <EmptyState variant='review' />
+  return (
+    <div className='flex flex-col items-end gap-2'>
+      {isLoggedIn && (
+        <Checkbox checked={onlyMyReview} handleChange={toggleOnlyMyReview} label='내 후기만' />
       )}
-    </>
+
+      <div className='flex w-full flex-col gap-3'>
+        {filteredReviews.length > 0 ? (
+          filteredReviews.map((item) => (
+            <ReviewItem
+              key={item.reviewId}
+              review={item}
+              onEdit={onEdit}
+              onDelete={onDelete}
+              onReport={onReport}
+            />
+          ))
+        ) : (
+          <EmptyState variant='myReview' /> // 내 후기 업을 경우
+        )}
+      </div>
+    </div>
   );
 }

@@ -21,7 +21,8 @@ export default function Mypage({ version = '1.0.0' }) {
   const queryClient = useQueryClient();
   const { isLoggedIn, logout } = useAuthStore();
 
-  const { data: myInfo, isLoading } = useMyInfoQuery();
+  const { data: myInfo, isLoading, isError, error, refetch } = useMyInfoQuery();
+
   const updateProfileImageMutation = useUpdateProfileImageMutation();
   const deleteMyAccountMutation = useDeleteMyAccountMutation();
 
@@ -43,11 +44,8 @@ export default function Mypage({ version = '1.0.0' }) {
     toast('로그아웃 되었습니다.');
   };
 
-  if (isLoading) {
-    return <div>마이페이지를 로딩 중입니다...</div>;
-  }
-
-  if (!isLoggedIn || !myInfo) {
+  // 비로그인
+  if (!isLoggedIn) {
     return (
       <EmptyState
         variant='login'
@@ -55,6 +53,20 @@ export default function Mypage({ version = '1.0.0' }) {
         onButtonClick={() => navigate('/login')}
       />
     );
+  }
+
+  // 로딩
+  if (isLoading) {
+    return <div>마이페이지를 불러오는 중입니다...</div>;
+  }
+
+  // 에러
+  if (isError) {
+    console.error(error.message);
+    const status = error?.status;
+    const variant = status == null ? 'offline' : status;
+
+    return <EmptyState variant={variant} onButtonClick={() => refetch()} fullScreen />;
   }
 
   const { profileImageUrl, nickname, email } = myInfo;
