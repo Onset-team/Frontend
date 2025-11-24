@@ -19,16 +19,16 @@ import EmptyState from '@/components/ui/EmptyState';
 export default function Mypage({ version = '1.0.0' }) {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
-  const { isLoggedIn } = useAuthStore();
-  const logout = useAuthStore((state) => state.logout);
+  const { isLoggedIn, logout } = useAuthStore();
 
   const { data: myInfo, isLoading } = useMyInfoQuery();
   const updateProfileImageMutation = useUpdateProfileImageMutation();
   const deleteMyAccountMutation = useDeleteMyAccountMutation();
 
   // 프로필 이미지 변경
-  const handleProfileImageChange = (profileImageUrl) => {
-    updateProfileImageMutation.mutate({ profileImageUrl });
+  const handleProfileImageChange = (file) => {
+    if (!file) return;
+    updateProfileImageMutation.mutate(file);
   };
 
   // 회원 탈퇴

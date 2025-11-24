@@ -1,45 +1,48 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from 'react';
 import toast from 'react-hot-toast';
+// 스토어
 import { useAuthStore } from '@/stores/useAuthStore';
+// 훅
 import { useToggleBookmarkMutation } from '@/features/bookmark/hooks/useBookmarks';
 // 컴포넌트
 import PlaceCard from '@/features/place/components/PlaceCard';
 import Typography from '@/components/ui/Typography';
 
 export default function PlaceList({ places = [], onClickPlace, setIsLoginConfirmOpen }) {
-  const navigate = useNavigate();
   const { isLoggedIn } = useAuthStore();
+  // 관심 토글
   const { mutateAsync: toggleBookmark, isPending } = useToggleBookmarkMutation();
 
+  // 관심 토클
   const handleToggleBookmark = async (place) => {
     if (!isLoggedIn) {
       setIsLoginConfirmOpen(true);
-      console.log('클릭');
       return;
     }
 
-    const bookmarked = place.isBookmark;
+    const isBookmarked = place.bookmarked;
 
     try {
       await toggleBookmark({
         placeId: place.placeId ?? place.id,
-        isBookmarked: place.isBookmark,
+        isBookmarked: place.bookmarked,
       });
 
-      if (bookmarked) {
+      if (isBookmarked) {
         toast('관심 장소가 해제되었습니다.');
       }
     } catch (error) {
       console.error('관심 장소 등록/해제 실패:', error);
-      toast.error(bookmarked ? '관심 장소 해제에 실패했습니다.' : '관심 장소 등록에 실패했습니다.');
+      toast.error(
+        isBookmarked ? '관심 장소 해제에 실패했습니다.' : '관심 장소 등록에 실패했습니다.',
+      );
     }
   };
 
   
   
   return (
-    <>
+    <div>
       <div className='flex flex-col gap-2 pt-4 pb-8'>
         <Typography variant='labelMd2' color='gray300' align='right' className='px-4 leading-5'>
           총 {places?.length}곳
@@ -58,6 +61,6 @@ export default function PlaceList({ places = [], onClickPlace, setIsLoginConfirm
           ))}
         </div>
       </div>
-    </>
+    </div>
   );
 }

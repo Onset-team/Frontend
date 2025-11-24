@@ -28,7 +28,7 @@ export default function DetailReviewTab({ place, source }) {
     placeId: Number(placeId),
     onlyMyReview: false,
   });
-  console.log('reviews', reviews);
+
   // 리뷰 삭제 뮤테이션
   const deleteMutation = useDeleteReviewMutation(Number(placeId));
 

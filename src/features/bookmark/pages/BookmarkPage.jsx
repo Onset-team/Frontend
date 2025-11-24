@@ -11,12 +11,15 @@ import EmptyState from '@/components/ui/EmptyState';
 
 export default function BookmarkPage() {
   const navigate = useNavigate();
-
-  const { userId } = useAuthStore();
-  const isLoggedIn = !!userId;
+  const { isLoggedIn } = useAuthStore();
 
   // 관심 장소 리스트 조회
-  const { data: bookmarks, isLoading, isError } = useBookmarksQuery();
+  const { data: bookmarks = [], isLoading, isError } = useBookmarksQuery();
+
+  // 장소 클릭
+  const handleClickPlace = (placeId) => {
+    navigate(`/places/${placeId}`);
+  };
 
   if (!isLoggedIn) {
     return (
@@ -28,6 +31,7 @@ export default function BookmarkPage() {
     );
   }
 
+  // 관심 장소 리스트 조회
   if (isLoading) {
     return <div>관심 장소를 불러오는 중입니다...</div>;
   }
@@ -35,17 +39,12 @@ export default function BookmarkPage() {
     return <div>오류가 발생했습니다.</div>;
   }
 
-  // 장소 클릭
-  const handleClickPlace = (placeId) => {
-    navigate(`/places/${placeId}`);
-  };
-
   return (
     <>
       <ToTopButton />
 
-      {places.length > 0 ? (
-        <PlaceList places={places} onClickPlace={handleClickPlace} />
+      {bookmarks.length > 0 ? (
+        <PlaceList places={bookmarks} onClickPlace={handleClickPlace} />
       ) : (
         <EmptyState variant='bookmark' />
       )}

@@ -28,7 +28,7 @@ export default function ReviewItem({ review, onEdit, onDelete, onReport }) {
           <Typography variant='labelSm3' color='gray100'>
             {review.nickname}
           </Typography>
-          {review.updatedAt && (
+          {review.updatedAt !== review.createdAt && (
             <>
               <div className='bg-stoov-gray-200 h-2.5 w-px' />
               <Typography variant='labelSm3' color='gray100'>
