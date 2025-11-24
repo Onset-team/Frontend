@@ -14,13 +14,14 @@ export default function BookmarkPage() {
   const { isLoggedIn } = useAuthStore();
 
   // 관심 장소 리스트 조회
-  const { data: bookmarks = [], isLoading, isError } = useBookmarksQuery();
+  const { data: bookmarks = [], isLoading, isError, error, refetch } = useBookmarksQuery();
 
   // 장소 클릭
   const handleClickPlace = (placeId) => {
     navigate(`/places/${placeId}`);
   };
 
+  // 비로그인
   if (!isLoggedIn) {
     return (
       <EmptyState
@@ -31,23 +32,29 @@ export default function BookmarkPage() {
     );
   }
 
-  // 관심 장소 리스트 조회
+  // 로딩
   if (isLoading) {
     return <div>관심 장소를 불러오는 중입니다...</div>;
   }
+
+  // 에러
   if (isError) {
-    return <div>오류가 발생했습니다.</div>;
+    console.error(error.message);
+    const status = error?.status;
+    const variant = status == null ? 'offline' : status;
+
+    return <EmptyState variant={variant} onButtonClick={() => refetch()} fullScreen />;
+  }
+
+  // 관심 장소 없을 경우
+  if (bookmarks.length === 0) {
+    return <EmptyState variant='bookmark' />;
   }
 
   return (
     <>
       <ToTopButton />
-
-      {bookmarks.length > 0 ? (
-        <PlaceList places={bookmarks} onClickPlace={handleClickPlace} />
-      ) : (
-        <EmptyState variant='bookmark' />
-      )}
+      <PlaceList places={bookmarks} onClickPlace={handleClickPlace} />
     </>
   );
 }

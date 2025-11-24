@@ -30,7 +30,6 @@ export default function PlaceCard({
           <img
             src={place?.thumbnailUrl || PlacePlaceholderSmall}
             alt={place?.title}
-            crossOrigin='anonymous'
             loading='lazy'
             fetchpriority='high'
             width={100}

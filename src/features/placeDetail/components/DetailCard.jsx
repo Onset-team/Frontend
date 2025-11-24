@@ -50,7 +50,6 @@ export default function DetailCard({ place, isBookmarked = false, onToggleBookma
         <img
           src={place.thumbnailUrl || PlacePlaceholderLarge}
           alt={place.title}
-          crossOrigin='anonymous'
           fetchPriority='high'
           width={100}
           height={100}

@@ -18,6 +18,7 @@ export default function EmptyState({
   variant, // 'favorite' | 'search' | 'review' | 'login' | 400 | 500 | 'offline'
   buttonLabel = '다시 시도하기',
   onButtonClick,
+  fullScreen = false,
 }) {
   const variants = {
     bookmark: {
@@ -38,7 +39,7 @@ export default function EmptyState({
       image: EmptyReview,
       title: '아직 후기가 없어요!',
       desc: '여러분의 생생한 공연 후기를 기다릴게요.',
-      isShowButton: false,
+      showButton: false,
       minHeight: 'min-h-[270px]',
     },
     myReview: {
@@ -79,27 +80,32 @@ export default function EmptyState({
 
   let current;
 
-  if (variant >= 400 && variant < 500) {
-    current = variants[400];
-    console.log(variant);
-  } else if (variant >= 500) {
-    current = variants[500];
-    console.log(variant);
-  } else {
+  // 숫자로 들어오는 HTTP status 처리
+  if (typeof variant === 'number') {
+    if (variant >= 400 && variant < 500) {
+      current = variants[400];
+    } else if (variant >= 500) {
+      current = variants[500];
+    }
+  }
+
+  // 숫자로 처리 안 된 경우
+  if (!current) {
     current = variants[variant];
   }
 
-  // 버튼 클릭
-  const handleButtonClick = () => {
-    // 함수일땐 함수 우선 실행
-    if (typeof onButtonClick === 'function') return onButtonClick();
-    // 함수가 아닌 경우 새로고침
-    if (typeof window !== 'undefined') window.location.reload();
-  };
+  if (!current) {
+    current = variants[500];
+  }
 
   return (
     <div
-      className={cn('flex flex-col items-center justify-center gap-4 px-4 pt-4', current.minHeight)}
+      className={cn(
+        'bg-stoov-gray-900 flex flex-col items-center justify-center gap-4 px-4 pt-4',
+        fullScreen && 'fixed inset-0 z-100 m-auto max-w-[500px]',
+
+        current.minHeight,
+      )}
     >
       {current.image && (
         <div className='h-[200px] w-[200px] overflow-hidden rounded'>
@@ -124,7 +130,7 @@ export default function EmptyState({
       {current.showButton && (
         <Button
           size='sm'
-          onClick={handleButtonClick}
+          onClick={onButtonClick}
           aria-label={buttonLabel}
           className='w-fit rounded-xl'
         >
