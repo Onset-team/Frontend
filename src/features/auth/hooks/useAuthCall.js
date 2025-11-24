@@ -2,6 +2,7 @@ import { useMutation, useQuery } from '@tanstack/react-query';
 import { authApi } from '../services/authApi';
 import { useNavigate } from 'react-router-dom';
 import { useAuthStore } from '@/stores/useAuthStore';
+import toast from 'react-hot-toast';
 
 export function useAuthCall() {
   const navigate = useNavigate(); // 페이지 이동

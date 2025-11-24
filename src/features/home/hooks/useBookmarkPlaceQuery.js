@@ -9,18 +9,17 @@ export const useBookmarkPlaceQuery = () => {
     queryKey: ['bookmarkPlace'],
     queryFn: () => getBookmarks(),
     select: (result) => {
-
+      
       return {
-        success: result.success,
-        bookmarkPlaceLists: result.success ? result.data : [],
+        bookmarkPlaceLists: result ? result : [],
       };
     },
     enabled: false,
     staleTime: 5 * 60 * 1000, // 5분
   });
 
+
   return {
-    success: bookmarkPlaceQuery.data?.success,
     bookmarkPlaceLists: bookmarkPlaceQuery.data?.bookmarkPlaceLists,
     refetch: bookmarkPlaceQuery.refetch,
   };
