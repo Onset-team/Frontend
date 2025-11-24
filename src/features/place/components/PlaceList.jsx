@@ -39,8 +39,6 @@ export default function PlaceList({ places = [], onClickPlace, setIsLoginConfirm
     }
   };
 
-  
-  
   return (
     <div>
       <div className='flex flex-col gap-2 pt-4 pb-8'>
@@ -54,7 +52,7 @@ export default function PlaceList({ places = [], onClickPlace, setIsLoginConfirm
               key={item?.placeId}
               place={item}
               onClick={() => onClickPlace?.(item?.placeId)}
-              isBookmarked={item?.isBookmark}
+              isBookmarked={item?.bookmarked}
               onToggleBookmark={() => handleToggleBookmark(item)}
               isPending={isPending}
             />
