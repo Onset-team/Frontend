@@ -38,7 +38,7 @@ export default function PlaceList({ places = [], onClickPlace, setIsLoginConfirm
       );
     }
   };
-  console.log(places)
+
   return (
     <div>
       <div className='flex flex-col gap-2 pt-4 pb-8'>

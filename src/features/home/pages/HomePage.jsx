@@ -104,7 +104,7 @@ export default function HomePage() {
       resetOriginalPlaces();
     } else {
       const { data } = await bookmarkRefetch();
-      console.log(data)
+
       if (data) {
         setPlaces(data.bookmarkPlaceLists);
       }
