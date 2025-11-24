@@ -8,19 +8,59 @@
   --color-stoov-white-200: #fbf4ee;
 
   --color-stoov-orange-100: #ffcbbf;
+  --color-stoov-orange-300: #f58369;
   --color-stoov-orange-500: #ec3910;
   --color-stoov-orange-700: #a8280a;
 
+  --color-stoov-orange-opacity-100: #f58369;
+
   --color-stoov-gray-100: #dedede;
-  --color-stoov-gray-200: #999999;
-  --color-stoov-gray-300: #808080;
-  --color-stoov-gray-400: #666666;
-  --color-stoov-gray-500: #4d4d4d;
+  --color-stoov-gray-200: #c7c7c7;
+  --color-stoov-gray-300: #999999;
+  --color-stoov-gray-400: #808080;
+  --color-stoov-gray-500: #666666;
+  --color-stoov-gray-600: #4d4d4d;
   --color-stoov-gray-800: #3a3a3a;
   --color-stoov-gray-900: #222222;
 
-  /* Spacing */
-  --spacing-13: 52px;
+  /* Font-weight */
+  --font-normal: 400;
+  --font-medium: 500;
+  --font-semibold: 600;
+  --font-bold: 700;
+
+  /* Font-size */
+  --text-xs: 12px;
+  --text-sm: 14px;
+  --text-base: 16px;
+  --text-lg: 18px;
+  --text-xl: 20px;
+  --text-2xl: 22px;
+  --text-3xl: 24px;
+
+  /* Line-height */
+  --leading-1: 12px;
+  --leading-2: 14px;
+  --leading-3: 16px;
+  --leading-4: 18px;
+  --leading-5: 20px;
+  --leading-6: 22px;
+  --leading-7: 24px;
+  --leading-8: 28px;
+  --leading-9: 32px;
+
+  /* Radius */
+  --radius: 4px;
+  --radius-lg: 8px;
+  --radius-xl: 10px;
+  --radius-3xl: 20px;
+
+  /* Shadow */
+  --shadow-chip: 0 2px 4px 0 rgba(0, 0, 0, 0.15);
+  --shadow-dropdown: 2px 5px 15px 0 rgba(0, 0, 0, 0.4);
+  --shadow-bottomsheet: 0 -4px 5px 0 rgba(0, 0, 0, 0.25);
+  --shadow-btn: 0 3px 4px 0 rgba(0, 0, 0, 0.35);
+  --shadow-toast: 0 0 8px 0 rgba(0, 0, 0, 0.4);
 }
 
 @font-face {
@@ -32,10 +72,6 @@
 }
 
 @layer base {
-  :root {
-    color-scheme: light;
-  } /* 다크 모드 쓰면 토글로 교체 */
-
   html,
   body,
   #root {
@@ -44,11 +80,100 @@
 
   body {
     font-family: var(--font-sans);
-    /* color: var(--color-gray-800);
-    background: var(--color-gray-50); */
+    color: var(--color-stoov-white-100);
+    background-color: var(--color-stoov-white-200);
   }
 
   button {
     cursor: pointer;
+  }
+
+  /* 숫자 input의 스핀 버튼 제거 */
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* 스크롤바 */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  /* ::-webkit-scrollbar-track {
+    background: var(--color-stoov-gray-600);
+    border-radius: 9999px;
+  } */
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--color-stoov-gray-400);
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: var(--color-stoov-gray-500);
+  }
+
+  .bottomsheet-container {
+    max-width: 500px;
+    left: 50% !important;
+    max-height: calc(100dvh - 73px) !important;
+    background-color: var(--color-stoov-gray-900) !important;
+    box-shadow: var(--shadow-bottomsheet) !important;
+    border-radius: var(--radius-3xl) !important;
+    overflow: hidden;
+  }
+
+  @media (max-width: 500px) {
+    body {
+      background-color: var(--color-stoov-gray-900);
+    }
+  }
+}
+
+@layer utilities {
+  /* 컨펌 모달창 */
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+
+  /* 드롭다운 */
+  @keyframes dropdownIn {
+    0% {
+      opacity: 0;
+      transform: translateY(-6px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  /* 상세 페이지, 후기 작성, 수정 페이지, 동의 페이지 */
+  @keyframes slideInFromRight {
+    0% {
+      transform: translateX(100%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out;
+  }
+
+  .animate-dropdownIn {
+    animation: dropdownIn 0.15s ease-out;
+  }
+
+  .animate-slideInFromRight {
+    animation: slideInFromRight 0.3s ease-out;
   }
 }

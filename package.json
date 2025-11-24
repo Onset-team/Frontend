@@ -10,17 +10,26 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-oauth/google": "^0.12.2",
     "@tailwindcss/vite": "^4.1.16",
     "@tanstack/react-query": "^5.90.5",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.13.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
+    "lodash": "^4.17.21",
+    "motion": "^12.23.24",
     "react": "^19.1.1",
     "react-dom": "^19.1.1",
     "react-hook-form": "^7.65.0",
+    "react-hot-toast": "^2.6.0",
     "react-kakao-maps-sdk": "^1.2.0",
+    "react-modal-sheet": "^5.2.1",
     "react-router-dom": "^7.9.4",
+    "swiper": "^12.0.3",
+    "tailwind-merge": "^3.3.1",
     "tailwindcss": "^4.1.16",
     "zustand": "^5.0.8"
   },
@@ -35,10 +44,16 @@
     "eslint-plugin-react-hooks": "^5.2.0",
     "eslint-plugin-react-refresh": "^0.4.22",
     "globals": "^16.4.0",
+    "msw": "^2.12.0",
     "prettier": "^3.6.2",
     "prettier-plugin-classnames": "^0.8.5",
     "prettier-plugin-tailwindcss": "^0.7.1",
     "vite": "^7.1.7",
     "vite-plugin-svgr": "^4.5.0"
+  },
+  "msw": {
+    "workerDirectory": [
+      "public"
+    ]
   }
 }
