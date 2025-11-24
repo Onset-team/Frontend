@@ -19,6 +19,7 @@ export const useBookmarkPlaceQuery = () => {
     staleTime: 5 * 60 * 1000, // 5분
   });
 
+
   return {
     success: bookmarkPlaceQuery.data?.success,
     bookmarkPlaceLists: bookmarkPlaceQuery.data?.bookmarkPlaceLists,

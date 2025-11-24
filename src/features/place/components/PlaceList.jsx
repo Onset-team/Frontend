@@ -38,8 +38,6 @@ export default function PlaceList({ places = [], onClickPlace, setIsLoginConfirm
       );
     }
   };
-
-  
   
   return (
     <div>

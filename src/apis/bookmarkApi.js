@@ -7,7 +7,7 @@ export const getBookmarks = async () => {
   try {
     const response = await api.get('/bookmarks');
 
-    return response.data;
+    return response;
   } catch (error) {
     console.error('관심 장소 조회 중 오류 발생:', error);
     throw error;

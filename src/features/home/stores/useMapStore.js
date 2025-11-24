@@ -47,9 +47,31 @@ export const useMapStore = create((set, get) => ({
     set({ mapCenter: center });
   },
 
+  // 레벨 별 오프셋
+  calculateOffset: (level) => {
+    const offsetMap = {
+      1: 0.0005,  // 최대 확대
+      2: 0.001,
+      3: 0.002,
+      4: 0.003,
+      5: 0.004,
+      6: 0.006,
+      7: 0.01,
+      8: 0.02,
+      9: 0.04,
+      10: 0.06,
+      11: 0.08,
+      12: 0.1,
+      13: 0.15,
+      14: 0.2,   // 최대 축소
+    };
+    
+    return offsetMap[level] || 0.04;  // 기본값
+  },
+
   // 중심부 계산
   calculateCenterFromOriginal: () => {
-    const { originalPlaces } = get();
+    const { originalPlaces, level, calculateOffset } = get();
 
     if (!originalPlaces || originalPlaces.length === 0) {
       return { lat: 37.5665, lng: 126.978 };
@@ -63,8 +85,10 @@ export const useMapStore = create((set, get) => ({
       { lat: 0, lng: 0 },
     );
 
+    const offset = calculateOffset(level);  
+
     return {
-      lat: sum.lng / originalPlaces.length - 0.06,
+      lat: sum.lng / originalPlaces.length - offset,
       lng: sum.lat / originalPlaces.length,
     };
   },
@@ -81,18 +105,20 @@ export const useMapStore = create((set, get) => ({
 
   // 하나의 장소를 골랐을 때
   selectPlace: (placeId) => {
-    const { originalPlaces } = get();
-    const currentOffset = get().latOffset;
+    const { originalPlaces, calculateOffset  } = get();
 
     const place = originalPlaces.find((item) => item.placeId === placeId);
 
     // console.log(placeId, place.lng, place.lat)
 
     if (place) {
+      const newLevel = 5;
+      const offset = calculateOffset(newLevel);
+
       set({
         selectedPlace: place,
-        mapCenter: { lat: place.lng - currentOffset, lng: place.lat },
-        level: 5,
+        mapCenter: { lat: place.lng - offset, lng: place.lat },
+        level: newLevel,
       });
     }
 
@@ -136,8 +162,10 @@ export const useMapStore = create((set, get) => ({
   },
 
   setMapCenter: (lat, lng) => {
-    const currentOffset = get().latOffset;
-    set({ mapCenter: { lat: lat - currentOffset, lng: lng } });
+    const { level, calculateOffset } = get();
+    const offset = calculateOffset(level);
+
+    set({ mapCenter: { lat: lat - offset, lng: lng } });
   },
 
   resetMapCenter: () => {
