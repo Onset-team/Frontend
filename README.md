@@ -180,6 +180,6 @@ npm run dev
 
 ### 🚀 배포 링크 <a id="배포-링크"></a>
 
-[https://stoov.vercel.app/](https://stoov.vercel.app/)
+[https://stoo-v.com/](https://stoo-v.com/)
 
 ---
