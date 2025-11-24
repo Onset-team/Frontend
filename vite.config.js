@@ -22,15 +22,5 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
-  base: '/',
-  server: {
-    proxy: {
-      '/api': {
-        target: 'https://api.stoo-v.com',
-        changeOrigin: true,
-        secure: false,
-        cookieDomainRewrite: 'localhost',
-      },
-    },
-  },
+  base: '/'
 });

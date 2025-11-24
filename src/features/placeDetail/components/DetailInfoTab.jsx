@@ -22,6 +22,7 @@ export default function DetailInfoTab({ place }) {
     {
       id: 'reservation',
       title: '예약 사이트',
+      label: '자세한 예약 방법은 사이트에서 확인해 보세요.',
       link: place.reservationUrl,
     },
     {

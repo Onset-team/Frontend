@@ -20,7 +20,7 @@ export default function Header() {
   let currentMode = mode; // 'logo' | 'title' | 'back'
   let currentTitle = title;
 
-  if (path === '/') {
+  if (path === '/' || path === ':placeId') {
     currentMode = 'logo';
   } else if (path === '/bookmark') {
     currentMode = 'title';
@@ -28,7 +28,7 @@ export default function Header() {
   } else if (path === '/mypage') {
     currentMode = 'title';
     currentTitle = '마이 프로필';
-  } else if (path !== '/' && path !== '/interest' && path !== '/mypage') {
+  } else if (path !== '/' && path === '/login' && path !== '/bookmark' && path !== '/mypage') {
     currentMode = 'back';
   }
 

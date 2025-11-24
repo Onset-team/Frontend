@@ -18,6 +18,7 @@ export default function PlaceCard({
     e.stopPropagation();
     onToggleBookmark?.();
   };
+
   return (
     <div
       onClick={onClick}
@@ -27,8 +28,8 @@ export default function PlaceCard({
       <div className='relative'>
         <div className='h-[100px] w-[100px] overflow-hidden rounded-sm'>
           <img
-            src={place.thumbnailUrl || PlacePlaceholderSmall}
-            alt={place.title}
+            src={place?.thumbnailUrl || PlacePlaceholderSmall}
+            alt={place?.title}
             crossOrigin='anonymous'
             loading='lazy'
             fetchpriority='high'
@@ -54,12 +55,12 @@ export default function PlaceCard({
       <div className='flex flex-1 flex-col gap-1'>
         {/* 장소명 */}
         <Typography as='h3' variant='titleSm' className='line-clamp-1'>
-          {place.name}
+          {place?.name}
         </Typography>
 
         {/* 주소 */}
         <Typography variant='bodySm2' color='gray200' className='line-clamp-1'>
-          {place.address}
+          {place?.address}
         </Typography>
 
         {/* 장소 타입 */}
@@ -68,13 +69,13 @@ export default function PlaceCard({
           variant='labelSm3'
           className='text-stoov-orange-300 bg-stoov-gray-800 mt-1 w-fit rounded-full px-2 py-1'
         >
-          {place.type}
+          {place?.type}
         </Typography>
 
         {/* 후기 */}
         {showReviewCount && (
           <Typography variant='labelSm3' color='gray100' align='right'>
-            후기 {place.reviewCount}개
+            후기 {place?.reviewCount}개
           </Typography>
         )}
       </div>

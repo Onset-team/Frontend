@@ -36,20 +36,22 @@ export default function PlaceList({ places = [], onClickPlace, setIsLoginConfirm
     }
   };
 
+  
+  
   return (
     <>
       <div className='flex flex-col gap-2 pt-4 pb-8'>
         <Typography variant='labelMd2' color='gray300' align='right' className='px-4 leading-5'>
-          총 {places.length}곳
+          총 {places?.length}곳
         </Typography>
 
         <div className='flex flex-col'>
           {places.map((item) => (
             <PlaceCard
-              key={item.placeId}
+              key={item?.placeId}
               place={item}
-              onClick={() => onClickPlace?.(item.placeId)}
-              isBookmarked={item.isBookmark}
+              onClick={() => onClickPlace?.(item?.placeId)}
+              isBookmarked={item?.isBookmark}
               onToggleBookmark={() => handleToggleBookmark(item)}
               isPending={isPending}
             />

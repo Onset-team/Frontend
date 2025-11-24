@@ -16,10 +16,12 @@ import ChipGroup from '../components/ChipGroup';
 import Chip from '@/components/ui/Chip';
 import FloatingChip from '../components/FloatingChip';
 
+// 훅
 import { usePlaceSearchQuery } from '../hooks/usePlaceSearchQuery';
 import { useHandleClickPlace } from '../hooks/useHandleClickPlace';
 import { usePlaceListQuery } from '../hooks/usePlaceListQuery';
 import { usePlaceDetailQuery } from '@/features/placeDetail/hooks/usePlaceDetail';
+import { useBookmarkPlaceQuery } from '../hooks/useBookmarkPlaceQuery';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -30,24 +32,34 @@ export default function HomePage() {
 
   const { placeLists, refetch } = usePlaceListQuery();
   // 맵 스토어
-  const { places, selectedPlace, resetSelectedPlace, initializePlaces, resetOriginalPlaces, keyword, setKeyword,
-    setMapCenter, resetMapCenter } = useMapStore();
-  
+  const {
+    places,
+    resetSelectedPlace,
+    initializePlaces,
+    setPlaces,
+    resetOriginalPlaces,
+    keyword,
+    setKeyword,
+    resetMapCenter,
+    isBottomSheetOpen,
+    setIsBottomSheetOpen,
+  } = useMapStore();
+
+  // 관심 쿼리
+  const { refetch: bookmarkRefetch } = useBookmarkPlaceQuery();
+
   // 검색 쿼리
   const { mutate } = usePlaceSearchQuery();
 
   // 컨펌 상태
   const [isLoginConfirmOpen, setIsLoginConfirmOpen] = useState(false);
 
-  // 바텀 시트 오픈
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(true);
-
   // 관심 장소 보기 / 안보기
   const [handleBookmark, setHandleBookmark] = useState(false);
 
   // 관심 칩 높이 계산
   const [snapIndex, setSnapIndex] = useState(1);
-  const snapPoints = [0, 0.5, 0.85];
+  const snapPoints = [0, 0.5, 1];
   const actualHeights = [0, 40, 80]; // 실제 사용할 높이 (vh 단위)
 
   const bottomSheetHeight = actualHeights[snapIndex];
@@ -64,7 +76,7 @@ export default function HomePage() {
   const onBack = () => {
     resetSelectedPlace(null);
     resetMapCenter();
-    setKeyword('')
+    setKeyword('');
     resetOriginalPlaces();
     navigate('/');
   };
@@ -82,13 +94,36 @@ export default function HomePage() {
 
   // 검색 버튼 클릭
   const handleSearch = () => {
-    mutate({ keyword })
+    mutate({ keyword });
+  };
+
+  // 관심 장소 토글
+  const handleBookmarkState = async () => {
+    setIsBottomSheetOpen(false);
+
+    if (handleBookmark) {
+      resetOriginalPlaces();
+    } else {
+      const { data } = await bookmarkRefetch();
+
+      if (data && data.success) {
+        setPlaces(data.bookmarkPlaceLists);
+      }
+    }
+
+    setHandleBookmark(!handleBookmark);
+    setIsBottomSheetOpen(true);
   };
 
   return (
     <div className='relative h-[calc(100vh-118px)] w-full overflow-hidden'>
       <div className='absolute top-2 z-20 flex w-full flex-col gap-2 px-4'>
-        <SearchBar value={keyword} onBack={onBack} onChange={handleChange} onSearch={handleSearch} />
+        <SearchBar
+          value={keyword}
+          onBack={onBack}
+          onChange={handleChange}
+          onSearch={handleSearch}
+        />
 
         <ChipGroup />
       </div>
@@ -100,7 +135,7 @@ export default function HomePage() {
             variant='bookmark'
             direction='vertical'
             selected={handleBookmark}
-            onChange={() => setHandleBookmark(!handleBookmark)}
+            onChange={() => handleBookmarkState()}
           />
         </FloatingChip>
 
@@ -111,7 +146,7 @@ export default function HomePage() {
           initialSnap={1}
           onSnapChange={setSnapIndex}
         >
-          {selectedPlace ? (
+          {placeId ? (
             <PlaceDetailContent place={placeDetail} setIsLoginConfirmOpen={setIsLoginConfirmOpen} />
           ) : (
             <PlaceList
@@ -119,6 +154,7 @@ export default function HomePage() {
               onClickPlace={handleClickPlace}
               setIsLoginConfirmOpen={setIsLoginConfirmOpen}
             />
+            // <pre>{JSON.stringify(places, null, 2)}</pre>
           )}
         </BottomSheet>
       </div>

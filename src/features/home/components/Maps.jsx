@@ -10,7 +10,7 @@ export default function Maps({ locations = [] }) {
 
   // 맵 스토어
   const mapCenter = useMapStore((state) => state.mapCenter);
-  const setMapCenter = useMapStore((state) => state.setMapCenter);
+  // const setMapCenter = useMapStore((state) => state.setMapCenter);
   const mapLevel = useMapStore((state) => state.level);
 
   const handleClickPlace = useHandleClickPlace();
@@ -42,7 +42,7 @@ export default function Maps({ locations = [] }) {
       outlineOffset: '0px',
     },
   ];
-
+  
   return (
     <>
       <div className='relative h-[calc(100vh-100px)] w-full overflow-hidden'>
@@ -64,7 +64,7 @@ export default function Maps({ locations = [] }) {
                 key={position.placeId}
                 position={{ lat: position.lng, lng: position.lat }}
                 image={{
-                  src: mapMarkers('#4d4d4d', 24, 35),
+                  src: mapMarkers(position.bookmarked ? '#ec3910': '#4d4d4d' , 24, 35),
                   size: { width: 24, height: 35 },
                 }}
                 clickable={true}

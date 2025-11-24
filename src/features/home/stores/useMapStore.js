@@ -25,8 +25,16 @@ export const useMapStore = create((set, get) => ({
   latOffset: 0.006,
 
   // ui
+  isBottomSheetOpen: true,
+
+  // ui 변경
+
+  // 바텀 시트 오픈
+  setIsBottomSheetOpen: (statue) => set({ isBottomSheetOpen: statue }),
 
   // 데이터
+
+  // 전체 리스트
   initializePlaces: (data) => {
     set({
       originalPlaces: data,
@@ -39,9 +47,9 @@ export const useMapStore = create((set, get) => ({
     set({ mapCenter: center });
   },
 
+  // 중심부 계산
   calculateCenterFromOriginal: () => {
     const { originalPlaces } = get();
-    const currentOffset = get().latOffset;
 
     if (!originalPlaces || originalPlaces.length === 0) {
       return { lat: 37.5665, lng: 126.978 };
@@ -61,8 +69,15 @@ export const useMapStore = create((set, get) => ({
     };
   },
 
+  // 데이터 설정
+  setPlaces: (data) => {
+    set({
+      places: data,
+    });
+  },
+
   // 확대레벨 리셋
-  resetSelectedPlace: () => set({ level: 9 }),
+  resetMapLevel: () => set({ level: 9 }),
 
   // 하나의 장소를 골랐을 때
   selectPlace: (placeId) => {
@@ -77,11 +92,11 @@ export const useMapStore = create((set, get) => ({
       set({
         selectedPlace: place,
         mapCenter: { lat: place.lng - currentOffset, lng: place.lat },
-        level: 5
+        level: 5,
       });
     }
 
-    return place
+    return place;
   },
 
   // 장소 선택 리셋
