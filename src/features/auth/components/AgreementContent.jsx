@@ -478,7 +478,7 @@ export default function AgreementContent() {
                   6. 신규 기능, 업데이트, 공지사항 등 서비스 운영 관련 정보 제공
                 </Typography>
                 <Typography variant='bodySm2' color='gray300' className='indent-1'>
-                  7. 소 정보 제공 및 서비스 품질 개선을 위하여 회원이 작성한 후기 내용을 서비스 내
+                  7. 장소 정보 제공 및 서비스 품질 개선을 위하여 회원이 작성한 후기 내용을 서비스 내
                   다른 화면(예: 장소 상세페이지 등)에 재노출하거나 안내 정보로 활용
                 </Typography>
                 <Typography variant='bodySm2' color='gray300' className='indent-1'>
@@ -857,7 +857,7 @@ export default function AgreementContent() {
                   2. 법령에 의해 요청이 있는 경우
                 </Typography>
                 <Typography variant='bodySm2' color='gray300' className='indent-1'>
-                  2. 3. 서비스 제공을 위해 위탁한 업체가 업무 수행을 위해 필요한 경우
+                  3. 서비스 제공을 위해 위탁한 업체가 업무 수행을 위해 필요한 경우
                 </Typography>
                 <Typography variant='bodySm2' color='gray300'>
                   ※ 기타 구체적인 이용 목적은 수집 시 또는 개별 서비스 화면에 별도 고지합니다.

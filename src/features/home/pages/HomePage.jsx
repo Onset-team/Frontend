@@ -2,8 +2,6 @@
 import SearchBar from '@/components/ui/SearchBar';
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { usePlaceListQuery } from '../hooks/usePlaceListQuery';
-import { usePlaceDetailQuery } from '@/features/placeDetail/hooks/usePlaceDetail';
 
 // import { mockPlaces } from '@/mocks/places';
 import { useMapStore } from '../stores/useMapStore';
@@ -17,7 +15,13 @@ import BottomSheet from '@/components/ui/BottomSheet';
 import ChipGroup from '../components/ChipGroup';
 import Chip from '@/components/ui/Chip';
 import FloatingChip from '../components/FloatingChip';
+
+// 훅
 import { usePlaceSearchQuery } from '../hooks/usePlaceSearchQuery';
+import { useHandleClickPlace } from '../hooks/useHandleClickPlace';
+import { usePlaceListQuery } from '../hooks/usePlaceListQuery';
+import { usePlaceDetailQuery } from '@/features/placeDetail/hooks/usePlaceDetail';
+import { useBookmarkPlaceQuery } from '../hooks/useBookmarkPlaceQuery';
 
 export default function HomePage() {
   const navigate = useNavigate();
@@ -28,20 +32,27 @@ export default function HomePage() {
 
   const { placeLists, refetch } = usePlaceListQuery();
   // 맵 스토어
-  const { places, initializePlaces, resetOriginalPlaces, keyword, setKeyword,
-    setMapCenter, resetMapCenter } = useMapStore();
-  
+  const {
+    places,
+    resetSelectedPlace,
+    initializePlaces,
+    setPlaces,
+    resetOriginalPlaces,
+    keyword,
+    setKeyword,
+    resetMapCenter,
+    isBottomSheetOpen,
+    setIsBottomSheetOpen,
+  } = useMapStore();
+
+  // 관심 쿼리
+  const { refetch: bookmarkRefetch } = useBookmarkPlaceQuery();
+
   // 검색 쿼리
   const { mutate } = usePlaceSearchQuery();
 
   // 컨펌 상태
   const [isLoginConfirmOpen, setIsLoginConfirmOpen] = useState(false);
-
-  // 선택한 장소
-  // const [selectedPlace, setSelectedPlace] = useState(null);
-
-  // 바텀 시트 오픈
-  const [isBottomSheetOpen, setIsBottomSheetOpen] = useState(true);
 
   // 관심 장소 보기 / 안보기
   const [handleBookmark, setHandleBookmark] = useState(false);
@@ -59,18 +70,13 @@ export default function HomePage() {
   }, [placeLists]);
 
   // 리스트에서 장소 하나 클릭
-  const handleClickPlace = (placeId) => {
-    const place = places.find((item) => item.placeId === placeId);
-    // setSelectedPlace(place);
-    setMapCenter(place.lng, place.lat);
-    navigate(`/${placeId}`);
-  };
+  const handleClickPlace = useHandleClickPlace();
 
   // 검색 창 뒤로가기 버튼
   const onBack = () => {
-    // setSelectedPlace(null);
+    resetSelectedPlace(null);
     resetMapCenter();
-    setKeyword('')
+    setKeyword('');
     resetOriginalPlaces();
     navigate('/');
   };
@@ -88,13 +94,36 @@ export default function HomePage() {
 
   // 검색 버튼 클릭
   const handleSearch = () => {
-    mutate({ keyword })
+    mutate({ keyword });
+  };
+
+  // 관심 장소 토글
+  const handleBookmarkState = async () => {
+    setIsBottomSheetOpen(false);
+
+    if (handleBookmark) {
+      resetOriginalPlaces();
+    } else {
+      const { data } = await bookmarkRefetch();
+
+      if (data && data.success) {
+        setPlaces(data.bookmarkPlaceLists);
+      }
+    }
+
+    setHandleBookmark(!handleBookmark);
+    setIsBottomSheetOpen(true);
   };
 
   return (
     <div className='relative h-[calc(100vh-118px)] w-full overflow-hidden'>
       <div className='absolute top-2 z-20 flex w-full flex-col gap-2 px-4'>
-        <SearchBar value={keyword} onBack={onBack} onChange={handleChange} onSearch={handleSearch} />
+        <SearchBar
+          value={keyword}
+          onBack={onBack}
+          onChange={handleChange}
+          onSearch={handleSearch}
+        />
 
         <ChipGroup />
       </div>
@@ -106,7 +135,7 @@ export default function HomePage() {
             variant='bookmark'
             direction='vertical'
             selected={handleBookmark}
-            onChange={() => setHandleBookmark(!handleBookmark)}
+            onChange={() => handleBookmarkState()}
           />
         </FloatingChip>
 
@@ -125,6 +154,7 @@ export default function HomePage() {
               onClickPlace={handleClickPlace}
               setIsLoginConfirmOpen={setIsLoginConfirmOpen}
             />
+            // <pre>{JSON.stringify(places, null, 2)}</pre>
           )}
         </BottomSheet>
       </div>

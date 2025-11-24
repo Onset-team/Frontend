@@ -8,6 +8,8 @@ export const useMapStore = create((set, get) => ({
   // 전체 목록
   originalPlaces: [],
 
+  selectedPlace: null,
+
   // 검색어
   keyword: '',
 
@@ -16,19 +18,89 @@ export const useMapStore = create((set, get) => ({
     lng: 126.976372775,
   },
 
+  // 맵 확대 레벨
+  level: 9,
+
   // 지도 중앙 오프셋
   latOffset: 0.006,
 
   // ui
+  isBottomSheetOpen: true,
+
+  // ui 변경
+
+  // 바텀 시트 오픈
+  setIsBottomSheetOpen: (statue) => set({ isBottomSheetOpen: statue }),
 
   // 데이터
-  initializePlaces: (data) =>
+
+  // 전체 리스트
+  initializePlaces: (data) => {
     set({
       originalPlaces: data,
       places: data,
-    }),
+      level: 9,
+    });
 
-  // setPlaces: (data) => set({ places: data }),
+    // 중심 계산 및 설정
+    const center = get().calculateCenterFromOriginal();
+    set({ mapCenter: center });
+  },
+
+  // 중심부 계산
+  calculateCenterFromOriginal: () => {
+    const { originalPlaces } = get();
+
+    if (!originalPlaces || originalPlaces.length === 0) {
+      return { lat: 37.5665, lng: 126.978 };
+    }
+
+    const sum = originalPlaces.reduce(
+      (acc, place) => ({
+        lat: acc.lat + place.lat,
+        lng: acc.lng + place.lng,
+      }),
+      { lat: 0, lng: 0 },
+    );
+
+    return {
+      lat: sum.lng / originalPlaces.length - 0.06,
+      lng: sum.lat / originalPlaces.length,
+    };
+  },
+
+  // 데이터 설정
+  setPlaces: (data) => {
+    set({
+      places: data,
+    });
+  },
+
+  // 확대레벨 리셋
+  resetMapLevel: () => set({ level: 9 }),
+
+  // 하나의 장소를 골랐을 때
+  selectPlace: (placeId) => {
+    const { originalPlaces } = get();
+    const currentOffset = get().latOffset;
+
+    const place = originalPlaces.find((item) => item.placeId === placeId);
+
+    // console.log(placeId, place.lng, place.lat)
+
+    if (place) {
+      set({
+        selectedPlace: place,
+        mapCenter: { lat: place.lng - currentOffset, lng: place.lat },
+        level: 5,
+      });
+    }
+
+    return place;
+  },
+
+  // 장소 선택 리셋
+  resetSelectedPlace: () => set({ selectedPlace: null }),
 
   // 칩 버튼 필터링
   filterPlaces: (selectedValue) => {
@@ -69,6 +141,7 @@ export const useMapStore = create((set, get) => ({
   },
 
   resetMapCenter: () => {
-    set({ mapCenter: { lat: 37.571648599, lng: 126.976372775 } });
+    const center = get().calculateCenterFromOriginal();
+    set({ mapCenter: center, level: 9 });
   },
 }));

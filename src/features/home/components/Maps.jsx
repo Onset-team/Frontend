@@ -3,16 +3,20 @@ import React, { useEffect, useState } from 'react';
 import { Map, MapMarker, MarkerClusterer } from 'react-kakao-maps-sdk';
 import mapMarkers from './mapMarkers';
 import { useMapStore } from '../stores/useMapStore';
+import { useHandleClickPlace } from '../hooks/useHandleClickPlace';
 
 export default function Maps({ locations = [] }) {
   useKakaoLoader();
 
   // 맵 스토어
   const mapCenter = useMapStore((state) => state.mapCenter);
-  const setMapCenter = useMapStore((state) => state.setMapCenter);
+  // const setMapCenter = useMapStore((state) => state.setMapCenter);
+  const mapLevel = useMapStore((state) => state.level);
+
+  const handleClickPlace = useHandleClickPlace();
 
   const [map, setMap] = useState(null);
-  const [selectedMarker, setSelectedMarker] = useState(null);
+  // const [selectedMarker, setSelectedMarker] = useState(null);
 
   // 지도 장소 클릭시, 맵 센터 변경
   useEffect(() => {
@@ -38,7 +42,7 @@ export default function Maps({ locations = [] }) {
       outlineOffset: '0px',
     },
   ];
-
+  
   return (
     <>
       <div className='relative h-[calc(100vh-100px)] w-full overflow-hidden'>
@@ -46,7 +50,7 @@ export default function Maps({ locations = [] }) {
           id='map'
           center={mapCenter}
           style={{ width: '100%', height: '100%' }}
-          level={5}
+          level={mapLevel}
           onCreate={setMap}
         >
           {/* 위치 마커 */}
@@ -60,13 +64,12 @@ export default function Maps({ locations = [] }) {
                 key={position.placeId}
                 position={{ lat: position.lng, lng: position.lat }}
                 image={{
-                  src: mapMarkers('#4d4d4d', 24, 35),
+                  src: mapMarkers(position.bookmarked ? '#ec3910': '#4d4d4d' , 24, 35),
                   size: { width: 24, height: 35 },
                 }}
                 clickable={true}
                 onClick={() => {
-                  setSelectedMarker(position.placeId);
-                  setMapCenter(position.lng, position.lat);
+                  handleClickPlace(position.placeId)
                 }}
               />
             ))}
