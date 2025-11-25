@@ -27,9 +27,6 @@ export default function HomePage() {
   const navigate = useNavigate();
   const { placeId } = useParams();
 
-  // 장소 상세
-  const { data: placeDetail, isLoading, isError } = usePlaceDetailQuery(placeId);
-
   const { placeLists, refetch } = usePlaceListQuery();
   // 맵 스토어
   const {
@@ -145,7 +142,7 @@ export default function HomePage() {
           onSnapChange={setSnapIndex}
         >
           {placeId ? (
-            <PlaceDetailContent place={placeDetail} setIsLoginConfirmOpen={setIsLoginConfirmOpen} />
+            <PlaceDetailContent setIsLoginConfirmOpen={setIsLoginConfirmOpen} />
           ) : (
             <PlaceList
               places={places}
