@@ -12,7 +12,6 @@ export const useReviewsQuery = ({ placeId, onlyMyReview }) => {
     queryFn: () => getPlaceReviews({ placeId, onlyMyReview }),
     enabled: !!placeId,
     staleTime: 0,
-    refetchType: 'all',
 
     select: (list) => {
       // 정렬 기준: 등록일(수정일 있으면 수정일로)
