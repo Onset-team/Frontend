@@ -121,6 +121,7 @@ export default function HomePage() {
           onBack={onBack}
           onChange={handleChange}
           onSearch={handleSearch}
+          showBack={placeId ? true : false}
         />
 
         <ChipGroup />
