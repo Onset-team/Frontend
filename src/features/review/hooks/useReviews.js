@@ -12,7 +12,6 @@ export const useReviewsQuery = ({ placeId, onlyMyReview }) => {
     queryFn: () => getPlaceReviews({ placeId, onlyMyReview }),
     enabled: !!placeId,
     staleTime: 0,
-    refetchType: 'all',
 
     select: (list) => {
       // 정렬 기준: 등록일(수정일 있으면 수정일로)
@@ -41,7 +40,7 @@ export const useCreateReviewMutation = (placeId) => {
     mutationFn: ({ content }) => createReview({ placeId, content }),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
+      // queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
       queryClient.invalidateQueries({ queryKey: ['placeReviews', placeId] });
     },
     onError: (error) => {
@@ -61,7 +60,7 @@ export const useUpdateReviewMutation = (placeId) => {
     mutationFn: ({ reviewId, content }) => updateReview({ reviewId, content }),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
+      // queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
       queryClient.invalidateQueries({ queryKey: ['placeReviews', placeId] });
     },
     onError: (error) => {
@@ -81,7 +80,7 @@ export const useDeleteReviewMutation = (placeId) => {
     mutationFn: ({ reviewId }) => deleteReview({ reviewId }),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
+      // queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
       queryClient.invalidateQueries({ queryKey: ['placeReviews', placeId] });
     },
     onError: (error) => {

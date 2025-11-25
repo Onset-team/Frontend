@@ -46,13 +46,11 @@ export default function DetailCard({ place, isBookmarked = false, onToggleBookma
       </div>
 
       {/* 이미지 */}
-      <div className='overflow-hidden rounded-lg'>
+      <div className='aspect-3/2 max-h-[460px] w-full overflow-hidden rounded-lg'>
         <img
           src={place.thumbnailUrl || PlacePlaceholderLarge}
-          alt={place.title}
+          alt={place.name}
           fetchPriority='high'
-          width={100}
-          height={100}
           className='h-full w-full object-cover'
           onError={(e) => {
             e.currentTarget.src = PlacePlaceholderLarge;
