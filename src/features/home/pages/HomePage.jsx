@@ -46,6 +46,7 @@ export default function HomePage() {
   const { refetch: bookmarkRefetch } = useBookmarkPlaceQuery();
 
   // 검색 쿼리
+  const [searchKeyword, setSearchKeyword] = useState('');
   const { mutate } = usePlaceSearchQuery();
 
   // 컨펌 상태
@@ -92,6 +93,7 @@ export default function HomePage() {
   // 검색 버튼 클릭
   const handleSearch = () => {
     mutate({ keyword });
+    setSearchKeyword(keyword)
   };
 
   // 관심 장소 토글
@@ -148,7 +150,7 @@ export default function HomePage() {
               places={places}
               onClickPlace={handleClickPlace}
               setIsLoginConfirmOpen={setIsLoginConfirmOpen}
-              homeTitle={keyword?.trim() ? `'${keyword}' 검색 결과` : "서울 특별시 전체"}
+              homeTitle={searchKeyword?.trim() ? `'${keyword}' 검색 결과` : "서울 특별시 전체"}
             />
             // <pre>{JSON.stringify(places, null, 2)}</pre>
           )}
