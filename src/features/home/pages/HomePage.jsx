@@ -75,6 +75,7 @@ export default function HomePage() {
     resetSelectedPlace(null);
     resetMapCenter();
     setKeyword('');
+    setSearchKeyword('')
     resetOriginalPlaces();
     navigate('/');
   };
