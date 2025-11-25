@@ -51,7 +51,7 @@ export default function BottomSheet({
       onClose={() => onOpenChange(false)}
       snapPoints={snapPoints}
       initialSnap={safeInitialSnap}
-      detent='content'
+      // detent='content'
       onSnap={(i) => {
         setSnapIndex(i);
         onSnapChange?.(i);
