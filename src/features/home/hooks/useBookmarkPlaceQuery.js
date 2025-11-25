@@ -22,5 +22,6 @@ export const useBookmarkPlaceQuery = () => {
   return {
     bookmarkPlaceLists: bookmarkPlaceQuery.data?.bookmarkPlaceLists,
     refetch: bookmarkPlaceQuery.refetch,
+    isFetching: bookmarkPlaceQuery.isFetching,
   };
 };

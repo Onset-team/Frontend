@@ -99,7 +99,6 @@ export default function HomePage() {
 
   // 관심 장소 토글
   const handleBookmarkState = async () => {
-
     if (handleBookmark) {
       resetOriginalPlaces();
     } else {
@@ -109,10 +108,10 @@ export default function HomePage() {
         setPlaces(data.bookmarkPlaceLists);
       }
     }
-
+    setIsBottomSheetOpen(true);
     setHandleBookmark(!handleBookmark);
   };
-
+  
 
   return (
     <div className='relative h-[calc(100vh-118px)] w-full overflow-hidden'>
