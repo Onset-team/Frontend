@@ -115,7 +115,7 @@ export default function ReviewFormPage() {
 
         toast('후기가 수정되었습니다.', { id: toastId });
       } else {
-        // 작성
+        // 등록
         await createMutation.mutateAsync({
           content: trimmed,
         });
@@ -125,7 +125,7 @@ export default function ReviewFormPage() {
 
       goBackToReviewTab();
     } catch (error) {
-      console.error('후기 작성/수정 실패:', error);
+      console.error('후기 등록/수정 실패:', error);
 
       toast.error(isEdit ? '후기 수정에 실패했습니다.' : '후기 등록에 실패했습니다.', {
         id: toastId,
@@ -154,9 +154,9 @@ export default function ReviewFormPage() {
         <Button
           onClick={handleSubmit}
           disabled={isSubmitDisabled}
-          aria-label={isEdit ? '작성된 후기를 수정하는 버튼' : '새 후기를 작성하는 버튼'}
+          aria-label={isEdit ? '등록된 후기를 수정하는 버튼' : '새 후기를 등록하는 버튼'}
         >
-          {isEdit ? '후기 수정하기' : '후기 작성하기'}
+          {isEdit ? '후기 수정하기' : '후기 등록하기'}
         </Button>
       </div>
 
