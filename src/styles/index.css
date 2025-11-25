@@ -81,7 +81,7 @@
   body {
     font-family: var(--font-sans);
     color: var(--color-stoov-white-100);
-    background-color: var(--color-stoov-white-200);
+    background-color: var(--color-stoov-gray-800);
   }
 
   button {
