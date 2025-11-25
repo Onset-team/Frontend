@@ -8,7 +8,12 @@ import { useToggleBookmarkMutation } from '@/features/bookmark/hooks/useBookmark
 import PlaceCard from '@/features/place/components/PlaceCard';
 import Typography from '@/components/ui/Typography';
 
-export default function PlaceList({ places = [], onClickPlace, setIsLoginConfirmOpen }) {
+export default function PlaceList({
+  places = [],
+  onClickPlace,
+  setIsLoginConfirmOpen,
+  homeTitle,
+}) {
   const { isLoggedIn } = useAuthStore();
   // 관심 토글
   const { mutateAsync: toggleBookmark, isPending } = useToggleBookmarkMutation();
@@ -42,10 +47,17 @@ export default function PlaceList({ places = [], onClickPlace, setIsLoginConfirm
   return (
     <div>
       <div className='flex flex-col gap-2 pt-4 pb-8'>
-        <Typography variant='labelMd2' color='gray300' align='right' className='px-4 leading-5'>
-          총 {places?.length}곳
-        </Typography>
+        <div>
+          {homeTitle?.trim() && (
+            <Typography variant='titleLg' color='white100' align='left' className='px-4 leading-5'>
+              {homeTitle}
+            </Typography>
+          )}
 
+          <Typography variant='labelMd2' color='gray300' align='right' className='px-4 leading-5'>
+            총 {places?.length}곳
+          </Typography>
+        </div>
         <div className='flex flex-col'>
           {places.map((item) => (
             <PlaceCard

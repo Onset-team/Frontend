@@ -151,6 +151,7 @@ export default function HomePage() {
               places={places}
               onClickPlace={handleClickPlace}
               setIsLoginConfirmOpen={setIsLoginConfirmOpen}
+              homeTitle={keyword?.trim() ? `'${keyword}' 검색 결과` : "서울 특별시 전체"}
             />
             // <pre>{JSON.stringify(places, null, 2)}</pre>
           )}
