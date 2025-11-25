@@ -50,9 +50,9 @@ export const useMapStore = create((set, get) => ({
   // 레벨 별 오프셋
   calculateOffset: (level) => {
     const offsetMap = {
-      1: 0.0005,  // 최대 확대
-      2: 0.001,
-      3: 0.002,
+      1: 0,  // 최대 확대
+      2: 0,
+      3: 0.0015,
       4: 0.003,
       5: 0.004,
       6: 0.006,
@@ -66,7 +66,7 @@ export const useMapStore = create((set, get) => ({
       14: 0.2,   // 최대 축소
     };
     
-    return offsetMap[level] || 0.04;  // 기본값
+    return offsetMap[level];
   },
 
   // 중심부 계산
@@ -100,20 +100,27 @@ export const useMapStore = create((set, get) => ({
     });
   },
 
+  // 확대레벨 저장
+  setLevel: (newLevel) => set({ level: newLevel }),
+
   // 확대레벨 리셋
   resetMapLevel: () => set({ level: 9 }),
 
   // 하나의 장소를 골랐을 때
   selectPlace: (placeId) => {
-    const { originalPlaces, calculateOffset  } = get();
+    const { originalPlaces, calculateOffset, level: currentLevel  } = get();
 
     const place = originalPlaces.find((item) => item.placeId === placeId);
 
     // console.log(placeId, place.lng, place.lat)
 
     if (place) {
-      const newLevel = 5;
+      const newLevel = 3;
       const offset = calculateOffset(newLevel);
+
+    console.log('새 레벨:', newLevel);
+    console.log('적용된 offset:', offset);
+    console.log('place 좌표:', place.lng, place.lat);
 
       set({
         selectedPlace: place,
