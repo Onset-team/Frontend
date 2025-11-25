@@ -57,6 +57,7 @@ export default function Chip({ variant, direction = 'horizontal', value, selecte
 
   return (
     <button
+      aria-label={current.label}
       type='button'
       onClick={() => onChange(value)}
       className={cn(
@@ -72,6 +73,7 @@ export default function Chip({ variant, direction = 'horizontal', value, selecte
             'h-4 w-4',
             iconFillColorClass,
           )}
+          aria-hidden='true'
         />
       </div>
       <Typography variant='labelMd1' color={textColorProp}>

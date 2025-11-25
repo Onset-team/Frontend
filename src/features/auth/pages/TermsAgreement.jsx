@@ -43,7 +43,7 @@ export default function TermsAgreement() {
   };
 
   return (
-    <div className='flex h-[calc(100vh-92px)] flex-col justify-center gap-7 px-4 pt-4'>
+    <div className='flex min-h-[calc(100dvh-118px)] flex-col justify-center gap-7 px-4 pt-4'>
       {/* 약관 제목 */}
       <div className='inline-flex flex-col'>
         <Typography variant='titleLg' color='white100'>
@@ -81,7 +81,7 @@ export default function TermsAgreement() {
             label='[필수] 개인정보 수집 및 이용목적 동의 '
           />
           <Link to='/agreement/consent' className='flex items-center'>
-            <IconRight fill='#999999' />
+            <IconRight fill='#999999' aria-hidden='true'/>
           </Link>
         </div>
 
@@ -92,7 +92,7 @@ export default function TermsAgreement() {
             label='[필수] 서비스 이용 약관 동의'
           />
           <Link to='/agreement/terms' className='flex items-center'>
-            <IconRight fill='#999999' />
+            <IconRight fill='#999999' aria-hidden='true'/>
           </Link>
         </div>
 

@@ -114,7 +114,7 @@ export default function HomePage() {
   
 
   return (
-    <div className='relative h-[calc(100vh-118px)] w-full overflow-hidden'>
+    <div className='relative min-h-[calc(100dvh-118px)] w-full overflow-hidden'>
       <div className='absolute top-2 z-20 flex w-full flex-col gap-2 px-4'>
         <SearchBar
           value={keyword}
