@@ -6,12 +6,11 @@ import { Link } from 'react-router-dom';
 
 export default function RequireAuth() {
   return (
-    <div className='flex flex-col h-[calc(100vh-120px)] items-center justify-center px-4 gap-7'>
-      <img src={ErrorLogin} width="180px" height="180px" alt='로그인 필요' />
+    <div className='flex h-[calc(100vh-120px)] flex-col items-center justify-center gap-7 px-4'>
+      <img src={ErrorLogin} width='180px' height='180px' alt='로그인 필요' fetchPriority='high' />
 
       {/* 로그인 유도문 */}
       <div className='flex flex-col items-center justify-center gap-4'>
-
         {/* 로그인 유도문 */}
         <div className='flex flex-col items-center justify-center gap-4'>
           <Typography variant='headingSm' color='white100'>

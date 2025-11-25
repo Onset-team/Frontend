@@ -29,9 +29,9 @@ export default function PlaceCard({
         <div className='h-[100px] w-[100px] overflow-hidden rounded-sm'>
           <img
             src={place?.thumbnailUrl || PlacePlaceholderSmall}
-            alt={place?.title}
+            alt={place?.name}
             loading='lazy'
-            fetchpriority='high'
+            fetchPriority='high'
             width={100}
             height={100}
             className='h-full w-full object-cover'
