@@ -31,8 +31,13 @@ export default function ReviewMoreMenu({ isMyReview, onEdit, onDelete, onReport 
 
   return (
     <div ref={menuRef} className='relative'>
-      <Button variant='icon' size='iconXs' onClick={() => setIsOpen((v) => !v)}>
-        <IconDot className='text-stoov-gray-100' />
+      <Button
+        variant='icon'
+        size='iconXs'
+        aria-label='더 보기'
+        onClick={() => setIsOpen((v) => !v)}
+      >
+        <IconDot className='text-stoov-gray-100' aria-hidden='true' />
       </Button>
 
       {isOpen && (

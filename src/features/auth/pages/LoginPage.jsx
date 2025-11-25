@@ -7,7 +7,7 @@ export default function LoginPage() {
 
   // 높이 계산은 100vh에서 헤더와 높이를 빼서 계산
   return (
-    <div className='flex flex-col h-[calc(100vh-120px)] items-center justify-center gap-16 px-4'>
+    <div className='flex flex-col min-h-[calc(100dvh-118px)] items-center justify-center gap-16 px-4'>
       {' '}
       {/* 로고 부분 */}
         <LoginLogo />

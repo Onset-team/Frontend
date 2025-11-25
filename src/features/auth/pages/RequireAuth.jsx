@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 
 export default function RequireAuth() {
   return (
-    <div className='flex h-[calc(100vh-120px)] flex-col items-center justify-center gap-7 px-4'>
+    <div className='flex min-h-[calc(100dvh-118px)] flex-col items-center justify-center gap-7 px-4'>
       <img src={ErrorLogin} width='180px' height='180px' alt='로그인 필요' fetchPriority='high' />
 
       {/* 로그인 유도문 */}
