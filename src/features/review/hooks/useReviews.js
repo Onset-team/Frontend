@@ -41,7 +41,7 @@ export const useCreateReviewMutation = (placeId) => {
     mutationFn: ({ content }) => createReview({ placeId, content }),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
+      // queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
       queryClient.invalidateQueries({ queryKey: ['placeReviews', placeId] });
     },
     onError: (error) => {
@@ -61,7 +61,7 @@ export const useUpdateReviewMutation = (placeId) => {
     mutationFn: ({ reviewId, content }) => updateReview({ reviewId, content }),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
+      // queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
       queryClient.invalidateQueries({ queryKey: ['placeReviews', placeId] });
     },
     onError: (error) => {
@@ -81,7 +81,7 @@ export const useDeleteReviewMutation = (placeId) => {
     mutationFn: ({ reviewId }) => deleteReview({ reviewId }),
 
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
+      // queryClient.invalidateQueries({ queryKey: ['placeDetail', placeId] });
       queryClient.invalidateQueries({ queryKey: ['placeReviews', placeId] });
     },
     onError: (error) => {
