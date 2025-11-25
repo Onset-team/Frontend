@@ -6,6 +6,8 @@ import { cn } from '@/utils/cn';
 import BottomBar from '@/components/layout/BottomBar';
 import Header from '@/components/layout/Header';
 
+import SideLogo from '@/assets/images/SideLogo.png';
+
 export default function Layout() {
   const isLoginPage = useMatch('/login'); // 로그인
   const isAgreementPage = useMatch('/agreement/*'); // 이용약관
@@ -24,6 +26,10 @@ export default function Layout() {
 
   return (
     <div className='bg-stoov-gray-900 relative mx-auto flex min-h-dvh w-full max-w-[500px] flex-col overflow-hidden'>
+      <div className='fixed top-1/2 left-1/2 mt-[-60px] ml-[-500px] -translate-x-1/2 -translate-y-1/2 md:hidden xl:block'>
+        <img src={SideLogo} width={240} height={240} alt='스투브' />
+      </div>
+
       <div
         className={cn(
           'flex min-h-dvh flex-col',
