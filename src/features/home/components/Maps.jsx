@@ -52,6 +52,11 @@ export default function Maps({ locations = [] }) {
           style={{ width: '100%', height: '100%' }}
           level={mapLevel}
           onCreate={setMap}
+          onZoomChanged={(map) => {
+            // 맵 확대 레벨 변경 감지
+              const level = map.getLevel();
+              useMapStore.getState().setLevel(level);
+          }}
         >
           {/* 위치 마커 */}
           <MarkerClusterer
@@ -73,24 +78,6 @@ export default function Maps({ locations = [] }) {
                 }}
               />
             ))}
-
-            {/* {locations.map((position, index) => (
-              <MapMarker
-                key={`${position.lat - position.lng}`}
-                position={{ lat: position.lat + 0.002, lng: position.lng + 0.002 }} // 마커를 표시할 위치
-                image={{
-                  src: mapMarkers('#ec3910', 24, 35), // 마커이미지
-                  size: {
-                    width: 24,
-                    height: 35,
-                  }, // 마커이미지의 크기
-                }}
-                clickable={true}
-                onClick={() => {
-                  setSelectedMarker(index);
-                }}
-              />
-            ))} */}
           </MarkerClusterer>
         </Map>
 
