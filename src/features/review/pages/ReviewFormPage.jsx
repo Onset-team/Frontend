@@ -136,7 +136,7 @@ export default function ReviewFormPage() {
   return (
     <>
       <div className='bg-stoov-gray-900 fixed top-0 left-1/2 z-50 flex h-15 w-full max-w-[500px] -translate-x-1/2 items-center px-4'>
-        <Button variant='icon' size='iconLg' onClick={handleGoBack}>
+        <Button variant='icon' size='iconLg' onClick={handleGoBack} aria-label='뒤로가기'>
           <IconLeft className='text-stoov-gray-100' />
         </Button>
       </div>
@@ -151,7 +151,11 @@ export default function ReviewFormPage() {
                         (분위기, 유동 인구, 주변 환경 등)`}
         />
 
-        <Button onClick={handleSubmit} disabled={isSubmitDisabled}>
+        <Button
+          onClick={handleSubmit}
+          disabled={isSubmitDisabled}
+          aria-label={isEdit ? '작성된 후기를 수정하는 버튼' : '새 후기를 작성하는 버튼'}
+        >
           {isEdit ? '후기 수정하기' : '후기 작성하기'}
         </Button>
       </div>

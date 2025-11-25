@@ -52,7 +52,7 @@ export default function Header() {
       )}
     >
       {currentMode === 'logo' && (
-        <Link to='/' className='flex items-center'>
+        <Link to='/' className='flex items-center' aria-label='홈으로 이동'>
           <Logo className='h-9 w-[84px]' />
         </Link>
       )}
