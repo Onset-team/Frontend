@@ -118,10 +118,6 @@ export const useMapStore = create((set, get) => ({
       const newLevel = 3;
       const offset = calculateOffset(newLevel);
 
-    console.log('새 레벨:', newLevel);
-    console.log('적용된 offset:', offset);
-    console.log('place 좌표:', place.lng, place.lat);
-
       set({
         selectedPlace: place,
         mapCenter: { lat: place.lng - offset, lng: place.lat },
