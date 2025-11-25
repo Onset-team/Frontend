@@ -45,7 +45,7 @@ export default function Maps({ locations = [] }) {
   
   return (
     <>
-      <div className='relative h-[calc(100vh-100px)] w-full overflow-hidden'>
+      <div className='relative h-[calc(100vh-118px)] w-full overflow-hidden'>
         <Map
           id='map'
           center={mapCenter}
@@ -65,18 +65,18 @@ export default function Maps({ locations = [] }) {
             styles={clusterStyles} // 클러스터러 스타일
           >
             {locations.map((position, index) => (
-              <MapMarker
-                key={position.placeId}
-                position={{ lat: position.lng, lng: position.lat }}
-                image={{
-                  src: mapMarkers(position.bookmarked ? '#ec3910': '#4d4d4d' , 24, 35),
-                  size: { width: 24, height: 35 },
-                }}
-                clickable={true}
-                onClick={() => {
-                  handleClickPlace(position.placeId)
-                }}
-              />
+                <MapMarker
+                  key={position.placeId}
+                  position={{ lat: position.lng, lng: position.lat }}
+                  image={{
+                    src: mapMarkers(position.bookmarked ? '#ec3910': '#4d4d4d' , 24, 35),
+                    size: { width: 24, height: 35 },
+                  }}
+                  clickable={true}
+                  onClick={() => {
+                    handleClickPlace(position.placeId)
+                  }}
+                />
             ))}
           </MarkerClusterer>
         </Map>
