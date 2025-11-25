@@ -49,6 +49,7 @@ export default function LoginPage() {
           width={buttonWidth}
           size={buttonSize}
           text={buttonText}
+          aria-label='구글로그인버튼'
         />
       </GoogleOAuthProvider>
     </div>

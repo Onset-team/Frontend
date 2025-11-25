@@ -23,7 +23,7 @@ export default function AgreeSection({ version = '1.0.0' }) {
             <Typography variant='bodySm1'>{item.label}</Typography>
 
             <div className='flex h-10 w-10 items-center justify-center'>
-              <IconRight className='text-stoov-gray-100' />
+              <IconRight className='text-stoov-gray-100' aria-hidden='true'/>
             </div>
           </Link>
         ))}
