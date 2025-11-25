@@ -108,13 +108,13 @@ export default function EmptyState({
       )}
     >
       {current.image && (
-        <div className='h-[200px] w-[200px] overflow-hidden rounded'>
-          <img
-            src={current.image || PlacePlaceholderSmall}
-            alt={current.title}
-            className='h-full w-full object-cover'
-          />
-        </div>
+        <img
+          src={current.image || PlacePlaceholderSmall}
+          alt={current.title}
+          fetchPriority='high'
+          width={180}
+          height={180}
+        />
       )}
 
       <div className='flex flex-col items-center gap-2'>

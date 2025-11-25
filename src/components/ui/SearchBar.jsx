@@ -44,12 +44,13 @@ const SearchBar = forwardRef(
         <input
           ref={ref}
           type='text'
+          name='searchbar'
           value={value}
           onChange={onChange}
           placeholder={placeholder}
           aria-label='장소 검색 입력'
           {...rest}
-          className='placeholder:text-stoov-gray-300 text-stoov-white-100 h-12 flex-1 px-3 outline-none'
+          className='placeholder:text-stoov-gray-300 text-stoov-white-100 h-12 w-full flex-1 px-3 outline-none'
         />
 
         {/* 검색 버튼 */}

@@ -86,10 +86,10 @@ export default function MapTest() {
     }
   }, [apiData, error]);
 
-  useEffect(() => {
-    // console.log(apiData);
-    console.log(statusCode);
-  }, [apiData, statusCode]);
+  // useEffect(() => {
+  //   console.log(apiData);
+  //   console.log(statusCode);
+  // }, [apiData, statusCode]);
 
   // 좌표 -> 주소 변환
   const getAddressFromCoords = (lat, lng) => {

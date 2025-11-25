@@ -81,9 +81,9 @@ const router = createBrowserRouter([
             path: ':placeId',
             element: <HomePage />,
           },
-          { path: '/test', element: <MapTest /> },
-          { path: '/test2', element: <HttpTest /> },
-          { path: '/network', element: <NetworkTest /> },
+          // { path: '/test', element: <MapTest /> },
+          // { path: '/test2', element: <HttpTest /> },
+          // { path: '/network', element: <NetworkTest /> },
           {
             path: '/places/:placeId',
             element: <PlaceDetailPage />, // 관심페이지에서 진입

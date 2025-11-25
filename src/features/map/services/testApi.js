@@ -5,7 +5,7 @@ export async function testApiCall() {
   try {
     const res = await axios.get('https://api.stoo-v.com/api/places');
 
-    console.log(res)
+    // console.log(res)
 
     return {
       success: true,

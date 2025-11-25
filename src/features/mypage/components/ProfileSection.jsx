@@ -47,6 +47,9 @@ export default function ProfileSection({ profileImageUrl, nickname, email, onPro
           <img
             src={profileImageUrl || ProfilePlaceholder}
             alt='프로필 이미지'
+            fetchPriority='high'
+            width={100}
+            height={100}
             className='h-full w-full object-cover'
           />
         </div>

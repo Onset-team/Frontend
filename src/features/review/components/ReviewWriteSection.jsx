@@ -10,7 +10,7 @@ export default function ReviewWriteSection({ onClick }) {
     <div className='flex flex-col items-center gap-4 py-4'>
       <Typography variant='bodyMd'>장소에 대한 느낌과 공연 경험을 남겨보세요!</Typography>
 
-      <Button variant='iconText' size='iconText' onClick={onClick}>
+      <Button variant='iconText' size='iconText' onClick={onClick} aria-label='장소 후기 쓰기'>
         <IconPen />
         장소 후기 쓰기
       </Button>
